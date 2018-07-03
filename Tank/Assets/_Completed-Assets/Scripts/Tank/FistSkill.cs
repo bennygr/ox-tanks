@@ -3,28 +3,29 @@ using UnityEngine;
 
 namespace AssemblyCSharp.Assets._CompletedAssets.Scripts.Tank
 {
-    public class FistSkill : AbstractSkill
+    class FistSkill : AbstractSkill
     {
-        public GameObject m_Instance;
-        public UnityEngine.Object originalFist;
+        public Rigidbody m_Fist;
+        public Transform m_FireTransform;           // A child of the tank where the shells are spawned.
+        public AudioSource m_ShootingAudio;         // Reference to the audio source used to play the shooting audio. NB: different to the movement audio source.
 
-        protected new void Start()
-        {
-            base.Start();
-            //Load prefab by code:
-            //Prefab needs to be in the "Resources" subfolder
-            originalFist = Resources.Load("Skills/Fist");
-        }
+        private float m_CurrentLaunchForce;         // The force that will be given to the shell when the fire button is released.
+        private float m_ChargeSpeed;                // How fast the launch force increases, based on the max charge time.
+        private bool m_Fired;
 
         void Update()
         {
-            //HOWTO use the input-manager?
             if (Input.GetButtonDown(m_FireButton))
             {
                 Rigidbody fistInstance =
-                    Instantiate(originalFist,
-                                m_FireTransform.position,
-                                m_FireTransform.rotation) as Rigidbody;
+                    Instantiate(m_Fist, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
+
+                fistInstance.velocity = 25f * m_FireTransform.forward;
+                if (m_ShootingAudio)
+                {
+                    m_ShootingAudio.Play();
+                }
+
             }
         }
     }
