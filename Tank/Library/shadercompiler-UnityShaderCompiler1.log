@@ -1,0 +1,21 @@
+Base path: /home/benny/Unity-2018.1.5f1/Editor/Data
+Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  api=15 insize=1435 outsize=5357 ok=1
+Cmd: compileComputeKernel
+  api=18 insize=1435 outsize=8333 ok=1
+Cmd: compileComputeKernel
+  api=15 insize=3273 outsize=3853 ok=1
+Cmd: compileComputeKernel
+  api=18 insize=3273 outsize=14873 ok=1
+Cmd: compileComputeKernel
+  api=18 insize=3273 outsize=8637 ok=1
+Cmd: compileComputeKernel
+  api=15 insize=1526 outsize=1021 ok=1
+Cmd: compileComputeKernel
+  api=18 insize=1526 outsize=1433 ok=1
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+
+Quitting shader compiler process
