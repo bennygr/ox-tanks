@@ -16,6 +16,7 @@ namespace Complete
         public GameObject m_TankPrefab;             // Reference to the prefab the players will control.
         public GameObject m_TankPrefabMiddleware;
         public GameObject m_TankePrefabQA;
+        public PowerUpManager m_PowerUpManager;
         public TankManager[] m_Tanks;               // A collection of managers for enabling and disabling different aspects of the tanks.
 
 
@@ -128,6 +129,9 @@ namespace Complete
             // As soon as the round begins playing let the players control the tanks.
             EnableTankControl();
 
+            //Disable powerup spawning
+            m_PowerUpManager.Enabled = true;
+
             // Clear the text from the screen.
             m_MessageText.text = string.Empty;
 
@@ -144,6 +148,9 @@ namespace Complete
         {
             // Stop tanks from moving.
             DisableTankControl();
+
+            //Disable powerup spawning
+            m_PowerUpManager.Enabled = false;
 
             // Clear the winner from the previous round.
             m_RoundWinner = null;

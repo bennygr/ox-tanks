@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using Complete;
 using UnityEngine;
+
 namespace Complete
 {
-    public class HealthCollect : MonoBehaviour
+    public class HealthCollect : AbstractPowerUp
     {
         public float increaseHealth = 25f;
+
         private void OnTriggerEnter(Collider other)
         {
             var health = other.GetComponent<TankHealth>();
@@ -14,6 +16,7 @@ namespace Complete
             {
                 health.Heal(increaseHealth);
             }
+            PowerUpManager.CleanSpawningPoint(gameObject);
             Destroy(gameObject);
         }
     }
