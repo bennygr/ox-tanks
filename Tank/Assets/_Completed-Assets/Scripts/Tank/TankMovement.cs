@@ -85,6 +85,7 @@ namespace Complete
             if ((System.DateTime.Now - this.speedChanged).Seconds > this.speedTime)
             {
                 this.m_Speed = originalSpeed;
+                Debug.Log("Speed powerup for player " + m_PlayerNumber + " is over.");
             }
 
             EngineAudio();
