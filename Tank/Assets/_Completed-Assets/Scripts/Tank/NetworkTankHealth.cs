@@ -48,7 +48,7 @@ namespace Complete {
 
 			// If the current health is at or below zero and it has not yet been registered, call OnDeath.
 			if (m_CurrentHealth <= 0f && !m_Dead) {
-				OnDeath();
+				RpcOnDeath();
 			}
 		}
 
@@ -61,7 +61,8 @@ namespace Complete {
 		}
 
 
-		private void OnDeath() {
+        [ClientRpc]
+		void RpcOnDeath() {
 			// Set the flag so that this function is only called once.
 			m_Dead = true;
 
