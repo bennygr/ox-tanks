@@ -23,7 +23,7 @@ namespace Complete {
 		public NetworkTankMovement m_Movement;                        // Reference to tank's movement script, used to disable and enable control.
 		public NetworkTankShooting m_Shooting;                        // Reference to tank's shooting script, used to disable and enable control.
 		public NetworkTankHealth m_Health;                            // Reference to tank's health script
-		public AbstractSkill m_Skill;                              // Reference to tank's skill script
+		//public AbstractSkill m_Skill;                              // Reference to tank's skill script
 		private GameObject m_CanvasGameObject;                  // Used to disable the world space UI during the Starting and Ending phases of each round.
 
 
@@ -32,7 +32,7 @@ namespace Complete {
 			m_Movement = m_Instance.GetComponent<NetworkTankMovement>();
 			m_Shooting = m_Instance.GetComponent<NetworkTankShooting>();
 			m_Health = m_Instance.GetComponent<NetworkTankHealth>();
-			m_Skill = m_Instance.GetComponent<AbstractSkill>();
+			//m_Skill = m_Instance.GetComponent<AbstractSkill>();
 			m_TankConfig = m_Instance.GetComponent<NetworkTankConfig>();
 			m_CanvasGameObject = m_Instance.GetComponentInChildren<Canvas>().gameObject;
 
@@ -45,26 +45,12 @@ namespace Complete {
 			// Set the player numbers to be consistent across the scripts.
 			m_Movement.m_PlayerNumber = m_PlayerNumber;
 			m_Shooting.m_PlayerNumber = m_PlayerNumber;
-			m_Skill.m_PlayerNumber = m_PlayerNumber;
+			//m_Skill.m_PlayerNumber = m_PlayerNumber;
 
 			Debug.Log(m_Movement.m_PlayerNumber);
 			m_TankConfig.color = m_PlayerColor;
 			m_TankConfig.playerName = m_PlayerName;
 			m_TankConfig.playerNumber = m_PlayerNumber;
-
-            /*
-			// Create a string using the correct color that says 'PLAYER 1' etc based on the tank's color and the player's number.
-			m_ColoredPlayerText = "<color=#" + ColorUtility.ToHtmlStringRGB(m_PlayerColor) + ">PLAYER " + m_PlayerNumber + "</color>";
-
-			// Get all of the renderers of the tank.
-			MeshRenderer[] renderers = m_Instance.GetComponentsInChildren<MeshRenderer>();
-
-			// Go through all the renderers...
-			for (int i = 0; i < renderers.Length; i++) {
-				// ... set their material color to the color specific to this tank.
-				renderers[i].material.color = m_PlayerColor;
-			}
-            */
 		}
 
 		public string GetName() {
@@ -79,7 +65,7 @@ namespace Complete {
 		public void DisableControl() {
 			m_Movement.enabled = false;
 			m_Shooting.enabled = false;
-			m_Skill.enabled = false;
+			//m_Skill.enabled = false;
 		}
 
 
@@ -87,7 +73,7 @@ namespace Complete {
 		public void EnableControl() {
 			m_Movement.enabled = true;
 			m_Shooting.enabled = true;
-			m_Skill.enabled = true;
+			//m_Skill.enabled = true;
 
 			m_Movement.ReEnableParticles();
 			m_CanvasGameObject.SetActive(true);

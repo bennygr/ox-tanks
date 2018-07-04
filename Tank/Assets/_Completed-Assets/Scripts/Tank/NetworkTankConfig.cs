@@ -34,14 +34,14 @@ namespace Complete {
 			Renderer[] renderers = m_TankRenderers.GetComponentsInChildren<Renderer>();
 
 			// Go through all the renderers...
-			//for (int i = 0; i < renderers.Length; i++) {
+			for (int i = 0; i < renderers.Length; i++) {
 				// ... set their material color to the color specific to this tank.
-				//renderers[i].material.color = color;
-			//}
+				renderers[i].material.color = color;
+			}
 
-			//if (m_TankRenderers) {
-				//m_TankRenderers.SetActive(false);
-			//}
+			/*if (m_TankRenderers) {
+				m_TankRenderers.SetActive(false);
+			}*/
 
 			//m_NameText.text = "<color=#" + ColorUtility.ToHtmlStringRGB(m_Color) + ">" + m_PlayerName + "</color>";
 		}
