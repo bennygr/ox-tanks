@@ -82,10 +82,11 @@ namespace Complete
             m_TurnInputValue = Input.GetAxis(m_TurnAxisName);
 
 
-            if ((System.DateTime.Now - this.speedChanged).Seconds > this.speedTime)
+            if ((System.DateTime.Now - this.speedChanged).Seconds > this.speedTime && this.speedChanged != System.DateTime.MinValue)
             {
                 this.m_Speed = originalSpeed;
                 Debug.Log("Speed powerup for player " + m_PlayerNumber + " is over.");
+                this.speedChanged = System.DateTime.MinValue;
             }
 
             EngineAudio();
