@@ -20,6 +20,10 @@ namespace Complete
         private float m_OriginalPitch;              // The pitch of the audio source at the start of the scene.
         private ParticleSystem[] m_particleSystems; // References to all the particles systems used by the Tanks
 
+        private float originalSpeed;
+        private System.DateTime speedChanged;
+        private float speedTime;
+
         private void Awake()
         {
             m_Rigidbody = GetComponent<Rigidbody>();
@@ -67,6 +71,7 @@ namespace Complete
 
             // Store the original pitch of the audio source.
             m_OriginalPitch = m_MovementAudio.pitch;
+            this.originalSpeed = m_Speed;
         }
 
 
@@ -75,6 +80,12 @@ namespace Complete
             // Store the value of both input axes.
             m_MovementInputValue = Input.GetAxis(m_MovementAxisName);
             m_TurnInputValue = Input.GetAxis(m_TurnAxisName);
+
+
+            if ((System.DateTime.Now - this.speedChanged).Seconds > this.speedTime)
+            {
+                this.m_Speed = originalSpeed;
+            }
 
             EngineAudio();
         }
@@ -138,9 +149,11 @@ namespace Complete
             m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
         }
 
-        public void SetSpeedFactor(float speedFactor, float time, float maxSpeed)
+        public void IncreaseSpeed(float speedFactor, float time, float maxSpeed)
         {
             this.m_Speed = Mathf.Min(maxSpeed, m_Speed * speedFactor);
+            this.speedChanged = System.DateTime.Now;
+            this.speedTime = time;
         }
     }
 }

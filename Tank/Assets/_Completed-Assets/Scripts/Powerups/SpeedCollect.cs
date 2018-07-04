@@ -16,7 +16,7 @@ namespace Complete
             var movement = other.GetComponent<TankMovement>();
             if (movement != null)
             {
-                movement.SetSpeedFactor(speedFactor, time, maxSpeed);
+                movement.IncreaseSpeed(speedFactor, time, maxSpeed);
             }
 
             PowerUpManager.CleanSpawningPoint(gameObject);
