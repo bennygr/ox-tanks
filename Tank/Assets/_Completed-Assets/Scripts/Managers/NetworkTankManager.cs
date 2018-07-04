@@ -25,6 +25,7 @@ namespace Complete {
 		//[HideInInspector] 
 		public string m_PlayerName;           // The player name set in the lobby (TODO: Lobby)
 
+		public NetworkTankConfig m_TankConfig;
 
 		private NetworkTankMovement m_Movement;                        // Reference to tank's movement script, used to disable and enable control.
 		private NetworkTankShooting m_Shooting;                        // Reference to tank's shooting script, used to disable and enable control.
@@ -39,12 +40,17 @@ namespace Complete {
 			m_Shooting = m_Instance.GetComponent<NetworkTankShooting>();
 			m_Health = m_Instance.GetComponent<NetworkTankHealth>();
 			m_Skill = m_Instance.GetComponent<AbstractSkill>();
+			m_TankConfig = m_Instance.GetComponent<NetworkTankConfig>();
 			m_CanvasGameObject = m_Instance.GetComponentInChildren<Canvas>().gameObject;
 
 			// Set the player numbers to be consistent across the scripts.
 			m_Movement.m_PlayerNumber = m_PlayerNumber;
 			m_Shooting.m_PlayerNumber = m_PlayerNumber;
 			m_Skill.m_PlayerNumber = m_PlayerNumber;
+
+			m_TankConfig.color = m_PlayerColor;
+			m_TankConfig.playerName = m_PlayerName;
+			m_TankConfig.playerNumber = m_PlayerNumber;
 
 			// Create a string using the correct color that says 'PLAYER 1' etc based on the tank's color and the player's number.
 			m_ColoredPlayerText = "<color=#" + ColorUtility.ToHtmlStringRGB(m_PlayerColor) + ">PLAYER " + m_PlayerNumber + "</color>";
@@ -59,6 +65,13 @@ namespace Complete {
 			}
 		}
 
+		public string GetName() {
+			return m_TankConfig.playerName;
+        }
+
+		public bool IsReady() {
+			return m_TankConfig.isReady;
+        }
 
 		// Used during the phases of the game where the player shouldn't be able to control their tank.
 		public void DisableControl() {

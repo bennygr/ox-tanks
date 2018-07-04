@@ -24,7 +24,9 @@ namespace Complete {
 
 		public Transform[] m_SpawnPoint;
 
-
+		[HideInInspector]
+        [SyncVar]
+        public bool m_GameIsFinished = false;
 
 		private int m_RoundNumber;                  // Which round the game is currently on.
 		private WaitForSeconds m_StartWait;         // Used to have a delay whilst the round starts.
@@ -72,7 +74,7 @@ namespace Complete {
 		/// Removes the player.
 		/// </summary>
 		/// <param name="player">Player.</param>
-		static public void RemovePlayer(GameObject player) {
+		public void RemovePlayer(GameObject player) {
 			NetworkTankManager toRemove = null;
 			foreach (var tank in tanks) {
 				if (tank.m_Instance == player) {
@@ -300,7 +302,7 @@ namespace Complete {
 		// This function is used to turn all the tanks back on and reset their positions and properties.
 		private void ResetAllTanks() {
 			for (int i = 0; i < tanks.Count; i++) {
-				tanks[i].m_SpawnPoint = m_SpawnPoint[tanks[i].m_PlayerNumber];
+				tanks[i].m_SpawnPoint = m_SpawnPoint[tanks[i].m_TankConfig.playerNumber];
 				tanks[i].Reset();
 			}
 		}
