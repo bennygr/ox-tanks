@@ -36,16 +36,23 @@ namespace Complete {
 			m_TankConfig = m_Instance.GetComponent<NetworkTankConfig>();
 			m_CanvasGameObject = m_Instance.GetComponentInChildren<Canvas>().gameObject;
 
+			// Get references to the child objects.
+            m_TankRenderers = m_Health.m_TankRenderers;
+
+			//Set a reference to that amanger in the health script, to disable control when dying
+			m_Health.m_TankManager = this;
+
 			// Set the player numbers to be consistent across the scripts.
 			m_Movement.m_PlayerNumber = m_PlayerNumber;
 			m_Shooting.m_PlayerNumber = m_PlayerNumber;
 			m_Skill.m_PlayerNumber = m_PlayerNumber;
 
-			Debug.Log(m_PlayerColor);
+			Debug.Log(m_Movement.m_PlayerNumber);
 			m_TankConfig.color = m_PlayerColor;
 			m_TankConfig.playerName = m_PlayerName;
 			m_TankConfig.playerNumber = m_PlayerNumber;
 
+            /*
 			// Create a string using the correct color that says 'PLAYER 1' etc based on the tank's color and the player's number.
 			m_ColoredPlayerText = "<color=#" + ColorUtility.ToHtmlStringRGB(m_PlayerColor) + ">PLAYER " + m_PlayerNumber + "</color>";
 
@@ -57,6 +64,7 @@ namespace Complete {
 				// ... set their material color to the color specific to this tank.
 				renderers[i].material.color = m_PlayerColor;
 			}
+            */
 		}
 
 		public string GetName() {

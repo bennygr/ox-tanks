@@ -9,20 +9,25 @@ namespace Complete {
 		public Image m_FillImage;                           // The image component of the slider.
 		public Color m_FullHealthColor = Color.green;       // The color the health bar will be when on full health.
 		public Color m_ZeroHealthColor = Color.red;         // The color the health bar will be when on no health.
-		public GameObject m_ExplosionPrefab;                // A prefab that will be instantiated in Awake, then used whenever the tank dies.
+
 		public NetworkTankManager m_TankManager;
+		public NetworkTankConfig m_TankConfig;
+
 		public GameObject m_TankRenderers;                // References to all the gameobjects that need to be disabled when the tank is dead.
 		public GameObject m_HealthCanvas;
 		public GameObject m_AimCanvas;
 		public GameObject m_LeftDustTrail;
 		public GameObject m_RightDustTrail;
+
 		public AudioClip m_TankExplosion;                 // The clip to play when the tank explodes.
 		public ParticleSystem m_ExplosionParticles;        // The particle system the will play when the tank is destroyed.
 
 		[SyncVar(hook = "OnCurrentHealthChanged")]
 		public float m_CurrentHealth;                      // How much health the tank currently has.
+
 		[SyncVar]
 		private bool m_Dead;                                // Has the tank been reduced beyond zero health yet?
+
 		private BoxCollider m_Collider;                     // Used to deactivate the tank's collider
 
 		private void Awake() {
@@ -51,7 +56,7 @@ namespace Complete {
 
 			// If the current health is at or below zero and it has not yet been registered, call OnDeath.
 			if (m_CurrentHealth <= 0f && !m_Dead) {
-				RpcOnDeath();
+				OnDeath();
 			}
 		}
 
@@ -82,8 +87,8 @@ namespace Complete {
 			// Play the particle system of the tank exploding.
 			m_ExplosionParticles.Play();
 
-            // Create a gameobject that will play the tank explosion sound effect and then destroy itself.
-            AudioSource.PlayClipAtPoint(m_TankExplosion, transform.position);
+			// Create a gameobject that will play the tank explosion sound effect and then destroy itself.
+			AudioSource.PlayClipAtPoint(m_TankExplosion, transform.position);
 
 			// Turn the tank off.
 			SetTankActive(false);
@@ -91,8 +96,8 @@ namespace Complete {
 
 		private void SetTankActive(bool active) {
 			m_Collider.enabled = active;
-
-			//m_TankRenderers.SetActive(active);
+            
+			m_TankRenderers.SetActive(active);
 			m_HealthCanvas.SetActive(active);
 			m_AimCanvas.SetActive(active);
 			m_LeftDustTrail.SetActive(active);

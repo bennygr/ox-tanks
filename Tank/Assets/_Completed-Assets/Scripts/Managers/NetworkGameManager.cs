@@ -141,7 +141,7 @@ namespace Complete {
 			m_RoundNumber++;
 			m_MessageText.text = "ROUND " + m_RoundNumber;
 
-			StartCoroutine(ClientRoundStartingFade());
+			//StartCoroutine(ClientRoundStartingFade());
 		}
 
         // TODO implement fade in
@@ -175,9 +175,6 @@ namespace Complete {
 
 
 		private IEnumerator RoundEnding() {
-			// Notify clients to end the round
-			RpcEndRound();
-
 			// Clear the winner from the previous round.
 			m_RoundWinner = null;
 
@@ -210,7 +207,7 @@ namespace Complete {
             //Disable powerup spawning
             //m_PowerUpManager.Enabled = false;
 
-			StartCoroutine(ClientRoundEndingFade());
+			//StartCoroutine(ClientRoundEndingFade());
 		}
 
 
