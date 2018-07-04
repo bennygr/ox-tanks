@@ -41,6 +41,7 @@ namespace Complete {
 			m_Shooting.m_PlayerNumber = m_PlayerNumber;
 			m_Skill.m_PlayerNumber = m_PlayerNumber;
 
+			Debug.Log(m_PlayerColor);
 			m_TankConfig.color = m_PlayerColor;
 			m_TankConfig.playerName = m_PlayerName;
 			m_TankConfig.playerNumber = m_PlayerNumber;
@@ -80,6 +81,7 @@ namespace Complete {
 			m_Shooting.enabled = true;
 			m_Skill.enabled = true;
 
+			m_Movement.ReEnableParticles();
 			m_CanvasGameObject.SetActive(true);
 		}
 

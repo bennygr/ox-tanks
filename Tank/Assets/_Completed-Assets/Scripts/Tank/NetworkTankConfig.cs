@@ -23,7 +23,8 @@ namespace Complete {
 
 		public override void OnStartClient() {
 			base.OnStartClient();
-			if (!isServer) { //if not hosting, we had the tank to the gamemanger for easy access!
+			Debug.Log(color);
+			if (!isServer) {
 				NetworkGameManager.AddPlayer(gameObject, playerNumber, color, playerName);
 			}
 
@@ -33,10 +34,10 @@ namespace Complete {
 			Renderer[] renderers = m_TankRenderers.GetComponentsInChildren<Renderer>();
 
 			// Go through all the renderers...
-			for (int i = 0; i < renderers.Length; i++) {
+			//for (int i = 0; i < renderers.Length; i++) {
 				// ... set their material color to the color specific to this tank.
-				renderers[i].material.color = color;
-			}
+				//renderers[i].material.color = color;
+			//}
 
 			if (m_TankRenderers) {
 				m_TankRenderers.SetActive(false);
