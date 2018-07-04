@@ -11,6 +11,10 @@ namespace Complete {
 		public AudioClip m_EngineDriving;           // Audio to play when the tank is moving.
 		public float m_PitchRange = 0.2f;           // The amount by which the pitch of the engine noises can vary.
 
+		public ParticleSystem m_LeftDustTrail;        // The particle system of dust that is kicked up from the left track.
+        public ParticleSystem m_RightDustTrail;       // The particle system of dust that is kicked up from the rightt track.
+
+
 		private string m_MovementAxisName;          // The name of the input axis for moving forward and back.
 		private string m_TurnAxisName;              // The name of the input axis for turning.
 		private Rigidbody m_Rigidbody;              // Reference used to move the tank.
@@ -18,6 +22,23 @@ namespace Complete {
 		private float m_TurnInputValue;             // The current value of the turn input.
 		private float m_OriginalPitch;              // The pitch of the audio source at the start of the scene.
 		private ParticleSystem[] m_particleSystems; // References to all the particles systems used by the Tanks
+
+        /// <summary>
+        /// Setup tank
+        /// </summary>
+		public void SetDefaults() {
+            m_Rigidbody.velocity = Vector3.zero;
+            m_Rigidbody.angularVelocity = Vector3.zero;
+
+            m_MovementInputValue = 0f;
+            m_TurnInputValue = 0f;
+
+            m_LeftDustTrail.Clear();
+            m_LeftDustTrail.Stop();
+
+            m_RightDustTrail.Clear();
+            m_RightDustTrail.Stop();
+        }
 
 		private void Awake() {
 			m_Rigidbody = GetComponent<Rigidbody>();
@@ -98,6 +119,11 @@ namespace Complete {
 					m_MovementAudio.Play();
 				}
 			}
+		}
+
+		public void ReEnableParticles() {
+			m_LeftDustTrail.Play();
+			m_RightDustTrail.Play();
 		}
 
 
