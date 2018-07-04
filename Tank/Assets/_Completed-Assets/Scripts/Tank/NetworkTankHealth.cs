@@ -11,6 +11,7 @@ namespace Complete {
 		public Color m_ZeroHealthColor = Color.red;         // The color the health bar will be when on no health.
 		public GameObject m_ExplosionPrefab;                // A prefab that will be instantiated in Awake, then used whenever the tank dies.
 		public NetworkTankManager m_TankManager;
+		public GameObject m_TankRenderers;                // References to all the gameobjects that need to be disabled when the tank is dead.
 		public GameObject m_HealthCanvas;
 		public GameObject m_AimCanvas;
 		public GameObject m_LeftDustTrail;

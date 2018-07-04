@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace Complete {
 	public class NetworkShellExplosion : NetworkBehaviour {
-		public LayerMask m_TankMask;                        // Used to filter what the explosion affects, this should be set to "Players".
+		private int m_TankMask;                        // Used to filter what the explosion affects, this should be set to "Players".
 		public ParticleSystem m_ExplosionParticles;         // Reference to the particles that will play on explosion.
 		public AudioSource m_ExplosionAudio;                // Reference to the audio that will play on explosion.
 		public float m_MaxDamage = 100f;                    // The amount of damage done if the explosion is centred on a tank.

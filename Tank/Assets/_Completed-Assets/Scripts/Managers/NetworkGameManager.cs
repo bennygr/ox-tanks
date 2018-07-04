@@ -16,12 +16,13 @@ namespace Complete {
 		public int m_NumRoundsToWin = 5;            // The number of rounds a single player has to win to win the game.
 		public float m_StartDelay = 3f;             // The delay between the start of RoundStarting and RoundPlaying phases.
 		public float m_EndDelay = 3f;               // The delay between the end of RoundPlaying and RoundEnding phases.
-		public CameraControl m_CameraControl;       // Reference to the CameraControl script for control during different phases.
 		public Text m_MessageText;                  // Reference to the overlay Text to display winning text, etc.
 		public GameObject m_TankPrefab;             // Reference to the prefab the players will control.
 		public GameObject m_TankPrefabMiddleware;
 		public GameObject m_TankePrefabQA;
-		public PowerUpManager m_PowerUpManager;
+		//public PowerUpManager m_PowerUpManager;
+
+		public Transform[] m_SpawnPoint;
 
 
 
@@ -93,6 +94,9 @@ namespace Complete {
 				yield return null;
 			}
 
+			// Wait for 2 seconds before starting
+            yield return new WaitForSeconds(2.0f);
+
 			// Start off by running the 'RoundStarting' coroutine but don't return until it's finished.
 			yield return StartCoroutine(RoundStarting());
 
@@ -135,7 +139,12 @@ namespace Complete {
 			m_RoundNumber++;
 			m_MessageText.text = "ROUND " + m_RoundNumber;
 
-			//StartCoroutine(ClientRoundStartingFade());
+			StartCoroutine(ClientRoundStartingFade());
+		}
+
+        // TODO implement fade in
+		private IEnumerator ClientRoundStartingFade() {
+			return null;
 		}
 
 
@@ -156,7 +165,7 @@ namespace Complete {
 			EnableTankControl();
 
 			//Disable powerup spawning
-			m_PowerUpManager.Enabled = true;
+			//m_PowerUpManager.Enabled = true;
 
 			// Clear the text from the screen.
 			m_MessageText.text = string.Empty;
@@ -182,8 +191,10 @@ namespace Complete {
 			m_GameWinner = GetGameWinner();
 
 			// Get a message based on the scores and whether or not there is a game winner and display it.
-			string message = EndMessage();
-			m_MessageText.text = message;
+			RpcUpdateMessage(EndMessage());
+
+			//notify client they should disable tank control
+			RpcEndRound();
 
 			// Wait for the specified length of time until yielding control back to the game loop.
 			yield return m_EndWait;
@@ -195,8 +206,21 @@ namespace Complete {
             DisableTankControl();
 
             //Disable powerup spawning
-            m_PowerUpManager.Enabled = false;
+            //m_PowerUpManager.Enabled = false;
+
+			StartCoroutine(ClientRoundEndingFade());
 		}
+
+
+		[ClientRpc]
+        private void RpcUpdateMessage(string msg) {
+            m_MessageText.text = msg;
+        }
+
+        //TODO implement fade out
+		private IEnumerator ClientRoundEndingFade() {
+			return null;
+        }
 
 
 		// This is used to check if there is one or fewer tanks remaining and thus the round should end.
@@ -276,6 +300,7 @@ namespace Complete {
 		// This function is used to turn all the tanks back on and reset their positions and properties.
 		private void ResetAllTanks() {
 			for (int i = 0; i < tanks.Count; i++) {
+				tanks[i].m_SpawnPoint = m_SpawnPoint[tanks[i].m_PlayerNumber];
 				tanks[i].Reset();
 			}
 		}
