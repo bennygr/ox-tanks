@@ -10,34 +10,35 @@ namespace Complete {
 		public Color m_FullHealthColor = Color.green;       // The color the health bar will be when on full health.
 		public Color m_ZeroHealthColor = Color.red;         // The color the health bar will be when on no health.
 		public GameObject m_ExplosionPrefab;                // A prefab that will be instantiated in Awake, then used whenever the tank dies.
+		public NetworkTankManager m_TankManager;
+		public GameObject m_HealthCanvas;
+		public GameObject m_AimCanvas;
+		public GameObject m_LeftDustTrail;
+		public GameObject m_RightDustTrail;
+		public AudioClip m_TankExplosion;                 // The clip to play when the tank explodes.
 
-        
+
 		private AudioSource m_ExplosionAudio;               // The audio source to play when the tank explodes.
 		private ParticleSystem m_ExplosionParticles;        // The particle system the will play when the tank is destroyed.
 
-		[SyncVar(hook = "SetHealthUI")]
+		[SyncVar(hook = "OnCurrentHealthChanged")]
 		public float m_CurrentHealth;                      // How much health the tank currently has.
+		[SyncVar]
 		private bool m_Dead;                                // Has the tank been reduced beyond zero health yet?
-
-        /// <summary>
-        /// Setup tank heatlh
-        /// </summary>
-        public void SetDefaults() {
-            m_CurrentHealth = m_StartingHealth;
-            SetTankActive(true);
-        }
+		private BoxCollider m_Collider;                     // Used to deactivate the tank's collider
 
 		private void Awake() {
-			// Instantiate the explosion prefab and get a reference to the particle system on it.
-			m_ExplosionParticles = Instantiate(m_ExplosionPrefab).GetComponent<ParticleSystem>();
-
-			// Get a reference to the audio source on the instantiated prefab.
-			m_ExplosionAudio = m_ExplosionParticles.GetComponent<AudioSource>();
-
-			// Disable the prefab so it can be activated when it's required.
-			m_ExplosionParticles.gameObject.SetActive(false);
+			m_Collider = GetComponent<BoxCollider>();
 		}
 
+		/// <summary>
+		/// Setup tank heatlh
+		/// </summary>
+		public void SetDefaults() {
+			m_CurrentHealth = m_StartingHealth;
+			m_Dead = false;
+			SetTankActive(true);
+		}
 
 		private void OnEnable() {
 			// When the tank is enabled, reset the tank's health and whether or not it's dead.
@@ -57,34 +58,53 @@ namespace Complete {
 		}
 
 
-		void SetHealthUI(float currentHealth) {
+		private void SetHealthUI() {
 			// Set the slider's value appropriately.
-			m_Slider.value = currentHealth;
+			m_Slider.value = m_CurrentHealth;
+
 			// Interpolate the color of the bar between the choosen colours based on the current percentage of the starting health.
-			m_FillImage.color = Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, currentHealth / m_StartingHealth);
+			m_FillImage.color = Color.Lerp(m_ZeroHealthColor, m_FullHealthColor, m_CurrentHealth / m_StartingHealth);
 		}
 
 
-        [ClientRpc]
-		void RpcOnDeath() {
+		void OnCurrentHealthChanged(float value) {
+			m_CurrentHealth = value;
+			SetHealthUI();
+		}
+
+		private void OnDeath() {
 			// Set the flag so that this function is only called once.
 			m_Dead = true;
+			RpcOnDeath();
+		}
 
-			// Move the instantiated explosion prefab to the tank's position and turn it on.
-			m_ExplosionParticles.transform.position = transform.position;
-			m_ExplosionParticles.gameObject.SetActive(true);
 
+		[ClientRpc]
+		void RpcOnDeath() {
 			// Play the particle system of the tank exploding.
 			m_ExplosionParticles.Play();
 
-			// Play the tank explosion sound effect.
-			m_ExplosionAudio.Play();
+            // Create a gameobject that will play the tank explosion sound effect and then destroy itself.
+            AudioSource.PlayClipAtPoint(m_TankExplosion, transform.position);
 
 			// Turn the tank off.
-			gameObject.SetActive(false);
+			SetTankActive(false);
 		}
 
 		private void SetTankActive(bool active) {
-        }
+			m_Collider.enabled = active;
+
+			//m_TankRenderers.SetActive(active);
+			m_HealthCanvas.SetActive(active);
+			m_AimCanvas.SetActive(active);
+			m_LeftDustTrail.SetActive(active);
+			m_RightDustTrail.SetActive(active);
+
+			if (active) {
+				m_TankManager.EnableControl();
+			} else {
+				m_TankManager.DisableControl();
+			}
+		}
 	}
 }
