@@ -14,6 +14,8 @@ namespace Complete
         public CameraControl m_CameraControl;       // Reference to the CameraControl script for control during different phases.
         public Text m_MessageText;                  // Reference to the overlay Text to display winning text, etc.
         public GameObject m_TankPrefab;             // Reference to the prefab the players will control.
+        public GameObject m_TankPrefabMiddleware;
+        public GameObject m_TankePrefabQA;
         public TankManager[] m_Tanks;               // A collection of managers for enabling and disabling different aspects of the tanks.
 
 
@@ -43,10 +45,12 @@ namespace Complete
             // For all the tanks...
             for (int i = 0; i < m_Tanks.Length; i++)
             {
-                // ... create them, set their player number and references needed for control.
+                GameObject tankClass = this.m_TankePrefabQA; //TODO Player choose which tank to play
+                //GameObject tankClass = this.m_TankPrefabMiddleware; //TODO Player choose which tank to play
+
+                // ... create them, set their player number and references needed for control.            
                 m_Tanks[i].m_Instance =
-                    Instantiate(m_TankPrefab, m_Tanks[i].m_SpawnPoint.position, m_Tanks[i].m_SpawnPoint.rotation) as GameObject;
-                m_Tanks[i].m_Instance.AddComponent<FistSkill>();
+                    Instantiate(tankClass, m_Tanks[i].m_SpawnPoint.position, m_Tanks[i].m_SpawnPoint.rotation) as GameObject;
                 m_Tanks[i].m_PlayerNumber = i + 1;
                 m_Tanks[i].Setup();
             }

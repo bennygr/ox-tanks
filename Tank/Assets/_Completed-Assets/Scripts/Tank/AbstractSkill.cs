@@ -5,8 +5,7 @@ namespace AssemblyCSharp.Assets._CompletedAssets.Scripts.Tank
 {
     public abstract class AbstractSkill : MonoBehaviour
     {
-        public int m_PlayerNumber = 1;              // Used to identify the different players.
-        public Transform m_FireTransform;           // A child of the tank where the shells are spawned.
+        public int m_PlayerNumber = 1;              // Used to identify the different players.        
         protected String m_FireButton;
 
         protected void Start()
