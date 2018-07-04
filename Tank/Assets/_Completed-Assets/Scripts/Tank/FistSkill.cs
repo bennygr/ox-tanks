@@ -15,7 +15,7 @@ namespace AssemblyCSharp.Assets._CompletedAssets.Scripts.Tank
 
         void Update()
         {
-            if (Input.GetButtonDown(m_FireButton))
+            if (Input.GetButtonDown(m_FireButton) && CanTrigger())
             {
                 Rigidbody fistInstance =
                     Instantiate(m_Fist, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
@@ -26,7 +26,9 @@ namespace AssemblyCSharp.Assets._CompletedAssets.Scripts.Tank
                     m_ShootingAudio.Play();
                 }
 
+                Triggered();
             }
+
         }
     }
 }

@@ -10,10 +10,11 @@ namespace AssemblyCSharp.Assets._CompletedAssets.Scripts.Tank
 
         void Update()
         {
-            if (Input.GetButtonDown(m_FireButton))
+            if (Input.GetButtonDown(m_FireButton) && CanTrigger())
             {
                 Rigidbody fistInstance =
                     Instantiate(m_Mine, m_MineTransformation.position, m_MineTransformation.rotation) as Rigidbody;
+                Triggered();
             }
         }
     }
