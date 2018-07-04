@@ -17,10 +17,7 @@ namespace Complete {
 		public GameObject m_LeftDustTrail;
 		public GameObject m_RightDustTrail;
 		public AudioClip m_TankExplosion;                 // The clip to play when the tank explodes.
-
-
-		private AudioSource m_ExplosionAudio;               // The audio source to play when the tank explodes.
-		private ParticleSystem m_ExplosionParticles;        // The particle system the will play when the tank is destroyed.
+		public ParticleSystem m_ExplosionParticles;        // The particle system the will play when the tank is destroyed.
 
 		[SyncVar(hook = "OnCurrentHealthChanged")]
 		public float m_CurrentHealth;                      // How much health the tank currently has.
