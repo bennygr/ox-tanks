@@ -47,9 +47,6 @@ namespace Complete {
 
 
 		public void TakeDamage(float amount) {
-			if (!isServer) {
-				return;
-			}
 			// Reduce current health by the amount of damage done.
 			m_CurrentHealth -= amount;
 
