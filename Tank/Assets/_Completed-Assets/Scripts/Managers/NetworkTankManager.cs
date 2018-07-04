@@ -12,25 +12,18 @@ namespace Complete {
 
 		public Color m_PlayerColor;                             // This is the color this tank will be tinted.
 		public Transform m_SpawnPoint;                          // The position and direction the tank will have when it spawns.
-		//[HideInInspector] 
-		public int m_PlayerNumber;            // This specifies which player this the manager for.
-		//[HideInInspector] 
-		public string m_ColoredPlayerText;    // A string that represents the player with their number colored to match their tank.
-		//[HideInInspector] 
-		public GameObject m_Instance;         // A reference to the instance of the tank when it is created.
-		//[HideInInspector] 
-		public int m_Wins;                    // The number of wins this player has so far.
-		//[HideInInspector] 
-		public GameObject m_TankRenderers;        // The transform that is a parent of all the tank's renderers.  This is deactivated when the tank is dead.
-		//[HideInInspector] 
-		public string m_PlayerName;           // The player name set in the lobby (TODO: Lobby)
+		[HideInInspector] public int m_PlayerNumber;            // This specifies which player this the manager for.
+		[HideInInspector] public string m_ColoredPlayerText;    // A string that represents the player with their number colored to match their tank.
+		[HideInInspector] public GameObject m_Instance;         // A reference to the instance of the tank when it is created.
+		[HideInInspector] public int m_Wins;                    // The number of wins this player has so far.
+		[HideInInspector] public GameObject m_TankRenderers;        // The transform that is a parent of all the tank's renderers.  This is deactivated when the tank is dead.
+		[HideInInspector] public string m_PlayerName;           // The player name set in the lobby (TODO: Lobby)
 
 		public NetworkTankConfig m_TankConfig;
-
-		private NetworkTankMovement m_Movement;                        // Reference to tank's movement script, used to disable and enable control.
-		private NetworkTankShooting m_Shooting;                        // Reference to tank's shooting script, used to disable and enable control.
-		private NetworkTankHealth m_Health;                            // Reference to tank's health script
-		private AbstractSkill m_Skill;                              // Reference to tank's skill script
+		public NetworkTankMovement m_Movement;                        // Reference to tank's movement script, used to disable and enable control.
+		public NetworkTankShooting m_Shooting;                        // Reference to tank's shooting script, used to disable and enable control.
+		public NetworkTankHealth m_Health;                            // Reference to tank's health script
+		public AbstractSkill m_Skill;                              // Reference to tank's skill script
 		private GameObject m_CanvasGameObject;                  // Used to disable the world space UI during the Starting and Ending phases of each round.
 
 
