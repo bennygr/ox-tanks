@@ -46,6 +46,7 @@ namespace Complete
             for (int i = 0; i < m_Tanks.Length; i++)
             {
                 GameObject tankClass = this.m_TankePrefabQA; //TODO Player choose which tank to play
+                //GameObject tankClass = this.m_TankPrefabMiddleware; //TODO Player choose which tank to play
 
                 // ... create them, set their player number and references needed for control.            
                 m_Tanks[i].m_Instance =
