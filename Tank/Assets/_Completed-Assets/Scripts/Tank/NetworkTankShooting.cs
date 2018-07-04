@@ -41,7 +41,7 @@ namespace Complete {
 
 		private void Start() {
 			// The fire axis is based on the player number.
-			m_FireButton = "Fire1";
+			m_FireButton = "Fire";
 
 			// TODO: Skill button?
 
