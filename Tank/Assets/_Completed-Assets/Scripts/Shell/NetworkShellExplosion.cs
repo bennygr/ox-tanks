@@ -49,22 +49,22 @@ namespace Complete {
 			}
 
 			// Unparent the particles from the shell.
-			m_ExplosionParticles.transform.parent = null;
+            m_ExplosionParticles.transform.parent = null;
 
-			// Play the particle system.
-			m_ExplosionParticles.Play();
+            // Play the particle system.
+            m_ExplosionParticles.Play();
 
-			// Play the explosion sound effect.
-			if (m_ExplosionAudio) {
-				m_ExplosionAudio.Play();
-			}
+            // Play the explosion sound effect.
+            if (m_ExplosionAudio) {
+                m_ExplosionAudio.Play();
+            }
 
-			// Once the particles have finished, destroy the gameobject they are on.
-			ParticleSystem.MainModule mainModule = m_ExplosionParticles.main;
-			Destroy(m_ExplosionParticles.gameObject, mainModule.duration);
+            // Once the particles have finished, destroy the gameobject they are on.
+            ParticleSystem.MainModule mainModule = m_ExplosionParticles.main;
+            Destroy(m_ExplosionParticles.gameObject, mainModule.duration);
 
-			// Destroy the shell.
-			Destroy(gameObject);
+            // Destroy the shell.
+            Destroy(gameObject);
 		}
 
 
