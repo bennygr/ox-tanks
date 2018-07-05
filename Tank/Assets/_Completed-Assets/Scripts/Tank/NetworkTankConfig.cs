@@ -23,7 +23,6 @@ namespace Complete {
 
 		public override void OnStartClient() {
 			base.OnStartClient();
-			Debug.Log(color);
 			if (!isServer) {
 				NetworkGameManager.AddPlayer(gameObject, playerNumber, color, playerName);
 			}
