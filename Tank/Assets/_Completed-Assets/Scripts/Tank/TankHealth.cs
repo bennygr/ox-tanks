@@ -38,6 +38,12 @@ namespace Complete
             SetHealthUI();
         }
 
+        public void AddShield(float amount)
+        {
+            m_CurrentShield = Mathf.Min(m_MaxShield, m_CurrentShield + amount);
+            SetHealthUI();
+        }
+
         private void OnDeath()
         {
             base.ApplyDeath();

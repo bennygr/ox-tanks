@@ -8,7 +8,8 @@ namespace Complete
     {
 
         public float m_StartingHealth = 100f;
-        public float m_StartingShield = 100f;
+        public float m_StartingShield = 0f;
+        public float m_MaxShield = 100f;
         public GameObject m_ExplosionPrefab;                // A prefab that will be instantiated in Awake, then used whenever the tank dies.
         private AudioSource m_ExplosionAudio;               // The audio source to play when the object explodes.
         private ParticleSystem m_ExplosionParticles;        // The particle system the will play when the object is destroyed.
