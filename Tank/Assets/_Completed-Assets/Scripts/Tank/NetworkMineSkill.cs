@@ -16,6 +16,7 @@ namespace AssemblyCSharp.Assets._CompletedAssets.Scripts.Tank {
             }
             if (Input.GetButtonDown(m_FireButton) && CanTrigger()) {
                 CmdFire();
+                Triggered();
             }
         }
 
@@ -23,7 +24,6 @@ namespace AssemblyCSharp.Assets._CompletedAssets.Scripts.Tank {
         private void CmdFire() {
             Rigidbody fistInstance = Instantiate(m_Mine, m_MineTransformation.position, m_MineTransformation.rotation) as Rigidbody;
             NetworkServer.Spawn(fistInstance.gameObject);
-            Triggered();
         }
     }
 }
