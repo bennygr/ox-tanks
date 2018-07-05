@@ -39,19 +39,26 @@ namespace Complete
                 targetRigidbody.AddExplosionForce(m_ExplosionForce, transform.position, m_ExplosionRadius);
 
                 // Find the TankHealth script associated with the rigidbody.
-                TankHealth targetHealth = targetRigidbody.GetComponent<TankHealth>();
+                TankHealth tankTargetHealth = targetRigidbody.GetComponent<TankHealth>();
 
-                // If there is no TankHealth script attached to the gameobject, go on to the next collider.
-                if (!targetHealth)
-                    continue;
+                FurnitureHealth furnitureTargetHealth = targetRigidbody.GetComponent<FurnitureHealth>();
 
                 // Calculate the amount of damage the target should take based on it's distance from the shell.
                 float damage = CalculateDamage(targetRigidbody.position);
-
-                // Deal this damage to the tank.
-                targetHealth.TakeDamage(damage);
+                // If there is no TankHealth script attached to the gameobject, go on to the next collider.
+                if (null != tankTargetHealth)
+                {
+                    calculateTankHealth(tankTargetHealth, damage);
+                }
+                else if (null != furnitureTargetHealth)
+                {
+                    calculateFurniturehealth(furnitureTargetHealth, damage);
+                }
+                else {
+                    continue;
+                }
+                               
             }
-
             // Unparent the particles from the shell.
             m_ExplosionParticles.transform.parent = null;
 
@@ -72,6 +79,15 @@ namespace Complete
             Destroy(gameObject);
         }
 
+        private void calculateTankHealth(TankHealth tankTargetHealth, float damage) {
+            // Deal this damage to the tank.
+            tankTargetHealth.TakeDamage(damage);
+        }
+
+        private void calculateFurniturehealth(FurnitureHealth furnitureTargetHealth, float damage) {
+            // Deal this damage to the furniture.
+            furnitureTargetHealth.TakeDamage(damage);
+        }
 
         private float CalculateDamage(Vector3 targetPosition)
         {
