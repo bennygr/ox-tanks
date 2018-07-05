@@ -11,7 +11,7 @@ namespace Complete
         public float m_ExplosionForce = 1000f;              // The amount of force added to a tank at the centre of the explosion.
         public float m_MaxLifeTime = 2f;                    // The time in seconds before the shell is removed.
         public float m_ExplosionRadius = 5f;                // The maximum distance away from the explosion tanks can be and are still affected.
-
+        [HideInInspector] public int playerNumber;
 
         private void Start()
         {
@@ -24,7 +24,7 @@ namespace Complete
         {
             // Collect all the colliders in a sphere from the shell's current position to a radius of the explosion radius.
             Collider[] colliders = Physics.OverlapSphere(transform.position, m_ExplosionRadius, m_TankMask);
-
+            bool destroyShell = true;
             // Go through all the colliders...
             for (int i = 0; i < colliders.Length; i++)
             {
@@ -34,6 +34,16 @@ namespace Complete
                 // If they don't have a rigidbody, go on to the next collider.
                 if (!targetRigidbody)
                     continue;
+
+                TankShooting shooting = targetRigidbody.gameObject.GetComponent<TankShooting>();
+                if (!shooting)
+                    continue;
+
+                if (shooting.m_PlayerNumber == playerNumber) {
+                    destroyShell = false;
+                    continue;
+                }
+                    
 
                 // Add an explosion force.
                 targetRigidbody.AddExplosionForce(m_ExplosionForce, transform.position, m_ExplosionRadius);
@@ -57,8 +67,12 @@ namespace Complete
                 else {
                     continue;
                 }
-                               
+                destroyShell = true;              
             }
+
+            if (destroyShell == false)
+                return;
+
             // Unparent the particles from the shell.
             m_ExplosionParticles.transform.parent = null;
 
