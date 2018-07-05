@@ -35,14 +35,7 @@ namespace Complete
                 if (!targetRigidbody)
                     continue;
 
-                TankShooting shooting = targetRigidbody.gameObject.GetComponent<TankShooting>();
-                if (!shooting)
-                    continue;
 
-                if (shooting.m_PlayerNumber == playerNumber) {
-                    destroyShell = false;
-                    continue;
-                }
                     
 
                 // Add an explosion force.
@@ -58,11 +51,20 @@ namespace Complete
                 // If there is no TankHealth script attached to the gameobject, go on to the next collider.
                 if (null != tankTargetHealth)
                 {
+                    TankShooting shooting = targetRigidbody.gameObject.GetComponent<TankShooting>();
+                    if (!shooting)
+                        continue;
+
+                    if (shooting.m_PlayerNumber == playerNumber)
+                    {
+                        destroyShell = false;
+                        continue;
+                    }
                     calculateTankHealth(tankTargetHealth, damage);
                 }
                 else if (null != furnitureTargetHealth)
                 {
-                    calculateFurniturehealth(furnitureTargetHealth, damage);
+                    calculateFurniturehealth(furnitureTargetHealth, 10f);
                 }
                 else {
                     continue;
