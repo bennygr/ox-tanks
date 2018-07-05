@@ -290,8 +290,7 @@ namespace Complete {
         private NetworkTankManager GetRoundWinner() {
             // Go through all the tanks...
             for (int i = 0; i < tanks.Count; i++) {
-                // ... and if one of them is active, it is the winner so return it.
-                if (tanks[i].m_Instance.activeSelf) {
+                if (tanks[i].m_Health.m_CurrentHealth > 0) {
                     return tanks[i];
                 }
             }
@@ -323,7 +322,7 @@ namespace Complete {
 
             // If there is a winner then change the message to reflect that.
             if (m_RoundWinner != null) {
-                message = m_RoundWinner.m_ColoredPlayerText + " WINS THE ROUND!";
+                message = m_RoundWinner.m_PlayerName + " WINS THE ROUND!";
             }
 
             // Add some line breaks after the initial message.
@@ -331,12 +330,12 @@ namespace Complete {
 
             // Go through all the tanks and add each of their scores to the message.
             for (int i = 0; i < tanks.Count; i++) {
-                message += tanks[i].m_ColoredPlayerText + ": " + tanks[i].m_Wins + " WINS\n";
+                message += tanks[i].m_PlayerName + ": " + tanks[i].m_Wins + " WINS\n";
             }
 
             // If there is a game winner, change the entire message to reflect that.
             if (m_GameWinner != null) {
-                message = m_GameWinner.m_ColoredPlayerText + " WINS THE GAME!";
+                message = m_GameWinner.m_PlayerName + " WINS THE GAME!";
             }
             return message;
         }

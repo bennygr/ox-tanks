@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 namespace Complete {
@@ -20,6 +21,9 @@ namespace Complete {
 
 		[SyncVar]
 		public bool isReady = false;
+
+        [Header("UI")]
+        public Text nameTag;
 
 		public override void OnStartClient() {
 			base.OnStartClient();
@@ -41,8 +45,8 @@ namespace Complete {
 			if (m_TankRenderers) {
 				m_TankRenderers.SetActive(false);
 			}
-
-			//m_NameText.text = "<color=#" + ColorUtility.ToHtmlStringRGB(m_Color) + ">" + m_PlayerName + "</color>";
+            Debug.Log(playerName);
+			nameTag.text = "<color=#" + ColorUtility.ToHtmlStringRGB(color) + ">" + playerName + "</color>";
 		}
 
 		[ClientCallback]
