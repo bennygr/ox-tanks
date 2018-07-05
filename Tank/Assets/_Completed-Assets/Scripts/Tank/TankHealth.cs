@@ -57,7 +57,7 @@ namespace Complete
                 m_ShieldSlider.value = m_CurrentShield;
             }
 
-            if (m_FillImage != null)
+            if (m_FillShieldImage != null)
             {
                 m_FillShieldImage.color = Color.Lerp(m_ZeroShieldColor, m_FullShieldColor, m_StartingShield);
             }
