@@ -20,7 +20,7 @@ namespace AssemblyCSharp.Assets._CompletedAssets.Scripts.Tank
                 Rigidbody fistInstance =
                     Instantiate(m_Fist, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
 
-                fistInstance.velocity = 25f * m_FireTransform.forward;
+                fistInstance.velocity = 40f * m_FireTransform.forward;
                 if (m_ShootingAudio)
                 {
                     m_ShootingAudio.Play();
