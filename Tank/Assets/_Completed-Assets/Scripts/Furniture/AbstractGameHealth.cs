@@ -59,15 +59,18 @@ namespace Complete
 
         public void ApplyDamage(float amount)
         {
+            float shieldOverflow = 0f;
             if (m_CurrentShield > 0)
             {
-                m_CurrentShield = m_CurrentShield - amount;
+                shieldOverflow = m_CurrentShield - amount;
+                //Apply shield damage
+                m_CurrentShield = Mathf.Max(0, m_CurrentShield - amount);
             }
 
-            if (m_CurrentShield < 0)
+            if (shieldOverflow < 0)
             {
                 //rest damage goes to health
-                amount = Mathf.Abs(m_CurrentShield);
+                amount = Mathf.Abs(shieldOverflow);
             }
             // Reduce current health by the amount of damage done.
             m_CurrentHealth -= amount;
