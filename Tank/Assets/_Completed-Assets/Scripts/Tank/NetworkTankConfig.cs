@@ -39,9 +39,9 @@ namespace Complete {
 				renderers[i].material.color = color;
 			}
 
-			/*if (m_TankRenderers) {
+			if (m_TankRenderers) {
 				m_TankRenderers.SetActive(false);
-			}*/
+			}
 
 			//m_NameText.text = "<color=#" + ColorUtility.ToHtmlStringRGB(m_Color) + ">" + m_PlayerName + "</color>";
 		}
