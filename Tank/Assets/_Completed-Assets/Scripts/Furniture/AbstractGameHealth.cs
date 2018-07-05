@@ -8,11 +8,15 @@ namespace Complete
     {
 
         public float m_StartingHealth = 100f;
+        public float m_StartingShield = 100f;
         public GameObject m_ExplosionPrefab;                // A prefab that will be instantiated in Awake, then used whenever the tank dies.
         private AudioSource m_ExplosionAudio;               // The audio source to play when the object explodes.
         private ParticleSystem m_ExplosionParticles;        // The particle system the will play when the object is destroyed.
         private float m_CurrentHealth;                      // How much health the object currently has.
+
         private bool m_Dead;
+
+        public float m_CurrentShield { get; protected set; }
 
         public void Init()
         {
@@ -54,6 +58,16 @@ namespace Complete
 
         public void ApplyDamage(float amount)
         {
+            if (m_CurrentShield > 0)
+            {
+                m_CurrentShield = m_CurrentShield - amount;
+            }
+
+            if (m_CurrentShield < 0)
+            {
+                //rest damage goes to health
+                amount = Mathf.Abs(m_CurrentShield);
+            }
             // Reduce current health by the amount of damage done.
             m_CurrentHealth -= amount;
         }
