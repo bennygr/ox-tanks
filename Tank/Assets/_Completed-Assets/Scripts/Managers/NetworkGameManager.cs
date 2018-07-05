@@ -132,7 +132,7 @@ namespace Complete {
 
                     if (newFlooredWaitTime != flooredWaitTime) {
                         flooredWaitTime = newFlooredWaitTime;
-                        string message = EndMessage();
+                        string message = EndMessage(flooredWaitTime);
                         RpcUpdateMessage(message);
                     }
                 }
@@ -230,7 +230,7 @@ namespace Complete {
             m_GameWinner = GetGameWinner();
 
             // Get a message based on the scores and whether or not there is a game winner and display it.
-            RpcUpdateMessage(EndMessage());
+            RpcUpdateMessage(EndMessage(0));
 
             //notify client they should disable tank control
             RpcEndRound();
@@ -316,13 +316,16 @@ namespace Complete {
 
 
         // Returns a string message to display at the end of each round.
-        private string EndMessage() {
+        private string EndMessage(int waitTime) {
             // By default when a round ends there are no winners so the default end message is a draw.
             string message = "DRAW!";
 
-            // If there is a winner then change the message to reflect that.
-            if (m_RoundWinner != null) {
-                message = m_RoundWinner.m_PlayerName + " WINS THE ROUND!";
+            // If there is a game winner set the message to say which player has won the game.
+            if (m_GameWinner != null) {
+                message = "<color=#" + ColorUtility.ToHtmlStringRGB(m_GameWinner.m_PlayerColor) + ">" + m_GameWinner.m_PlayerName + "</color> WINS THE GAME!";
+            } else if (m_RoundWinner != null) {
+                // Or just display the round winner
+                message = "<color=#" + ColorUtility.ToHtmlStringRGB(m_RoundWinner.m_PlayerColor) + ">" + m_RoundWinner.m_PlayerName + "</color> WINS THE ROUND!";
             }
 
             // Add some line breaks after the initial message.
@@ -330,12 +333,12 @@ namespace Complete {
 
             // Go through all the tanks and add each of their scores to the message.
             for (int i = 0; i < tanks.Count; i++) {
-                message += tanks[i].m_PlayerName + ": " + tanks[i].m_Wins + " WINS\n";
+                message += "<color=#" + ColorUtility.ToHtmlStringRGB(tanks[i].m_PlayerColor) + ">" + tanks[i].m_PlayerName + "</color>: " + tanks[i].m_Wins + " WINS " + (tanks[i].IsReady() ? "<size=15>READY</size>" : "") + " \n";
             }
 
             // If there is a game winner, change the entire message to reflect that.
             if (m_GameWinner != null) {
-                message = m_GameWinner.m_PlayerName + " WINS THE GAME!";
+                message += "\n\n<size=20 > Return to lobby in " + waitTime + "\nPress Fire to get ready</size>";
             }
             return message;
         }
