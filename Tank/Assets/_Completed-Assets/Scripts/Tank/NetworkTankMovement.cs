@@ -46,6 +46,7 @@ namespace Complete {
 
 		public override void OnStartLocalPlayer() {
 			Camera.main.GetComponent<ChaseCamera>().SetTarget(gameObject.transform);
+            //Camera.main.GetComponent<OrbitingChaseCamera>().LookAt(gameObject.transform);
 		}
 
 

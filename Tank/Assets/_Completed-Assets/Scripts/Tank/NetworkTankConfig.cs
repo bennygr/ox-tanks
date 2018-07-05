@@ -43,7 +43,7 @@ namespace Complete {
 			}
 
 			if (m_TankRenderers) {
-				m_TankRenderers.SetActive(false);
+				//m_TankRenderers.SetActive(false);
 			}
             Debug.Log(playerName);
 			nameTag.text = "<color=#" + ColorUtility.ToHtmlStringRGB(color) + ">" + playerName + "</color>";
