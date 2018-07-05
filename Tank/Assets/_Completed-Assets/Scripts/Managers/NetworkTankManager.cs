@@ -28,6 +28,7 @@ namespace Complete {
 
 
 		public void Setup() {
+            Debug.Log("Setting up player '" + m_PlayerName + "' as player " + m_PlayerNumber);
 			// Get references to the components.
 			m_Movement = m_Instance.GetComponent<NetworkTankMovement>();
 			m_Shooting = m_Instance.GetComponent<NetworkTankShooting>();
@@ -47,7 +48,6 @@ namespace Complete {
 			m_Shooting.m_PlayerNumber = m_PlayerNumber;
 			//m_Skill.m_PlayerNumber = m_PlayerNumber;
 
-			Debug.Log(m_Movement.m_PlayerNumber);
 			m_TankConfig.color = m_PlayerColor;
 			m_TankConfig.playerName = m_PlayerName;
 			m_TankConfig.playerNumber = m_PlayerNumber;

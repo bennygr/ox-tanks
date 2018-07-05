@@ -60,6 +60,7 @@ namespace Complete {
         /// <param name="color">Color.</param>
         /// <param name="name">Name.</param>
         static public void AddPlayer(GameObject player, int playerNumber, Color color, string name) {
+            Debug.Log("Player '" + name + "' joined the game");
             NetworkTankManager tankManager = new NetworkTankManager();
             tankManager.m_Instance = player;
             tankManager.m_PlayerNumber = playerNumber;
@@ -75,6 +76,7 @@ namespace Complete {
         /// </summary>
         /// <param name="player">Player.</param>
         public void RemovePlayer(GameObject player) {
+            Debug.Log("Player '" + player + "' leaves the game");
             NetworkTankManager toRemove = null;
             foreach (var tank in tanks) {
                 if (tank.m_Instance == player) {
@@ -272,8 +274,8 @@ namespace Complete {
 
             // Go through all the tanks...
             for (int i = 0; i < tanks.Count; i++) {
-                // ... and if they are active, increment the counter.
-                if (tanks[i].m_Instance.activeSelf) {
+                // Check if there are tanks above 0 health
+                if (tanks[i].m_Health.m_CurrentHealth > 0) {
                     numTanksLeft++;
                 }
             }
