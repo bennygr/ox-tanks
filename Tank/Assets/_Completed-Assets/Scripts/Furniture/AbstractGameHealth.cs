@@ -72,8 +72,14 @@ namespace Complete
                 //rest damage goes to health
                 amount = Mathf.Abs(shieldOverflow);
             }
-            // Reduce current health by the amount of damage done.
-            m_CurrentHealth -= amount;
+            else
+            {
+                // Reduce current health by the amount of damage done.
+                m_CurrentHealth -= amount;
+            }
+
+
+
         }
 
         public void CalculateDeath()
