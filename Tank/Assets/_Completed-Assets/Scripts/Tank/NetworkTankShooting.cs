@@ -110,7 +110,7 @@ namespace Complete {
 			Vector3 velocity = rigidbodyVelocity + launchForce * forward;
 
 			// Set the shell's velocity to this velocity.
-			shellInstance.velocity = velocity;
+			shellInstance.velocity = velocity * 4f;
 
 			NetworkServer.Spawn(shellInstance.gameObject);
 		}
