@@ -16,6 +16,7 @@ namespace Complete {
 		public ParticleSystem m_RightDustTrail;       // The particle system of dust that is kicked up from the rightt track.
 
 		public Rigidbody m_Rigidbody;              // Reference used to move the tank.
+        private Collider collider;
 
 		private string m_MovementAxisName;          // The name of the input axis for moving forward and back.
 		private string m_TurnAxisName;              // The name of the input axis for turning.
@@ -42,6 +43,7 @@ namespace Complete {
 
 		private void Awake() {
 			m_Rigidbody = GetComponent<Rigidbody>();
+            collider = GetComponent<Collider>();
 		}
 
 		public override void OnStartLocalPlayer() {
@@ -52,6 +54,7 @@ namespace Complete {
 
 		private void OnEnable() {
 			m_Rigidbody.constraints = m_OriginalConstrains;
+            collider.enabled = true;
 		}
 
 
@@ -60,6 +63,7 @@ namespace Complete {
 		void OnDisable() {
 			m_OriginalConstrains = m_Rigidbody.constraints;
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            collider.enabled = false;
 		}
 
 
