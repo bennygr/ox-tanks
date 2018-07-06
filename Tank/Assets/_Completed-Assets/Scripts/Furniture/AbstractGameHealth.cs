@@ -22,13 +22,13 @@ namespace Complete
         public void Init()
         {
             // Instantiate the explosion prefab and get a reference to the particle system on it.
-            m_ExplosionParticles = Instantiate(m_ExplosionPrefab).GetComponent<ParticleSystem>();
+            //m_ExplosionParticles = Instantiate(m_ExplosionPrefab).GetComponent<ParticleSystem>();
 
             // Get a reference to the audio source on the instantiated prefab.
-            m_ExplosionAudio = m_ExplosionParticles.GetComponent<AudioSource>();
+            //m_ExplosionAudio = m_ExplosionParticles.GetComponent<AudioSource>();
 
             // Disable the prefab so it can be activated when it's required.
-            m_ExplosionParticles.gameObject.SetActive(false);
+            //m_ExplosionParticles.gameObject.SetActive(false);
         }
 
         public void Enable()
@@ -40,6 +40,12 @@ namespace Complete
 
         public void ApplyDeath()
         {
+            // Instantiate the explosion prefab and get a reference to the particle system on it.
+            m_ExplosionParticles = Instantiate(m_ExplosionPrefab).GetComponent<ParticleSystem>();
+
+            // Get a reference to the audio source on the instantiated prefab.
+            m_ExplosionAudio = m_ExplosionParticles.GetComponent<AudioSource>();
+
             // Set the flag so that this function is only called once.
             m_Dead = true;
 
