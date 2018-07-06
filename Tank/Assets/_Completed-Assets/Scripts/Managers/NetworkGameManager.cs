@@ -45,7 +45,6 @@ namespace Complete {
             // Create the delays so they only have to be made once.
             m_StartWait = new WaitForSeconds(m_StartDelay);
             m_EndWait = new WaitForSeconds(m_EndDelay);
-            RpcResetAllTanks();
 
             // Once the tanks have been created and the camera is using them as targets, start the game.
             StartCoroutine(GameLoop());
@@ -59,7 +58,7 @@ namespace Complete {
         /// <param name="color">Color.</param>
         /// <param name="name">Name.</param>
         static public void AddPlayer(GameObject player, int playerNumber, Color color, string name) {
-            Debug.Log("Player '" + name + "' joined the game");
+            Debug.LogFormat("Player '{0}' joined the game.", playerNumber);
             NetworkTankManager tankManager = new NetworkTankManager();
             tankManager.instance = player;
             tankManager.playerNumber = playerNumber;
@@ -75,7 +74,6 @@ namespace Complete {
         /// </summary>
         /// <param name="player">Player.</param>
         public void RemovePlayer(GameObject player) {
-            Debug.Log("Player '" + player + "' leaves the game");
             NetworkTankManager toRemove = null;
             foreach (var tank in tanks) {
                 if (tank.instance == player) {
@@ -86,6 +84,7 @@ namespace Complete {
 
             if (toRemove != null) {
                 tanks.Remove(toRemove);
+                Debug.LogFormat("Player '{0}' leaves the game.", player);
             }
         }
 
@@ -156,7 +155,7 @@ namespace Complete {
         [ClientRpc]
         void RpcStartRound() {
             // As soon as the round starts reset the tanks and make sure they can't move.
-            RpcResetAllTanks();
+            ResetAllTanks();
             DisableTankControl();
 
             // Snap the camera's zoom and position to something appropriate for the reset tanks.
@@ -166,7 +165,7 @@ namespace Complete {
             m_RoundNumber++;
             m_MessageText.text = "ROUND " + m_RoundNumber;
 
-            //StartCoroutine(ClientRoundStartingFade());
+            StartCoroutine(ClientRoundStartingFade());
         }
 
         // TODO implement fade in
@@ -181,7 +180,7 @@ namespace Complete {
 
                 //sometime, synchronization lag behind because of packet drop, so we make sure our tank are reseted
                 if (elapsedTime / wait < 0.5f) {
-                    RpcResetAllTanks();
+                    ResetAllTanks();
                 }
 
                 yield return null;
@@ -246,7 +245,7 @@ namespace Complete {
             //Disable powerup spawning
             //m_PowerUpManager.Enabled = false;
 
-            //StartCoroutine(ClientRoundEndingFade());
+            StartCoroutine(ClientRoundEndingFade());
         }
 
 
@@ -344,8 +343,7 @@ namespace Complete {
 
 
         // This function is used to turn all the tanks back on and reset their positions and properties.
-        [ClientRpc]
-        private void RpcResetAllTanks() {
+        private void ResetAllTanks() {
             for (int i = 0; i < tanks.Count; i++) {
                 tanks[i].spawnPoint = m_SpawnPoint[tanks[i].tankConfig.playerNumber];
                 tanks[i].Reset();

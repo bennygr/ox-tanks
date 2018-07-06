@@ -27,7 +27,7 @@ namespace Complete {
 
 
 		public void Setup() {
-            Debug.Log("Setting up player '" + playerName + "' as player " + playerNumber);
+            Debug.LogFormat("Setting up player '{0}' as player {1}", playerName, playerNumber);
 			// Get references to the components.
 			tankMovement = instance.GetComponent<NetworkTankMovement>();
 			tankShooting = instance.GetComponent<NetworkTankShooting>();
@@ -86,7 +86,7 @@ namespace Complete {
 			tankHealth.SetDefaults();
 
             if (tankMovement.hasAuthority) {
-                Debug.Log("authoriative respawn");
+                Debug.LogFormat("Authoriative respawn from client '{0}' for player '{1}' in spawn position '{2}'", tankMovement.netId, playerNumber, spawnPoint.position);
 				instance.transform.position = spawnPoint.position;
 				instance.transform.rotation = spawnPoint.rotation;
 			}
