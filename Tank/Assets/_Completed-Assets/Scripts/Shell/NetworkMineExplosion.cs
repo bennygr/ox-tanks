@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections;
 
 namespace Complete {
     public class NetworkMineExplosion : NetworkBehaviour {
@@ -15,14 +16,12 @@ namespace Complete {
         private float timeExists; //The time in seconds the mine exists
 
 
-        private void Start() {
-            //Destroy(gameObject, m_MaxLifeTime);
-        }
 
         private void Update() {
             timeExists += Time.deltaTime;
             active = timeExists > activeAfter;
         }
+
 
 
         [ServerCallback]
@@ -54,7 +53,6 @@ namespace Complete {
             if (!NetworkClient.active) {
                 AddExplosionForce();
             }
-
             NetworkServer.Destroy(gameObject);
         }
 
@@ -64,8 +62,8 @@ namespace Complete {
         public override void OnNetworkDestroy() {
             KaBoom();
             // Once the particles have finished, destroy the gameobject they are on.
-            ParticleSystem.MainModule mainModule = m_ExplosionParticles.main;
-            Destroy(m_ExplosionParticles.gameObject, mainModule.duration);
+            //ParticleSystem.MainModule mainModule = m_ExplosionParticles.main;
+            //Destroy(m_ExplosionParticles.gameObject);
             base.OnNetworkDestroy();
         }
 
@@ -104,6 +102,7 @@ namespace Complete {
 
                 // Add the explosion force.
                 targetRigidbody.AddExplosionForce(m_ExplosionForce, transform.position, m_ExplosionRadius);
+                Debug.Log("Explosion force: " + m_ExplosionForce + ", radius: " + m_ExplosionRadius);
             }
         }
 
