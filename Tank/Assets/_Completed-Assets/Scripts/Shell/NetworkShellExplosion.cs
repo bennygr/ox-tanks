@@ -117,7 +117,7 @@ namespace Complete {
 				Rigidbody targetRigidbody = colliders[i].GetComponent<Rigidbody>();
 
 				// If they don't have a rigidbody or we don't own that object, go on to the next collider.
-				if (!targetRigidbody || !targetRigidbody.GetComponent<NetworkIdentity>().hasAuthority) {
+                if (!targetRigidbody || (targetRigidbody.GetComponent<NetworkIdentity>() != null && !targetRigidbody.GetComponent<NetworkIdentity>().hasAuthority)) {
 					continue;
 				}
 

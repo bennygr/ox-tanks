@@ -10,84 +10,85 @@ namespace Complete {
 		// and whether or not players have control of their tank in the 
 		// different phases of the game.
 
-		public Color m_PlayerColor;                             // This is the color this tank will be tinted.
-		public Transform m_SpawnPoint;                          // The position and direction the tank will have when it spawns.
-		[HideInInspector] public int m_PlayerNumber;            // This specifies which player this the manager for.
-		[HideInInspector] public GameObject m_Instance;         // A reference to the instance of the tank when it is created.
-		[HideInInspector] public int m_Wins;                    // The number of wins this player has so far.
-		[HideInInspector] public GameObject m_TankRenderers;        // The transform that is a parent of all the tank's renderers.  This is deactivated when the tank is dead.
-		[HideInInspector] public string m_PlayerName;           // The player name set in the lobby (TODO: Lobby)
+		public Color playerColor;                             // This is the color this tank will be tinted.
+		public Transform spawnPoint;                          // The position and direction the tank will have when it spawns.
+		[HideInInspector] public int playerNumber;            // This specifies which player this the manager for.
+		[HideInInspector] public GameObject instance;         // A reference to the instance of the tank when it is created.
+		[HideInInspector] public int wins;                    // The number of wins this player has so far.
+        [HideInInspector] public GameObject tankRenderers;        // The transform that is a parent of all the tank's renderers.  This is deactivated when the tank is dead.
+		[HideInInspector] public string playerName;           // The player name set in the lobby (TODO: Lobby)
 
-		public NetworkTankConfig m_TankConfig;
-		public NetworkTankMovement m_Movement;                        // Reference to tank's movement script, used to disable and enable control.
-		public NetworkTankShooting m_Shooting;                        // Reference to tank's shooting script, used to disable and enable control.
-		public NetworkTankHealth m_Health;                            // Reference to tank's health script
-		//public AbstractSkill m_Skill;                              // Reference to tank's skill script
-		private GameObject m_CanvasGameObject;                  // Used to disable the world space UI during the Starting and Ending phases of each round.
+		public NetworkTankConfig tankConfig;
+        public NetworkTankMovement tankMovement;                        // Reference to tank's movement script, used to disable and enable control.
+        public NetworkTankShooting tankShooting;                        // Reference to tank's shooting script, used to disable and enable control.
+		public NetworkTankHealth tankHealth;                            // Reference to tank's health script
+        public AbstractNetworkSkill tankSkill;                              // Reference to tank's skill script
+        private GameObject healthCanvas;                  // Used to disable the world space UI during the Starting and Ending phases of each round.
 
 
 		public void Setup() {
-            Debug.Log("Setting up player '" + m_PlayerName + "' as player " + m_PlayerNumber);
+            Debug.Log("Setting up player '" + playerName + "' as player " + playerNumber);
 			// Get references to the components.
-			m_Movement = m_Instance.GetComponent<NetworkTankMovement>();
-			m_Shooting = m_Instance.GetComponent<NetworkTankShooting>();
-			m_Health = m_Instance.GetComponent<NetworkTankHealth>();
-			//m_Skill = m_Instance.GetComponent<AbstractSkill>();
-			m_TankConfig = m_Instance.GetComponent<NetworkTankConfig>();
-			m_CanvasGameObject = m_Instance.GetComponentInChildren<Canvas>().gameObject;
+			tankMovement = instance.GetComponent<NetworkTankMovement>();
+			tankShooting = instance.GetComponent<NetworkTankShooting>();
+			tankHealth = instance.GetComponent<NetworkTankHealth>();
+			tankSkill = instance.GetComponent<AbstractNetworkSkill>();
+			tankConfig = instance.GetComponent<NetworkTankConfig>();
+			healthCanvas = instance.GetComponentInChildren<Canvas>().gameObject;
 
 			// Get references to the child objects.
-            m_TankRenderers = m_Health.m_TankRenderers;
+            tankRenderers = tankHealth.m_TankRenderers;
 
 			//Set a reference to that amanger in the health script, to disable control when dying
-			m_Health.m_TankManager = this;
+			tankHealth.m_TankManager = this;
 
 			// Set the player numbers to be consistent across the scripts.
-			m_Movement.m_PlayerNumber = m_PlayerNumber;
-			m_Shooting.m_PlayerNumber = m_PlayerNumber;
-			//m_Skill.m_PlayerNumber = m_PlayerNumber;
+			tankMovement.m_PlayerNumber = playerNumber;
+			tankShooting.m_PlayerNumber = playerNumber;
+			tankSkill.m_PlayerNumber = playerNumber;
 
-			m_TankConfig.color = m_PlayerColor;
-			m_TankConfig.playerName = m_PlayerName;
-			m_TankConfig.playerNumber = m_PlayerNumber;
+			tankConfig.color = playerColor;
+			tankConfig.playerName = playerName;
+			tankConfig.playerNumber = playerNumber;
 		}
 
 		public string GetName() {
-			return m_TankConfig.playerName;
+			return tankConfig.playerName;
         }
 
 		public bool IsReady() {
-			return m_TankConfig.isReady;
+			return tankConfig.isReady;
         }
 
 		// Used during the phases of the game where the player shouldn't be able to control their tank.
 		public void DisableControl() {
-			m_Movement.enabled = false;
-			m_Shooting.enabled = false;
-			//m_Skill.enabled = false;
+			tankMovement.enabled = false;
+			tankShooting.enabled = false;
+			tankSkill.enabled = false;
 		}
 
 
 		// Used during the phases of the game where the player should be able to control their tank.
 		public void EnableControl() {
-			m_Movement.enabled = true;
-			m_Shooting.enabled = true;
-			//m_Skill.enabled = true;
+			tankMovement.enabled = true;
+			tankShooting.enabled = true;
+			tankSkill.enabled = true;
 
-			m_Movement.ReEnableParticles();
-			m_CanvasGameObject.SetActive(true);
+			tankMovement.ReEnableParticles();
+			healthCanvas.SetActive(true);
 		}
 
 
 		// Used at the start of each round to put the tank into it's default state.
 		public void Reset() {
-			m_Movement.SetDefaults();
-			m_Shooting.SetDefaults();
-			m_Health.SetDefaults();
+			tankMovement.SetDefaults();
+			tankShooting.SetDefaults();
+			tankHealth.SetDefaults();
 
-			if (m_Movement.hasAuthority) {
-				m_Instance.transform.position = m_SpawnPoint.position;
-				m_Instance.transform.rotation = m_SpawnPoint.rotation;
+            if (tankMovement.hasAuthority) {
+                Debug.Log("authoriative respawn");
+				instance.transform.position = spawnPoint.position;
+				instance.transform.rotation = spawnPoint.rotation;
 			}
 		}
 	}

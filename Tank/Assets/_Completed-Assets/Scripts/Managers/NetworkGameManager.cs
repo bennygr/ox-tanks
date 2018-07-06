@@ -18,8 +18,6 @@ namespace Complete {
         public float m_EndDelay = 3f;               // The delay between the end of RoundPlaying and RoundEnding phases.
         public Text m_MessageText;                  // Reference to the overlay Text to display winning text, etc.
         public GameObject m_TankPrefab;             // Reference to the prefab the players will control.
-        public GameObject m_TankPrefabMiddleware;
-        public GameObject m_TankePrefabQA;
         //public PowerUpManager m_PowerUpManager;
 
         public Transform[] m_SpawnPoint;
@@ -47,6 +45,7 @@ namespace Complete {
             // Create the delays so they only have to be made once.
             m_StartWait = new WaitForSeconds(m_StartDelay);
             m_EndWait = new WaitForSeconds(m_EndDelay);
+            RpcResetAllTanks();
 
             // Once the tanks have been created and the camera is using them as targets, start the game.
             StartCoroutine(GameLoop());
@@ -62,10 +61,10 @@ namespace Complete {
         static public void AddPlayer(GameObject player, int playerNumber, Color color, string name) {
             Debug.Log("Player '" + name + "' joined the game");
             NetworkTankManager tankManager = new NetworkTankManager();
-            tankManager.m_Instance = player;
-            tankManager.m_PlayerNumber = playerNumber;
-            tankManager.m_PlayerColor = color;
-            tankManager.m_PlayerName = name;
+            tankManager.instance = player;
+            tankManager.playerNumber = playerNumber;
+            tankManager.playerColor = color;
+            tankManager.playerName = name;
             tankManager.Setup();
 
             tanks.Add(tankManager);
@@ -79,7 +78,7 @@ namespace Complete {
             Debug.Log("Player '" + player + "' leaves the game");
             NetworkTankManager toRemove = null;
             foreach (var tank in tanks) {
-                if (tank.m_Instance == player) {
+                if (tank.instance == player) {
                     toRemove = tank;
                     break;
                 }
@@ -157,7 +156,7 @@ namespace Complete {
         [ClientRpc]
         void RpcStartRound() {
             // As soon as the round starts reset the tanks and make sure they can't move.
-            ResetAllTanks();
+            RpcResetAllTanks();
             DisableTankControl();
 
             // Snap the camera's zoom and position to something appropriate for the reset tanks.
@@ -182,7 +181,7 @@ namespace Complete {
 
                 //sometime, synchronization lag behind because of packet drop, so we make sure our tank are reseted
                 if (elapsedTime / wait < 0.5f) {
-                    ResetAllTanks();
+                    RpcResetAllTanks();
                 }
 
                 yield return null;
@@ -223,7 +222,7 @@ namespace Complete {
 
             // If there is a winner, increment their score.
             if (m_RoundWinner != null) {
-                m_RoundWinner.m_Wins++;
+                m_RoundWinner.wins++;
             }
 
             // Now the winner's score has been incremented, see if someone has one the game.
@@ -275,7 +274,7 @@ namespace Complete {
             // Go through all the tanks...
             for (int i = 0; i < tanks.Count; i++) {
                 // Check if there are tanks above 0 health
-                if (tanks[i].m_Health.m_CurrentHealth > 0) {
+                if (tanks[i].tankHealth.m_CurrentHealth > 0) {
                     numTanksLeft++;
                 }
             }
@@ -290,7 +289,7 @@ namespace Complete {
         private NetworkTankManager GetRoundWinner() {
             // Go through all the tanks...
             for (int i = 0; i < tanks.Count; i++) {
-                if (tanks[i].m_Health.m_CurrentHealth > 0) {
+                if (tanks[i].tankHealth.m_CurrentHealth > 0) {
                     return tanks[i];
                 }
             }
@@ -305,7 +304,7 @@ namespace Complete {
             // Go through all the tanks...
             for (int i = 0; i < tanks.Count; i++) {
                 // ... and if one of them has enough rounds to win the game, return it.
-                if (tanks[i].m_Wins == m_NumRoundsToWin) {
+                if (tanks[i].wins == m_NumRoundsToWin) {
                     return tanks[i];
                 }
             }
@@ -322,10 +321,10 @@ namespace Complete {
 
             // If there is a game winner set the message to say which player has won the game.
             if (m_GameWinner != null) {
-                message = "<color=#" + ColorUtility.ToHtmlStringRGB(m_GameWinner.m_PlayerColor) + ">" + m_GameWinner.m_PlayerName + "</color> WINS THE GAME!";
+                message = "<color=#" + ColorUtility.ToHtmlStringRGB(m_GameWinner.playerColor) + ">" + m_GameWinner.playerName + "</color> WINS THE GAME!";
             } else if (m_RoundWinner != null) {
                 // Or just display the round winner
-                message = "<color=#" + ColorUtility.ToHtmlStringRGB(m_RoundWinner.m_PlayerColor) + ">" + m_RoundWinner.m_PlayerName + "</color> WINS THE ROUND!";
+                message = "<color=#" + ColorUtility.ToHtmlStringRGB(m_RoundWinner.playerColor) + ">" + m_RoundWinner.playerName + "</color> WINS THE ROUND!";
             }
 
             // Add some line breaks after the initial message.
@@ -333,7 +332,7 @@ namespace Complete {
 
             // Go through all the tanks and add each of their scores to the message.
             for (int i = 0; i < tanks.Count; i++) {
-                message += "<color=#" + ColorUtility.ToHtmlStringRGB(tanks[i].m_PlayerColor) + ">" + tanks[i].m_PlayerName + "</color>: " + tanks[i].m_Wins + " WINS " + (tanks[i].IsReady() ? "<size=15>READY</size>" : "") + " \n";
+                message += "<color=#" + ColorUtility.ToHtmlStringRGB(tanks[i].playerColor) + ">" + tanks[i].playerName + "</color>: " + tanks[i].wins + " WINS " + (tanks[i].IsReady() ? "<size=15>READY</size>" : "") + " \n";
             }
 
             // If there is a game winner, change the entire message to reflect that.
@@ -345,9 +344,10 @@ namespace Complete {
 
 
         // This function is used to turn all the tanks back on and reset their positions and properties.
-        private void ResetAllTanks() {
+        [ClientRpc]
+        private void RpcResetAllTanks() {
             for (int i = 0; i < tanks.Count; i++) {
-                tanks[i].m_SpawnPoint = m_SpawnPoint[tanks[i].m_TankConfig.playerNumber];
+                tanks[i].spawnPoint = m_SpawnPoint[tanks[i].tankConfig.playerNumber];
                 tanks[i].Reset();
             }
         }
