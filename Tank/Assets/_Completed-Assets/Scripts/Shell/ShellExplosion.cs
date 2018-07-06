@@ -11,6 +11,7 @@ namespace Complete
         public float m_ExplosionForce = 1000f;              // The amount of force added to a tank at the centre of the explosion.
         public float m_MaxLifeTime = 2f;                    // The time in seconds before the shell is removed.
         public float m_ExplosionRadius = 5f;                // The maximum distance away from the explosion tanks can be and are still affected.
+        public float m_DamageMultiplier = 1f;               // Increases the default damage by a factor        
         [HideInInspector] public int playerNumber;
 
         private void Start()
@@ -36,7 +37,7 @@ namespace Complete
                     continue;
 
 
-                    
+
 
                 // Add an explosion force.
                 targetRigidbody.AddExplosionForce(m_ExplosionForce, transform.position, m_ExplosionRadius);
@@ -66,10 +67,11 @@ namespace Complete
                 {
                     calculateFurniturehealth(furnitureTargetHealth, 10f);
                 }
-                else {
+                else
+                {
                     continue;
                 }
-                destroyShell = true;              
+                destroyShell = true;
             }
 
             if (destroyShell == false)
@@ -95,12 +97,14 @@ namespace Complete
             Destroy(gameObject);
         }
 
-        private void calculateTankHealth(TankHealth tankTargetHealth, float damage) {
+        private void calculateTankHealth(TankHealth tankTargetHealth, float damage)
+        {
             // Deal this damage to the tank.
             tankTargetHealth.TakeDamage(damage);
         }
 
-        private void calculateFurniturehealth(FurnitureHealth furnitureTargetHealth, float damage) {
+        private void calculateFurniturehealth(FurnitureHealth furnitureTargetHealth, float damage)
+        {
             // Deal this damage to the furniture.
             furnitureTargetHealth.TakeDamage(damage);
         }
@@ -122,7 +126,7 @@ namespace Complete
             // Make sure that the minimum damage is always 0.
             damage = Mathf.Max(0f, damage);
 
-            return damage;
+            return damage * m_DamageMultiplier;
         }
     }
 }
