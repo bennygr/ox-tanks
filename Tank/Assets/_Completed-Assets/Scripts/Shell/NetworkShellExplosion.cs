@@ -10,6 +10,7 @@ namespace Complete {
         public float m_ExplosionForce = 1000f;              // The amount of force added to a tank at the centre of the explosion.
         public float m_MaxLifeTime = 2f;                    // The time in seconds before the shell is removed.
         public float m_ExplosionRadius = 5f;                // The maximum distance away from the explosion tanks can be and are still affected.
+        public float m_DamageMultiplier = 1f;               // Increases the default damage by a factor        
 
 		private int m_TankMask;                        // Used to filter what the explosion affects, this should be set to "Players".
 
