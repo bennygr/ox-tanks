@@ -8,6 +8,8 @@ namespace AssemblyCSharp.Assets._CompletedAssets.Scripts.Tank
         public Rigidbody m_Fist;
         public Transform m_FireTransform;           // A child of the tank where the shells are spawned.
         public AudioSource m_ShootingAudio;         // Reference to the audio source used to play the shooting audio. NB: different to the movement audio source.
+        public AudioClip m_ChargingClip;            // Audio that plays when each shot is charging up.
+        public AudioClip m_FireClip;         // Reference to the audio source used to play the shooting audio. NB: different to the movement audio source.
 
         private float m_CurrentLaunchForce;         // The force that will be given to the shell when the fire button is released.
         private float m_ChargeSpeed;                // How fast the launch force increases, based on the max charge time.
@@ -21,10 +23,10 @@ namespace AssemblyCSharp.Assets._CompletedAssets.Scripts.Tank
                     Instantiate(m_Fist, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
 
                 fistInstance.velocity = 40f * m_FireTransform.forward;
-                if (m_ShootingAudio)
-                {
-                    m_ShootingAudio.Play();
-                }
+
+                m_ShootingAudio.clip = m_FireClip;
+                m_ShootingAudio.Play();
+
 
                 Triggered();
             }
