@@ -16,7 +16,7 @@ public class ChaseCamera : MonoBehaviour {
 	public float followSpeed = 3f;
 
 	// Update is called once per frame
-	void Update() {
+	void LateUpdate() {
 		gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, mountPoint.position, followSpeed * Time.deltaTime);
 		Camera.main.transform.LookAt(lookAtTarget);
 	}
