@@ -12,4 +12,8 @@ public class NameTag : MonoBehaviour {
 	void Update() {
 		nameLabel.transform.position = Camera.main.WorldToScreenPoint(this.transform.position);
 	}
+
+	public void setNameLabel(string label) {
+		nameLabel.text = label;
+	}
 }

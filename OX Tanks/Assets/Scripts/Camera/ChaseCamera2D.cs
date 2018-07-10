@@ -29,4 +29,8 @@ public class ChaseCamera2D : MonoBehaviour {
 			gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, targetToFollow.position, followSpeed * Time.deltaTime);
 		}
 	}
+
+	public void setTargetToFollow(Transform targetToFollow) {
+		this.targetToFollow = targetToFollow;
+	}
 }

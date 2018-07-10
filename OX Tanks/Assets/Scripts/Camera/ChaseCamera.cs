@@ -35,4 +35,12 @@ public class ChaseCamera : MonoBehaviour {
 		gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, mountPoint.position, followSpeed * Time.deltaTime);
 		Camera.main.transform.LookAt(lookAtTarget);
 	}
+
+	public void setMountPoint(Transform mountPoint) {
+		this.mountPoint = mountPoint;
+	}
+
+	public void setLookAtTarget(Transform lookAtTarget) {
+		this.lookAtTarget = lookAtTarget;
+	}
 }

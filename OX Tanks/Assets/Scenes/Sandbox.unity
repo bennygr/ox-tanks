@@ -668,6 +668,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982ae4f95fee643d3b19357a7b5c22f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tankPrefabs:
+  - {fileID: 1948586209517726, guid: 8a6960be9b9c94194b8ca4e515172a54, type: 2}
+  - {fileID: 1948586209517726, guid: f9d9e0754c1c544969a3461014a2c289, type: 2}
+  - {fileID: 1948586209517726, guid: 988b25824e2184e77a0b6f8a2a056998, type: 2}
+  - {fileID: 1948586209517726, guid: d4a5adb6356c04a1ba4e911476d09cc7, type: 2}
+  playerRigPrefab: {fileID: 1777155798154844, guid: 158210e9260e24299bb62d4b53faf035,
+    type: 2}
 --- !u!1 &599296795
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,7 +967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf6129e500974a5988780e9ab46c125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetToFollow: {fileID: 0}
   fallbackTargetToFollow: {fileID: 397906667}
   followSpeed: 3
 --- !u!1 &825111716
@@ -1056,8 +1062,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db04ce670179f4f518a9926743eae331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mountPoint: {fileID: 0}
-  lookAtTarget: {fileID: 0}
   fallbackTarget: {fileID: 397906667}
   followSpeed: 3
 --- !u!1 &854000077
