@@ -10,11 +10,14 @@ using UnityEngine.Networking;
 public class TankMovement : MonoBehaviour {
 
 	// Initial moving speed
-	public float movingSpeed = 5f;
+	[SerializeField]
+	private float movingSpeed = 5f;
 	// Initial turning speed
-	public float turningSpeed = 100f;
+	[SerializeField]
+	private float turningSpeed = 100f;
 	// Initial speed multiplier (in case a speed buff is applied)
-	public float speedMultiplier = 1f;
+	[SerializeField]
+	private float speedMultiplier = 1f;
 
 	// The rigid body of the tank
 	private Rigidbody rigidBody;

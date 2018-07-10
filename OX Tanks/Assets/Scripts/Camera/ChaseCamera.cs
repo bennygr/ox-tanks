@@ -8,16 +8,16 @@ using UnityEngine;
 public class ChaseCamera : MonoBehaviour {
 
 	// The mount point of the camera, i.e. the chase target
-	[HideInInspector]
-	public Transform mountPoint;
+	private Transform mountPoint;
 	// The target to look at
-	[HideInInspector]
-	public Transform lookAtTarget;
+	private Transform lookAtTarget;
 
-	public Transform fallbackTarget;
+	[SerializeField]
+	private Transform fallbackTarget;
 
 	// The camera following speed
-	public float followSpeed = 3f;
+	[SerializeField]
+	private float followSpeed = 3f;
 
 	private void Awake() {
 		if (mountPoint == null) {

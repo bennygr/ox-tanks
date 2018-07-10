@@ -9,14 +9,20 @@ using System;
 public class CameraManager : MonoBehaviour {
 
 	// The different available camera states
-	public enum CameraState { Chase3D, Chase2D, TopDown };
+	private enum CameraState { Chase3D, Chase2D, TopDown };
 
 	// The default camera state
-	public CameraState cameraState = CameraState.Chase2D;
+	[SerializeField]
+	private CameraState cameraState = CameraState.Chase2D;
 
-	public GameObject chase3DCamera;
-	public GameObject chase2DCamera;
-	public GameObject topDownCamera;
+	[SerializeField]
+	private GameObject chase3DCamera;
+
+	[SerializeField]
+	private GameObject chase2DCamera;
+
+	[SerializeField]
+	private GameObject topDownCamera;
 
 	private int amountOfCameraStates;
 

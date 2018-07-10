@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class NameTag : MonoBehaviour {
 
-	public Text nameLabel;
+	[SerializeField]
+	private Text nameLabel;
 
 	// Update is called once per frame
 	void Update() {
