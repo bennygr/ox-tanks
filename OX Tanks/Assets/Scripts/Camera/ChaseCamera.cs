@@ -36,10 +36,18 @@ public class ChaseCamera : MonoBehaviour {
 		Camera.main.transform.LookAt(lookAtTarget);
 	}
 
+	/// <summary>
+	/// Sets the mount point of the camera.
+	/// </summary>
+	/// <param name="mountPoint">Mount point.</param>
 	public void setMountPoint(Transform mountPoint) {
 		this.mountPoint = mountPoint;
 	}
 
+	/// <summary>
+	/// Sets the look at target.
+	/// </summary>
+	/// <param name="lookAtTarget">Look at target.</param>
 	public void setLookAtTarget(Transform lookAtTarget) {
 		this.lookAtTarget = lookAtTarget;
 	}

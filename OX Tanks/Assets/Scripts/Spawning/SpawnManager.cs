@@ -13,16 +13,16 @@ public class SpawnManager : MonoBehaviour {
 
 	private ChaseCamera playerCamera;
 	private ChaseCamera2D playerCamera2D;
-	private Camera deathCamera;
 
+	/// <summary>
+	/// Awake this instance.
+	/// </summary>
 	private void Awake() {
 		GameObject mainCam = GameObject.Find("Main Camera").gameObject;
 		playerCamera = mainCam.GetComponent<ChaseCamera>();
 
 		GameObject playerCam = GameObject.Find("CameraRig2D").gameObject;
 		playerCamera2D = playerCam.GetComponent<ChaseCamera2D>();
-
-		deathCamera = GameObject.Find("TopDownCamera").gameObject.GetComponent<Camera>();
 	}
 
 	// Update is called once per frame

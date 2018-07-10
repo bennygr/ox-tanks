@@ -30,6 +30,10 @@ public class ChaseCamera2D : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Sets the target to follow.
+	/// </summary>
+	/// <param name="targetToFollow">Target to follow.</param>
 	public void setTargetToFollow(Transform targetToFollow) {
 		this.targetToFollow = targetToFollow;
 	}
