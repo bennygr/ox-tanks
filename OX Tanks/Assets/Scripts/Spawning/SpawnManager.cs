@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour {
 	private List<GameObject> tankPrefabs = new List<GameObject>(4);
 
 	[SerializeField]
-	private GameObject playerRigPrefab;
+	private readonly GameObject playerRigPrefab;
 
 	private ChaseCamera playerCamera;
 	private ChaseCamera2D playerCamera2D;
