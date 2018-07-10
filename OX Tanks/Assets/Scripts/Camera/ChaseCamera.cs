@@ -17,7 +17,7 @@ public class ChaseCamera : MonoBehaviour {
 
 	// The camera following speed
 	[SerializeField]
-	private float followSpeed = 3f;
+	private float followSpeed = 10f;
 
 	private void Awake() {
 		if (mountPoint == null) {
@@ -31,7 +31,7 @@ public class ChaseCamera : MonoBehaviour {
 	}
 
 	// LateUpdate is called once per frame after the Update()
-	void LateUpdate() {
+	void FixedUpdate() {
 		gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, mountPoint.position, followSpeed * Time.deltaTime);
 		Camera.main.transform.LookAt(lookAtTarget);
 	}

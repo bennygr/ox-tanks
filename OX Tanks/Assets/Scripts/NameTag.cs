@@ -9,7 +9,7 @@ public class NameTag : MonoBehaviour {
 	private Text nameLabel;
 
 	// Update is called once per frame
-	void Update() {
+	void FixedUpdate() {
 		nameLabel.transform.position = Camera.main.WorldToScreenPoint(this.transform.position);
 	}
 

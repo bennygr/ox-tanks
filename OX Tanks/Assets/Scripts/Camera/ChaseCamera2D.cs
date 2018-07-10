@@ -9,7 +9,7 @@ public class ChaseCamera2D : MonoBehaviour {
 
 	// The camera following speed
 	[SerializeField]
-	private float followSpeed = 0.5f;
+	private float followSpeed = 10f;
 
 	// The target to follow
 	private Transform targetToFollow;
@@ -24,7 +24,7 @@ public class ChaseCamera2D : MonoBehaviour {
 	}
 
 	// LateUpdate is called once per frame after the Update()
-	void LateUpdate() {
+	void FixedUpdate() {
 		if (isActiveAndEnabled) {
 			gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, targetToFollow.position, followSpeed * Time.deltaTime);
 		}
