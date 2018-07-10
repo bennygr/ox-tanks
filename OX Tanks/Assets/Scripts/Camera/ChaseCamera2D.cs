@@ -9,7 +9,7 @@ public class ChaseCamera2D : MonoBehaviour {
 
 	// The camera following speed
 	[SerializeField]
-	private float followSpeed = 3f;
+	private float followSpeed = 0.5f;
 
 	// The target to follow
 	private Transform targetToFollow;
