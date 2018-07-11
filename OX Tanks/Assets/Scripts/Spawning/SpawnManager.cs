@@ -29,30 +29,42 @@ public class SpawnManager : MonoBehaviour {
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.Keypad1)) {
 			Debug.Log("Spawn MW tank");
-			initialiseTankPrefab(Instantiate(tankPrefabs[0]), "MW Tank");
+			initialiseTankPrefab(0, "MW Tank");
 		} else if (Input.GetKeyDown(KeyCode.Keypad2)) {
 			Debug.Log("Spawn QA tank");
-			initialiseTankPrefab(Instantiate(tankPrefabs[1]), "QA Tank");
+			initialiseTankPrefab(1, "QA Tank");
 		} else if (Input.GetKeyDown(KeyCode.Keypad3)) {
 			Debug.Log("Spawn UI tank");
-			initialiseTankPrefab(Instantiate(tankPrefabs[2]), "UI Tank");
+			initialiseTankPrefab(2, "UI Tank");
 		} else if (Input.GetKeyDown(KeyCode.Keypad4)) {
 			Debug.Log("Spawn Finance tank");
-			initialiseTankPrefab(Instantiate(tankPrefabs[3]), "Finance Tank");
+			initialiseTankPrefab(3, "Finance Tank");
 		}
 	}
 
 	/// <summary>
 	/// Initialises the tank prefab and makes all necessary connections.
 	/// </summary>
-	/// <param name="tankPrefab">Tank prefab.</param>
+	/// <param name="num">Tank prefab's number.</param>
 	/// <param name="playerName">Player name.</param>
-	private void initialiseTankPrefab(GameObject tankPrefab, string playerName) {
+	private void initialiseTankPrefab(int num, string playerName) {
+		if (num > tankPrefabs.Count) {
+			return;
+		}
+		GameObject exists = GameObject.Find(playerName);
+		if (exists) {
+			Destroy(exists);
+		}
+		GameObject tankPrefab = Instantiate(tankPrefabs[num]);
+		tankPrefab.name = playerName + " Geometry";
+
 		GameObject playerRig = Instantiate(playerRigPrefab);
 		playerRig.name = playerName;
 
 		GameObject modelNode = playerRig.transform.Find("Model").gameObject;
 		tankPrefab.transform.parent = modelNode.transform;
+
+		playerRig.GetComponent<PrimaryFire>().setFireTransform(tankPrefab.transform.Find("MainFireTransform").transform);
 
 		GameObject nameTagNode = playerRig.transform.Find("NameTag").gameObject;
 		NameTag nameTag = nameTagNode.GetComponent<NameTag>();
