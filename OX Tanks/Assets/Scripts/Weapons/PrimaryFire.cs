@@ -47,7 +47,7 @@ public class PrimaryFire : MonoBehaviour {
 	private void Fire() {
 		fired = true;
 		GameObject shellGameObject = Instantiate(shellPrefab, fireTransform.position, fireTransform.rotation);
-		shellGameObject.GetComponent<Rigidbody>().velocity = shellGameObject.transform.forward * currentLaunchForce * forceMultiplier;
+		shellGameObject.GetComponent<Rigidbody>().velocity = shellGameObject.transform.up * currentLaunchForce * forceMultiplier;
 		Destroy(shellGameObject, 2f);
 	}
 

@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c8eeb6aafc34f14bee742f559fee93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shellPrefab: {fileID: 1461622076008406, guid: 83551c482332a4eb4b99f6f18393e92e,
+  shellPrefab: {fileID: 1461622076008406, guid: fd5e68ae725094060b92072b4e77be96,
     type: 2}
   forceMultiplier: 1
   maxCastTime: 0.75
