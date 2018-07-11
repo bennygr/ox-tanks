@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23773922285149446}
   - component: {fileID: 136814733112376060}
   - component: {fileID: 54346737734816978}
+  - component: {fileID: 114768854169156078}
   m_Layer: 0
   m_Name: ShellMockup
   m_TagString: Untagged
@@ -100,6 +101,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114768854169156078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1461622076008406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326c5f4e49b774ad5a559099439028ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136814733112376060
 CapsuleCollider:
   m_ObjectHideFlags: 1
