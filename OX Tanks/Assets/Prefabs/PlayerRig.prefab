@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 4245211790050612}
   - component: {fileID: 114252410092381708}
   - component: {fileID: 54717800053210682}
+  - component: {fileID: 114174389574627860}
   m_Layer: 0
   m_Name: PlayerRig
   m_TagString: Untagged
@@ -239,6 +240,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114174389574627860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777155798154844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c8eeb6aafc34f14bee742f559fee93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shellPrefab: {fileID: 1461622076008406, guid: 83551c482332a4eb4b99f6f18393e92e,
+    type: 2}
+  forceMultiplier: 1
+  maxCastTime: 0.75
+  minLaunchForce: 8
+  maxLaunchForce: 16
+  chargeSpeed: 0
 --- !u!114 &114252410092381708
 MonoBehaviour:
   m_ObjectHideFlags: 1
