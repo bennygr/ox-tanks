@@ -21,8 +21,6 @@ public class PrimaryFire : MonoBehaviour {
 [SerializeField]
 	private float maxCastTime = 0.75f;
 	
-	// If min and max launch force values are changed, 
-	// remember to change the Castbar's min and max values
 	[SerializeField]
 	private float minLaunchForce = 8f;
 	[SerializeField]
@@ -31,6 +29,11 @@ public class PrimaryFire : MonoBehaviour {
 	private float currentLaunchForce;
 
 	private const string PRIMARY_FIRE_BUTTON = "Primary Fire";
+
+	private void Awake() {
+		castSlider.minValue = minLaunchForce;
+		castSlider.maxValue = maxLaunchForce;
+	}
 
 	private void Start() {
 		chargeSpeed = (maxLaunchForce - minLaunchForce) / maxCastTime;
