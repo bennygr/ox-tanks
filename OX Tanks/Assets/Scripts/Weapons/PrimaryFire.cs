@@ -1,23 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PrimaryFire : MonoBehaviour {
 
 	[SerializeField]
 	private GameObject shellPrefab;
 
+	[SerializeField]
+	private float forceMultiplier = 1f;
+
+	[SerializeField]
+	private Slider castSlider;
+
 	private Transform fireTransform;
 	private float force;
 	private bool fired;
 
+[SerializeField]
+	private float maxCastTime = 0.75f;
+	
+	// If min and max launch force values are changed, 
+	// remember to change the Castbar's min and max values
 	[SerializeField]
-	private float forceMultiplier = 1f;
-
-	public float maxCastTime = 0.75f;
-	public float minLaunchForce = 8f;
-	public float maxLaunchForce = 16f;
-	public float chargeSpeed;
+	private float minLaunchForce = 8f;
+	[SerializeField]
+	private float maxLaunchForce = 16f;
+	private float chargeSpeed;
 	private float currentLaunchForce;
 
 	private const string PRIMARY_FIRE_BUTTON = "Primary Fire";
@@ -31,6 +41,7 @@ public class PrimaryFire : MonoBehaviour {
 	/// Update this instance.
 	/// </summary>
 	private void Update() {
+		castSlider.value = minLaunchForce;
 		if (currentLaunchForce >= maxLaunchForce && !fired) {
 			currentLaunchForce = maxLaunchForce;
 			Fire();
@@ -39,6 +50,7 @@ public class PrimaryFire : MonoBehaviour {
 			currentLaunchForce = minLaunchForce;
 		} else if (Input.GetButton(PRIMARY_FIRE_BUTTON) && !fired) {
 			currentLaunchForce += chargeSpeed * Time.deltaTime;
+			castSlider.value = currentLaunchForce;
 		} else if (Input.GetButtonUp(PRIMARY_FIRE_BUTTON) && !fired) {
 			Fire();
 		}
