@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4385536525591134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 222926960944255900}
   - component: {fileID: 114992885811502648}
   - component: {fileID: 114880343757558624}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: DisplayName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4006460403569490}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraMount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 114600083675600216}
   - component: {fileID: 114377294607193170}
   - component: {fileID: 114664028707986464}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: NameTagCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4307168175768244}
   - component: {fileID: 114869299400759690}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NameTag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4903200749792532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,8 @@ GameObject:
   - component: {fileID: 114252410092381708}
   - component: {fileID: 54717800053210682}
   - component: {fileID: 114174389574627860}
-  m_Layer: 0
+  - component: {fileID: 65422851681460902}
+  m_Layer: 8
   m_Name: PlayerRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +136,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4292964841468188}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraLookAtTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,6 +242,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65422851681460902
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777155798154844}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.5, z: 1.25}
+  m_Center: {x: 0, y: 0.25, z: 0.1}
 --- !u!114 &114174389574627860
 MonoBehaviour:
   m_ObjectHideFlags: 1
