@@ -36,7 +36,7 @@ public class ShellExplosion : MonoBehaviour {
 			TankVitals vitals = targetRigidbody.GetComponent<TankVitals> ();
 			float damageDealt = CalculateDamage (targetRigidbody.position);
 			Debug.LogFormat("Dealt {0} damage to {1}", damageDealt, targetRigidbody.name);
-			vitals.takeDamage (damageDealt);
+			vitals.takeDamage (damageDealt, targetRigidbody.transform);
 		}
 
 		if (showDebugRadius) {

@@ -17,6 +17,8 @@ public class TankVitals : MonoBehaviour {
 	private Slider healthSlider;
 	[SerializeField]
 	private Slider armorSlider;
+	[SerializeField]
+	private FloatingTextControl floatingTextControl;
 
 	private string playerName;
 
@@ -25,20 +27,32 @@ public class TankVitals : MonoBehaviour {
 		playerName = gameObject.name;
 	}
 
-	public void takeDamage (float damageAmount) {
+	public void takeDamage (float damageAmount, Transform location) {
 		if (damageAmount <= 0) {
 			return;
 		}
 
 		if (armor >= damageAmount) {
 			armor -= damageAmount;
-			Debug.LogFormat("{0} took {1} armor damage", playerName, damageAmount);
+			Debug.LogFormat ("{0} took {1} armor damage", playerName, damageAmount);
+			Resources.Load("UI/PlayerInformation/");
+			floatingTextControl.spawnDamageShieldFloatingText("-" + damageAmount, location);
+			//damageShieldText.text = "-" + damageAmount;
+			//damageShieldTextAnimator.StartPlayback ();
 		} else {
 			damageAmount -= armor;
-			Debug.LogFormat("{0} took {1} armor damage", playerName, armor);
+			Debug.LogFormat ("{0} took {1} armor damage", playerName, armor);
+			if (armor > 0) {
+				//damageShieldText.text = "-" + armor;
+				//damageShieldTextAnimator.StartPlayback ();
+				floatingTextControl.spawnDamageShieldFloatingText("-" + damageAmount, location);
+			}
 			armor = 0;
 			health -= damageAmount;
-			Debug.LogFormat("{0} took {1} health damage", playerName, damageAmount);
+			Debug.LogFormat ("{0} took {1} health damage", playerName, damageAmount);
+			floatingTextControl.spawnDamageHPFloatingText("-" + damageAmount, location);
+			//damageText.text = "-" + damageAmount;
+			//damageTextAnimator.StartPlayback ();
 		}
 		updateSliders ();
 	}
