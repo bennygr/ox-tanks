@@ -16,24 +16,28 @@ public class FloatingTextControl : MonoBehaviour {
 		healShield = Resources.Load<FloatingText> ("Prefabs/UI/PlayerInformation/HealShieldTextRootNode");
 	}
 
-	public void spawnDamageHPFloatingText (string text, Transform location) {
-		instantiateFloatingText (damageHP, text, location);
+	public void spawnDamageHPFloatingText (string text) {
+		instantiateFloatingText (damageHP, text);
 	}
 
-	public void spawnDamageShieldFloatingText (string text, Transform location) {
-		instantiateFloatingText (damageShield, text, location);
+	public void spawnDamageShieldFloatingText (string text) {
+		instantiateFloatingText (damageShield, text);
 	}
 
-	public void spawnHealHPFloatingText (string text, Transform location) {
-		instantiateFloatingText (healHP, text, location);
+	public void spawnHealHPFloatingText (string text) {
+		instantiateFloatingText (healHP, text);
 	}
 
-	public void spawnHealShieldFloatingText (string text, Transform location) {
-		instantiateFloatingText (healShield, text, location);
+	public void spawnHealShieldFloatingText (string text) {
+		instantiateFloatingText (healShield, text);
 	}
 
-	private void instantiateFloatingText (FloatingText floatingText, string text, Transform location) {
+	private void instantiateFloatingText (FloatingText floatingText, string text) {
 		FloatingText instance = Instantiate (floatingText);
+		float x = instance.transform.position.x;
+		float y = instance.transform.position.y;
+		float z = instance.transform.position.z;
+		instance.transform.position = new Vector3(x + Random.Range(-0.5f, 0.5f), y + Random.Range(-0.5f, 0.5f), z + Random.Range(-0.5f, 0.5f));
 		instance.transform.SetParent (transform, false);
 		instance.setText (text);
 	}

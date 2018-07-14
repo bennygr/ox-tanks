@@ -36,17 +36,17 @@ public class TankVitals : MonoBehaviour {
 			armor -= damageAmount;
 			Debug.LogFormat ("{0} took {1} armor damage", playerName, damageAmount);
 			Resources.Load("UI/PlayerInformation/");
-			floatingTextControl.spawnDamageShieldFloatingText("-" + damageAmount, location);
+			floatingTextControl.spawnDamageShieldFloatingText("-" + damageAmount);
 		} else {
 			damageAmount -= armor;
 			Debug.LogFormat ("{0} took {1} armor damage", playerName, armor);
 			if (armor > 0) {
-				floatingTextControl.spawnDamageShieldFloatingText("-" + damageAmount, location);
+				floatingTextControl.spawnDamageShieldFloatingText("-" + damageAmount);
 			}
 			armor = 0;
 			health -= damageAmount;
 			Debug.LogFormat ("{0} took {1} health damage", playerName, damageAmount);
-			floatingTextControl.spawnDamageHPFloatingText("-" + damageAmount, location);
+			floatingTextControl.spawnDamageHPFloatingText("-" + damageAmount);
 		}
 		updateSliders ();
 	}
