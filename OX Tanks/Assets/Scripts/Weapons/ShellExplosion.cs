@@ -12,6 +12,8 @@ public class ShellExplosion : MonoBehaviour {
 
 	[SerializeField]
 	private float explosionForce = 100f;
+	[SerializeField]
+	private float maxDamage = 25f;
 
 	[SerializeField]
 	private LayerMask playerMask;
@@ -30,9 +32,10 @@ public class ShellExplosion : MonoBehaviour {
 			if (!targetRigidbody) {
 				continue;
 			}
-			Debug.LogFormat("Explision force {0}", explosionForce);
+			Debug.LogFormat ("Explision force {0}", explosionForce);
 			targetRigidbody.AddExplosionForce (explosionForce, transform.position, explosionRadius);
-
+			TankVitals vitals = targetRigidbody.GetComponent<TankVitals> ();
+			vitals.takeDamage (CalculateDamage (targetRigidbody.position));
 
 			Debug.Log (targetRigidbody.name);
 		}
@@ -53,5 +56,17 @@ public class ShellExplosion : MonoBehaviour {
 		explosion.Play ();
 		ParticleSystem.MainModule mainModule = explosion.main;
 		Destroy (explosion.gameObject, mainModule.duration);
+	}
+
+	private float CalculateDamage (Vector3 targetPosition) {
+		// Create a vector from the shell to the target.
+		Vector3 explosionToTarget = targetPosition - transform.position;
+		// Calculate the distance from the shell to the target.
+		float explosionDistance = explosionToTarget.magnitude;
+		// Calculate the proportion of the maximum distance (the explosionRadius) the target is away.
+		float relativeDistance = (explosionRadius - explosionDistance) / explosionRadius;
+		// Calculate damage as this proportion of the maximum possible damage.
+		float damage = relativeDistance * maxDamage;
+		return Mathf.Max (0f, damage);
 	}
 }

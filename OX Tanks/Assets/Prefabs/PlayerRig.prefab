@@ -398,6 +398,7 @@ GameObject:
   - component: {fileID: 54717800053210682}
   - component: {fileID: 114174389574627860}
   - component: {fileID: 65422851681460902}
+  - component: {fileID: 114685395071370728}
   m_Layer: 8
   m_Name: PlayerRig
   m_TagString: Untagged
@@ -977,6 +978,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114685395071370728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777155798154844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75fe9efbdd294ecfb3ccc59370f6f5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  armor: 0
+  maxArmor: 100
+  healthSlider: {fileID: 114014120671604202}
+  armorSlider: {fileID: 114587956261804516}
 --- !u!114 &114685687855451650
 MonoBehaviour:
   m_ObjectHideFlags: 1
