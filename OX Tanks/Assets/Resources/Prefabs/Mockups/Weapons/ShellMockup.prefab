@@ -207,7 +207,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 198502135804002498}
   explosionRadius: 5
-  explosionForce: 500
+  explosionForce: 250
+  maxDamage: 25
   playerMask:
     serializedVersion: 2
     m_Bits: 256
