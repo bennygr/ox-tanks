@@ -18,8 +18,11 @@ public class TankVitals : MonoBehaviour {
 	[SerializeField]
 	private Slider armorSlider;
 
+	private string playerName;
+
 	private void Awake () {
 		updateSliders ();
+		playerName = gameObject.name;
 	}
 
 	public void takeDamage (float damageAmount) {
@@ -29,10 +32,13 @@ public class TankVitals : MonoBehaviour {
 
 		if (armor >= damageAmount) {
 			armor -= damageAmount;
+			Debug.LogFormat("{0} took {1} armor damage", playerName, damageAmount);
 		} else {
 			damageAmount -= armor;
+			Debug.LogFormat("{0} took {1} armor damage", playerName, armor);
 			armor = 0;
 			health -= damageAmount;
+			Debug.LogFormat("{0} took {1} health damage", playerName, damageAmount);
 		}
 		updateSliders ();
 	}
