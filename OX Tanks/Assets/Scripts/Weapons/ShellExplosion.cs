@@ -9,33 +9,47 @@ public class ShellExplosion : MonoBehaviour {
 
 	[SerializeField]
 	private float explosionRadius = 5f;
-	
+
 	[SerializeField]
-	private float explosionForce = 1000f;
+	private float explosionForce = 500f;
 
 	[SerializeField]
 	private LayerMask playerMask;
 
-	private void OnTriggerEnter(Collider other) {
- 		Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, playerMask);
+	[SerializeField]
+	private GameObject debugRadius;
+
+	[SerializeField]
+	private bool showDebugRadius = true;
+
+	private void OnTriggerEnter (Collider other) {
+		Collider[] colliders = Physics.OverlapSphere (transform.position, explosionRadius, playerMask);
 		foreach (Collider c in colliders) {
-			Rigidbody targetRigidbody = c.GetComponent<Rigidbody>();
+			Rigidbody targetRigidbody = c.GetComponent<Rigidbody> ();
 
 			if (!targetRigidbody) {
 				continue;
 			}
-			targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+			targetRigidbody.AddExplosionForce (explosionForce, transform.position, explosionRadius);
 
-			Debug.Log(targetRigidbody.name);
+			Debug.Log (targetRigidbody.name);
 		}
-		Explode();
-		Destroy(gameObject);
+
+		if (showDebugRadius) {
+			GameObject d = Instantiate (debugRadius);
+			d.transform.position = new Vector3 (transform.position.x, 0.01f, transform.position.z);
+			d.transform.localScale = new Vector3 (explosionRadius, explosionRadius, 1);
+			Destroy (d, 2f);
+		}
+
+		Explode ();
+		Destroy (gameObject);
 	}
 
-	private void Explode() {
+	private void Explode () {
 		explosion.transform.parent = null;
-		explosion.Play();
+		explosion.Play ();
 		ParticleSystem.MainModule mainModule = explosion.main;
-		Destroy(explosion.gameObject, mainModule.duration);
+		Destroy (explosion.gameObject, mainModule.duration);
 	}
 }
