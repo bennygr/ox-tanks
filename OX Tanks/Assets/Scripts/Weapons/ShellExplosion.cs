@@ -9,18 +9,22 @@ public class ShellExplosion : MonoBehaviour {
 
 	[SerializeField]
 	private float explosionRadius = 5f;
+	
+	[SerializeField]
+	private float explosionForce = 1000f;
 
 	[SerializeField]
 	private LayerMask playerMask;
 
 	private void OnTriggerEnter(Collider other) {
-		Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, playerMask);
+ 		Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, playerMask);
 		foreach (Collider c in colliders) {
 			Rigidbody targetRigidbody = c.GetComponent<Rigidbody>();
 
 			if (!targetRigidbody) {
 				continue;
 			}
+			targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
 
 			Debug.Log(targetRigidbody.name);
 		}
