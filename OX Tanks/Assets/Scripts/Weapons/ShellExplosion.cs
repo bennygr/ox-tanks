@@ -11,7 +11,7 @@ public class ShellExplosion : MonoBehaviour {
 	private float explosionRadius = 5f;
 
 	[SerializeField]
-	private float explosionForce = 500f;
+	private float explosionForce = 100f;
 
 	[SerializeField]
 	private LayerMask playerMask;
@@ -30,7 +30,9 @@ public class ShellExplosion : MonoBehaviour {
 			if (!targetRigidbody) {
 				continue;
 			}
+			Debug.LogFormat("Explision force {0}", explosionForce);
 			targetRigidbody.AddExplosionForce (explosionForce, transform.position, explosionRadius);
+
 
 			Debug.Log (targetRigidbody.name);
 		}
