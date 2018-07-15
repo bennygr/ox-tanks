@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23509338517414264}
   - component: {fileID: 65964758945697816}
   - component: {fileID: 114190865728495738}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HealPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,6 +108,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 395b91bb93a9d41d1bb535a4042fa38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256

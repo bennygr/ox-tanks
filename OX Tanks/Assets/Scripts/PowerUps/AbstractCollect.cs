@@ -10,7 +10,7 @@ public abstract class AbstractCollect : MonoBehaviour {
     }
 
     private void Update() {
-        gameObject.transform.Rotate(Vector3.zero * rotationSpeed);
+        gameObject.transform.Rotate(Vector3.up * rotationSpeed);
     }
 
     private void OnTriggerEnter (Collider other) {
