@@ -9,8 +9,8 @@ public abstract class AbstractCollect : MonoBehaviour {
         layer = LayerMask.NameToLayer ("Player");
     }
 
-    private void Update() {
-        gameObject.transform.Rotate(Vector3.up * rotationSpeed);
+    private void Update () {
+        gameObject.transform.Rotate (Vector3.up * rotationSpeed);
     }
 
     private void OnTriggerEnter (Collider other) {
@@ -22,9 +22,13 @@ public abstract class AbstractCollect : MonoBehaviour {
             return;
         }
 
-        heal(tankVitals);
+        heal (tankVitals);
         Destroy (gameObject);
     }
 
-    protected abstract void heal(TankVitals tankVitals);
+    protected abstract void heal (TankVitals tankVitals);
+
+    // TODO: Create a powerup interface and let the inheriting CollectPowerUp class
+    //       decide on how to handle the power up.
+    //protected abstract void applyPowerUp(TankVitals tankVitals, PowerUp powerUp);
 }
