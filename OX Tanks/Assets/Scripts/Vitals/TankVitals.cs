@@ -27,7 +27,7 @@ public class TankVitals : MonoBehaviour {
 		playerName = gameObject.name;
 	}
 
-	public void takeDamage (float damageAmount, Transform location) {
+	public void takeDamage (float damageAmount) {
 		if (damageAmount <= 0) {
 			return;
 		}
@@ -35,18 +35,42 @@ public class TankVitals : MonoBehaviour {
 		if (armor >= damageAmount) {
 			armor -= damageAmount;
 			Debug.LogFormat ("{0} took {1} armor damage", playerName, damageAmount);
-			Resources.Load("UI/PlayerInformation/");
-			floatingTextControl.spawnDamageShieldFloatingText("-" + damageAmount);
+			Resources.Load ("UI/PlayerInformation/");
+			floatingTextControl.spawnDamageShieldFloatingText ("-" + damageAmount);
 		} else {
 			damageAmount -= armor;
 			Debug.LogFormat ("{0} took {1} armor damage", playerName, armor);
 			if (armor > 0) {
-				floatingTextControl.spawnDamageShieldFloatingText("-" + damageAmount);
+				floatingTextControl.spawnDamageShieldFloatingText ("-" + damageAmount);
 			}
 			armor = 0;
 			health -= damageAmount;
 			Debug.LogFormat ("{0} took {1} health damage", playerName, damageAmount);
-			floatingTextControl.spawnDamageHPFloatingText("-" + damageAmount);
+			floatingTextControl.spawnDamageHPFloatingText ("-" + damageAmount);
+		}
+		updateSliders ();
+	}
+
+	public void healHP (float healAmount) {
+		floatingTextControl.spawnHealHPFloatingText ("+" + healAmount);
+		if (health == maxHealth) {
+			return;
+		}
+		health += healAmount;
+		if (health > maxHealth) {
+			health = maxHealth;
+		}
+		updateSliders ();
+	}
+
+	public void healArmor (float healAmount) {
+		floatingTextControl.spawnHealShieldFloatingText ("+" + healAmount);
+		if (armor == maxArmor) {
+			return;
+		}
+		armor += healAmount;
+		if (armor > maxArmor) {
+			armor = maxArmor;
 		}
 		updateSliders ();
 	}
