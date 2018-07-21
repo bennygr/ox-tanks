@@ -19,12 +19,19 @@ public class TankVitals : MonoBehaviour {
 	private Slider armorSlider;
 	[SerializeField]
 	private FloatingTextControl floatingTextControl;
+	[SerializeField]
+	private GameObject tankExplosionPrefab;
+	private GameObject tankExplosion;
+	private ParticleSystem tankExplosionParticleSystem;
 
 	private string playerName;
 
 	private void Awake () {
 		updateSliders ();
 		playerName = gameObject.name;
+		tankExplosion = Instantiate(tankExplosionPrefab);
+		tankExplosion.SetActive(false);
+		tankExplosionParticleSystem = tankExplosion.GetComponent<ParticleSystem>();
 	}
 
 	public void takeDamage (float damageAmount) {
@@ -48,6 +55,10 @@ public class TankVitals : MonoBehaviour {
 			floatingTextControl.spawnDamageHPFloatingText ("-" + damageAmount);
 		}
 		updateSliders ();
+
+		if (health <= 0) {
+			Explode ();
+		}
 	}
 
 	public void healHP (float healAmount) {
@@ -77,5 +88,21 @@ public class TankVitals : MonoBehaviour {
 	private void updateSliders () {
 		healthSlider.value = (health / maxHealth) * 100;
 		armorSlider.value = (armor / maxArmor) * 100;
+	}
+
+	private void Explode () {
+		gameObject.SetActive(false);
+		tankExplosion.SetActive(true);
+		tankExplosion.transform.position = gameObject.transform.position;
+		tankExplosionParticleSystem.Play();
+		ParticleSystem.MainModule mainModule = tankExplosionParticleSystem.main;
+		StartCoroutine ("Deactivate", mainModule.duration); //TODO: Should be part of the pool management framework
+	}
+
+	IEnumerator Deactivate (float delay) {
+		yield return new WaitForSeconds (delay);
+		tankExplosionParticleSystem.Stop ();
+		tankExplosionParticleSystem.Clear ();
+		tankExplosion.SetActive(false);
 	}
 }

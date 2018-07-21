@@ -1043,6 +1043,14 @@ Prefab:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1777155798154844, guid: 158210e9260e24299bb62d4b53faf035, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753622113495836, guid: 158210e9260e24299bb62d4b53faf035, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 158210e9260e24299bb62d4b53faf035, type: 2}
   m_IsPrefabParent: 0
@@ -2199,7 +2207,7 @@ Prefab:
     - target: {fileID: 114685395071370728, guid: 158210e9260e24299bb62d4b53faf035,
         type: 2}
       propertyPath: armor
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224831249742001020, guid: 158210e9260e24299bb62d4b53faf035,
         type: 2}
@@ -2268,6 +2276,16 @@ Prefab:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114685395071370728, guid: 158210e9260e24299bb62d4b53faf035,
+        type: 2}
+      propertyPath: health
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114685395071370728, guid: 158210e9260e24299bb62d4b53faf035,
+        type: 2}
+      propertyPath: tankExplosionPrefab
+      value: 
+      objectReference: {fileID: 151086, guid: dc691a4101b8b49e2b5f0313738ccb31, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 158210e9260e24299bb62d4b53faf035, type: 2}
   m_IsPrefabParent: 0
