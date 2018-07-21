@@ -28,11 +28,15 @@ public class PrimaryFire : MonoBehaviour {
 	private float chargeSpeed;
 	private float currentLaunchForce;
 
+	private PoolManager poolManager;
+
 	private const string PRIMARY_FIRE_BUTTON = "Primary Fire";
 
 	private void Awake() {
 		castSlider.minValue = minLaunchForce;
 		castSlider.maxValue = maxLaunchForce;
+
+		poolManager = PoolManager.instance;
 	}
 
 	private void Start() {
@@ -61,9 +65,13 @@ public class PrimaryFire : MonoBehaviour {
 
 	private void Fire() {
 		fired = true;
-		GameObject shellGameObject = Instantiate(shellPrefab, fireTransform.position, fireTransform.rotation);
-		shellGameObject.GetComponent<Rigidbody>().velocity = shellGameObject.transform.up * currentLaunchForce * forceMultiplier;
-		Destroy(shellGameObject, 2f);
+		PoolObject poolObject = poolManager.reuseObject(shellPrefab.GetInstanceID(), fireTransform.position, fireTransform.rotation);
+		if (poolObject == null) {
+			Debug.LogWarning("Cannot fire! Pool manager does not contain any objects");
+			return;
+		}
+		GameObject gameObject = poolObject.getGameObject();
+		gameObject.GetComponent<Rigidbody>().velocity = gameObject.transform.up * currentLaunchForce * forceMultiplier;
 	}
 
 	public void setFireTransform(Transform fireTransform) {

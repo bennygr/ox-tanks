@@ -35,7 +35,6 @@ public class TankVitals : MonoBehaviour {
 		if (armor >= damageAmount) {
 			armor -= damageAmount;
 			Debug.LogFormat ("{0} took {1} armor damage", playerName, damageAmount);
-			Resources.Load ("UI/PlayerInformation/");
 			floatingTextControl.spawnDamageShieldFloatingText ("-" + damageAmount);
 		} else {
 			damageAmount -= armor;

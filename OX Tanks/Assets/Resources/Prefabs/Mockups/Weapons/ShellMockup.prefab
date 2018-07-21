@@ -214,7 +214,7 @@ MonoBehaviour:
     m_Bits: 256
   debugRadius: {fileID: 1272696118250838, guid: 0877b525e40d943778b68774cbf4a78a,
     type: 2}
-  showDebugRadius: 1
+  showDebugRadius: 0
 --- !u!136 &136814733112376060
 CapsuleCollider:
   m_ObjectHideFlags: 1
