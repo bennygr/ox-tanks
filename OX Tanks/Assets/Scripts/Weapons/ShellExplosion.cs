@@ -53,7 +53,6 @@ public class ShellExplosion : MonoBehaviour {
 	}
 
 	private void Explode () {
-		Debug.Log("KABOOM");
 		if (showDebugRadius) {
 			GameObject d = Instantiate (debugRadius);
 			d.transform.position = new Vector3 (transform.position.x, 0.01f, transform.position.z);

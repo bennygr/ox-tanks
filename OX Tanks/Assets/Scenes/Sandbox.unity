@@ -841,6 +841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   managedPrefabs:
   - {fileID: 1461622076008406, guid: fd5e68ae725094060b92072b4e77be96, type: 2}
+  - {fileID: 151086, guid: dc691a4101b8b49e2b5f0313738ccb31, type: 2}
 --- !u!114 &432191808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2286,6 +2287,10 @@ Prefab:
       propertyPath: tankExplosionPrefab
       value: 
       objectReference: {fileID: 151086, guid: dc691a4101b8b49e2b5f0313738ccb31, type: 2}
+    - target: {fileID: 1777155798154844, guid: 158210e9260e24299bb62d4b53faf035, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 158210e9260e24299bb62d4b53faf035, type: 2}
   m_IsPrefabParent: 0
@@ -3178,6 +3183,10 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1777155798154844, guid: 158210e9260e24299bb62d4b53faf035, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 158210e9260e24299bb62d4b53faf035, type: 2}
