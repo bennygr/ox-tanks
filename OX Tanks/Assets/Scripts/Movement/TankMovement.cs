@@ -61,4 +61,12 @@ public class TankMovement : MonoBehaviour {
         Quaternion turnRotation = Quaternion.Euler(0, turn, 0);
         rigidBody.MoveRotation(rigidBody.rotation * turnRotation);
     }
+
+    /// <summary>
+    /// Sets the speed multiplier.
+    /// </summary>
+    /// <param name="speedMultiplier">Speed multiplier.</param>
+    public void setSpeedMultiplier(float speedMultiplier) {
+        this.speedMultiplier = speedMultiplier;
+    }
 }

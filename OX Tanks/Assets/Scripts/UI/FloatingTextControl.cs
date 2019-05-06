@@ -9,6 +9,7 @@ public class FloatingTextControl : MonoBehaviour {
     private FloatingText healHP;
     private FloatingText healShield;
     private FloatingText damageMultiplier;
+    private FloatingText speedMultiplier;
 
     void Awake() {
         damageHP = Resources.Load<FloatingText>("Prefabs/UI/PlayerInformation/DamageHPTextRootNode");
@@ -16,6 +17,11 @@ public class FloatingTextControl : MonoBehaviour {
         healHP = Resources.Load<FloatingText>("Prefabs/UI/PlayerInformation/HealHPTextRootNode");
         healShield = Resources.Load<FloatingText>("Prefabs/UI/PlayerInformation/HealShieldTextRootNode");
         damageMultiplier = Resources.Load<FloatingText>("Prefabs/UI/PlayerInformation/DamageMultiplierTextRootNode");
+        speedMultiplier = Resources.Load<FloatingText>("Prefabs/UI/PlayerInformation/SpeedMultiplierTextRootNode");
+    }
+
+    public void spawnSpeedMultiplierFloatingText(string text) {
+        instantiateFloatingText(speedMultiplier, text);
     }
 
     public void spawnDamageMultiplierFloatingText(string text) {

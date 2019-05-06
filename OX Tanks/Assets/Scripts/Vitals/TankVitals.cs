@@ -19,10 +19,11 @@ public class TankVitals : MonoBehaviour {
     [SerializeField]
     private int damageMultiplier = 1;
     [SerializeField]
-    private int damageMultiplierTime = 10;
-
+    private float damageMultiplierTime = 10;
     private DateTime damageChanged;
-    private float damageTime;
+
+    private float speedMultiplierTime = 10;
+    private DateTime speedChanged;
 
     [SerializeField]
     private Slider healthSlider;
@@ -41,6 +42,18 @@ public class TankVitals : MonoBehaviour {
     private ParticleSystem explosion;
 
     /// <summary>
+    /// Sets the speed multiplier.
+    /// </summary>
+    /// <param name="speedMultiplier">Speed multiplier.</param>
+    /// <param name="speedMultiplierTime">Speed multiplier time.</param>
+    public void setSpeedMultiplier(int speedMultiplier, int speedMultiplierTime) {
+        floatingTextControl.spawnSpeedMultiplierFloatingText("Speed x2");
+        this.speedChanged = DateTime.Now;
+        this.speedMultiplierTime = speedMultiplierTime;
+        tankMovement.setSpeedMultiplier(speedMultiplier);
+    }
+
+    /// <summary>
     /// Sets the damage multiplier for the specified amount of time (in seconds).
     /// </summary>
     /// <param name="damageMultiplier">Damage multiplier.</param>
@@ -48,7 +61,6 @@ public class TankVitals : MonoBehaviour {
     public void setDamageMultiplier(int damageMultiplier, int damageMultiplierTime) {
         floatingTextControl.spawnDamageMultiplierFloatingText("Damage x2");
         this.damageChanged = DateTime.Now;
-        this.damageTime = damageMultiplierTime;
         this.damageMultiplierTime = damageMultiplierTime;
         this.damageMultiplier = damageMultiplier;
     }
@@ -72,9 +84,14 @@ public class TankVitals : MonoBehaviour {
 
     public void Update() {
         // Check if damage multiplier is expired
-        if ((DateTime.Now - damageChanged).Seconds > damageTime && damageChanged != DateTime.MinValue) {
+        if ((DateTime.Now - damageChanged).Seconds > damageMultiplierTime && damageChanged != DateTime.MinValue) {
             damageMultiplier = 1;
             damageChanged = DateTime.MinValue;
+        }
+        // Check if speed multiplier is expired
+        if ((DateTime.Now - speedChanged).Seconds > speedMultiplierTime && speedChanged != DateTime.MinValue) {
+            tankMovement.setSpeedMultiplier(1);
+            speedChanged = DateTime.MinValue;
         }
     }
 
