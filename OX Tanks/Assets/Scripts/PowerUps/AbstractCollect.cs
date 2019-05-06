@@ -1,34 +1,30 @@
 using UnityEngine;
 
-public abstract class AbstractCollect : MonoBehaviour {
+public abstract class AbstractCollect : MonoBehaviour, PowerUpCollectable {
 
     protected int layer;
     private const float rotationSpeed = 3f;
 
-    private void Awake () {
-        layer = LayerMask.NameToLayer ("Player");
+    private void Awake() {
+        layer = LayerMask.NameToLayer("Player");
     }
 
-    private void Update () {
-        gameObject.transform.Rotate (Vector3.up * rotationSpeed);
+    private void Update() {
+        gameObject.transform.Rotate(Vector3.up * rotationSpeed);
     }
 
-    private void OnTriggerEnter (Collider other) {
+    private void OnTriggerEnter(Collider other) {
         if (layer != other.gameObject.layer) {
             return;
         }
-        TankVitals tankVitals = other.GetComponent<TankVitals> ();
+        TankVitals tankVitals = other.GetComponent<TankVitals>();
         if (tankVitals == null) {
             return;
         }
 
-        heal (tankVitals);
-        Destroy (gameObject);
+        applyPowerUp(tankVitals);
+        Destroy(gameObject);
     }
 
-    protected abstract void heal (TankVitals tankVitals);
-
-    // TODO: Create a powerup interface and let the inheriting CollectPowerUp class
-    //       decide on how to handle the power up.
-    //protected abstract void applyPowerUp(TankVitals tankVitals, PowerUp powerUp);
+    public abstract void applyPowerUp(TankVitals tankVitals);
 }

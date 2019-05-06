@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ArmorCollect : AbstractCollect {
 
-	private const float HP = 25;
+	private const int HP = 25;
 
-	protected override void heal (TankVitals tankVitals) {
-		tankVitals.healArmor (HP);
-	}
+    public override void applyPowerUp(TankVitals tankVitals) {
+        tankVitals.healArmor(HP);
+    }
 }

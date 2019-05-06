@@ -27,7 +27,7 @@ public class SpawnManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Keypad1)) {
+		if (Input.GetKeyDown (KeyCode.F1)) {
 			Debug.Log ("Spawn MW tank");
 			initialiseTankPrefab (0, "MW Tank");
 		} else if (Input.GetKeyDown (KeyCode.Keypad2)) {
