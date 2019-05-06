@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,10 @@ public class ShellExplosion : MonoBehaviour {
     private float explosionForce = 10f;
     [SerializeField]
     private float maxDamage = DefaultVitals.MAX_DAMAGE;
+
+    private float damageMultiplier = 1f;
+    private DateTime damageChanged;
+    private float damageTime;
 
     [SerializeField]
     private LayerMask playerMask;

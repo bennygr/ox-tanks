@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,14 @@ public class TankVitals : MonoBehaviour {
     [SerializeField]
     private int maxDamage = DefaultVitals.MAX_DAMAGE;
     [SerializeField]
+    private int damageMultiplier = 1;
+    [SerializeField]
+    private int damageMultiplierTime = 10;
+
+    private DateTime damageChanged;
+    private float damageTime;
+
+    [SerializeField]
     private Slider healthSlider;
     [SerializeField]
     private Slider armorSlider;
@@ -32,11 +41,23 @@ public class TankVitals : MonoBehaviour {
     private ParticleSystem explosion;
 
     /// <summary>
+    /// Sets the damage multiplier for the specified amount of time (in seconds).
+    /// </summary>
+    /// <param name="damageMultiplier">Damage multiplier.</param>
+    /// <param name="damageMultiplierTime">Damage multiplier seconds.</param>
+    public void setDamageMultiplier(int damageMultiplier, int damageMultiplierTime) {
+        this.damageChanged = DateTime.Now;
+        this.damageTime = damageMultiplierTime;
+        this.damageMultiplierTime = damageMultiplierTime;
+        this.damageMultiplier = damageMultiplier;
+    }
+
+    /// <summary>
     /// Gets the max damage that the current tank can deal to the opponent.
     /// </summary>
     /// <returns>The max damage.</returns>
     public int getMaxDamage() {
-        return maxDamage;
+        return maxDamage * damageMultiplier;
     }
 
     private void Awake() {
@@ -46,6 +67,14 @@ public class TankVitals : MonoBehaviour {
         tankMovement = GetComponent<TankMovement>();
         model = transform.Find("Model").gameObject;
         playerInformation = transform.Find("PlayerInformation").gameObject;
+    }
+
+    public void Update() {
+        // Check if damage multiplier is expired
+        if ((DateTime.Now - damageChanged).Seconds > damageTime && damageChanged != DateTime.MinValue) {
+            damageMultiplier = 1;
+            damageChanged = DateTime.MinValue;
+        }
     }
 
     /// <summary>
