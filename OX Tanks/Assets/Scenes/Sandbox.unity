@@ -232,9 +232,11 @@ MonoBehaviour:
 
     <b>Movement</b>: WASD or Arrow Keys
 
-    <b>Spawning</b>: 1 - MW, 2 - QA, 3 - UI, 4 - Finance
+    <b>Spawning</b>: F1 - MW, F2 - QA, F3 - UI, F4 - Finance
 
-    <b>Fire</b>: Space'
+    <b>Fire</b>: Space
+
+    <b>Camera Views</b>: V'
 --- !u!222 &114792881
 CanvasRenderer:
   m_ObjectHideFlags: 0

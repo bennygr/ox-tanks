@@ -30,13 +30,13 @@ public class SpawnManager : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.F1)) {
 			Debug.Log ("Spawn MW tank");
 			initialiseTankPrefab (0, "MW Tank");
-		} else if (Input.GetKeyDown (KeyCode.Keypad2)) {
+		} else if (Input.GetKeyDown (KeyCode.F2)) {
 			Debug.Log ("Spawn QA tank");
 			initialiseTankPrefab (1, "QA Tank");
-		} else if (Input.GetKeyDown (KeyCode.Keypad3)) {
+		} else if (Input.GetKeyDown (KeyCode.F3)) {
 			Debug.Log ("Spawn UI tank");
 			initialiseTankPrefab (2, "UI Tank");
-		} else if (Input.GetKeyDown (KeyCode.Keypad4)) {
+		} else if (Input.GetKeyDown (KeyCode.F4)) {
 			Debug.Log ("Spawn Finance tank");
 			initialiseTankPrefab (3, "Finance Tank");
 		}
