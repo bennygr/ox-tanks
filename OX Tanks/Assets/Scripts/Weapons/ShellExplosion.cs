@@ -16,10 +16,6 @@ public class ShellExplosion : MonoBehaviour {
     [SerializeField]
     private float maxDamage = DefaultVitals.MAX_DAMAGE;
 
-    private float damageMultiplier = 1f;
-    private DateTime damageChanged;
-    private float damageTime;
-
     [SerializeField]
     private LayerMask playerMask;
 
