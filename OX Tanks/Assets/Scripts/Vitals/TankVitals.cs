@@ -46,6 +46,7 @@ public class TankVitals : MonoBehaviour {
     /// <param name="damageMultiplier">Damage multiplier.</param>
     /// <param name="damageMultiplierTime">Damage multiplier seconds.</param>
     public void setDamageMultiplier(int damageMultiplier, int damageMultiplierTime) {
+        floatingTextControl.spawnDamageMultiplierFloatingText("Damage x2");
         this.damageChanged = DateTime.Now;
         this.damageTime = damageMultiplierTime;
         this.damageMultiplierTime = damageMultiplierTime;
