@@ -77,7 +77,6 @@ public abstract class AbstractExplosion : MonoBehaviour {
         }
         explosion.transform.parent = null;
         explosion.Play();
-        meshRenderer.enabled = false;
         weaponCollider.enabled = false;
         ParticleSystem.MainModule mainModule = explosion.main;
         StartCoroutine("Deactivate", mainModule.duration); //TODO: Should be part of the pool management framework
@@ -87,6 +86,7 @@ public abstract class AbstractExplosion : MonoBehaviour {
     /// 
     /// </summary>
     IEnumerator Deactivate(float delay) {
+        meshRenderer.enabled = false;
         yield return new WaitForSeconds(delay);
         explosion.Stop();
         explosion.Clear();
