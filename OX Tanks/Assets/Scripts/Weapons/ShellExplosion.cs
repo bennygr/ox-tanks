@@ -42,6 +42,7 @@ public class ShellExplosion : MonoBehaviour {
             if (!targetRigidbody) {
                 continue;
             }
+            Debug.Log("Target is " + targetRigidbody.name);
             TankVitals vitals = targetRigidbody.GetComponent<TankVitals>();
             if (!vitals) {
                 continue;

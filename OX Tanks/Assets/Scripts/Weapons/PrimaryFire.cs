@@ -45,7 +45,6 @@ public class PrimaryFire : MonoBehaviour {
         chargeSpeed = (maxLaunchForce - minLaunchForce) / maxCastTime;
     }
 
-
     /// <summary>
     /// Update this instance.
     /// </summary>

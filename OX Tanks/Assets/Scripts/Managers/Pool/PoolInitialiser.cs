@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class PoolInitialiser : MonoBehaviour {
 
-	[SerializeField]
+    static PoolInitialiser _instance;
+
+    public static PoolInitialiser instance {
+        get {
+            if (_instance == null) {
+                _instance = GameObject.FindObjectOfType<PoolInitialiser>();
+            }
+            return _instance;
+        }
+    }
+
+    [SerializeField]
 	private List<GameObject> managedPrefabs;
 
 	/// Testing the pool manager initialisation
@@ -15,4 +26,12 @@ public class PoolInitialiser : MonoBehaviour {
 			poolManager.addPool (prefab, 50);
 		}
 	}
+
+    public GameObject getManagedPrefab(int prefabNum) {
+        if (managedPrefabs.Count <= prefabNum) {
+            Debug.Log("Unknown managed prefab with number " + prefabNum);
+            return null;
+        }
+        return managedPrefabs[prefabNum];
+    }
 }
