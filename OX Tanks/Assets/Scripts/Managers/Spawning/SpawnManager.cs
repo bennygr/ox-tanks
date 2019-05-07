@@ -46,7 +46,7 @@ public class SpawnManager : MonoBehaviour {
     /// </summary>
     /// <param name="num">Tank prefab's number.</param>
     /// <param name="playerName">Player name.</param>
-    private void initialiseTankPrefab(int num, string playerName) {
+    public void initialiseTankPrefab(int num, string playerName) {
         if (num > tankPrefabs.Count) {
             return;
         }
