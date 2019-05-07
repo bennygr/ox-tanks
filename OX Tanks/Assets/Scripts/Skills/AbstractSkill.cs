@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AbstractSkill : MonoBehaviour {
@@ -12,6 +13,7 @@ public abstract class AbstractSkill : MonoBehaviour {
     public float cooldown = 0;
     protected String fireButton;
     public Transform skillTransform;
+    public LinkedList<Transform> skillTransforms = new LinkedList<Transform>();
 
     private DateTime lastTriggered;
 
@@ -33,6 +35,10 @@ public abstract class AbstractSkill : MonoBehaviour {
 
     public void setSkillTransform(Transform skillTransform) {
         this.skillTransform = skillTransform;
+    }
+
+    public void addSkillTransform(Transform skillTransform) {
+        this.skillTransforms.AddFirst(skillTransform);
     }
 
     /// <summary>

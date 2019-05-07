@@ -21,4 +21,8 @@ public class MineExplosion : AbstractExplosion {
             base.OnTriggerEnter(other);
         }
     }
+
+    protected override void postAwake() {
+        // nothing
+    }
 }

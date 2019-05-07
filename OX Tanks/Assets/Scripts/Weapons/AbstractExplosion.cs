@@ -7,15 +7,15 @@ public abstract class AbstractExplosion : MonoBehaviour {
     protected ParticleSystem explosion;
 
     [SerializeField]
-    private float explosionRadius = 5f;
+    protected float explosionRadius = 5f;
 
     [SerializeField]
-    private float explosionForce = 10f;
+    protected float explosionForce = 10f;
     [SerializeField]
-    private float maxDamage = DefaultVitals.MAX_DAMAGE;
+    protected int maxDamage = DefaultVitals.MAX_DAMAGE;
 
     [SerializeField]
-    private LayerMask playerMask;
+    protected LayerMask playerMask;
 
     [SerializeField]
     private GameObject debugRadius;
@@ -32,7 +32,10 @@ public abstract class AbstractExplosion : MonoBehaviour {
         poolManager = PoolManager.instance;
         weaponCollider = gameObject.GetComponent<Collider>();
         meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        postAwake();
     }
+
+    protected abstract void postAwake();
 
     protected void OnTriggerEnter(Collider other) {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, playerMask);
@@ -53,7 +56,7 @@ public abstract class AbstractExplosion : MonoBehaviour {
         Explode();
     }
 
-    private int CalculateDamage(Vector3 targetPosition) {
+    protected int CalculateDamage(Vector3 targetPosition) {
         // Create a vector from the shell to the target.
         Vector3 explosionToTarget = targetPosition - transform.position;
         // Calculate the distance from the shell to the target.

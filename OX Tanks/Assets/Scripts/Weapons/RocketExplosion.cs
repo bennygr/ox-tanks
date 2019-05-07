@@ -4,4 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RocketExplosion : AbstractExplosion {
+    protected override void postAwake() {
+        //nothing
+    }
 }
