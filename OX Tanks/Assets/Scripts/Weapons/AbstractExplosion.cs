@@ -26,13 +26,15 @@ public abstract class AbstractExplosion : MonoBehaviour {
     /// The collider of this object to disable upon impact
     /// in order to avoid multiple collisions after explosion.
     protected Collider weaponCollider;
+    private MeshRenderer meshRenderer;
 
     private void Awake() {
         poolManager = PoolManager.instance;
         weaponCollider = gameObject.GetComponent<Collider>();
+        meshRenderer = gameObject.GetComponent<MeshRenderer>();
     }
 
-    private void OnTriggerEnter(Collider other) {
+    protected void OnTriggerEnter(Collider other) {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, playerMask);
         foreach (Collider c in colliders) {
             Rigidbody targetRigidbody = c.GetComponent<Rigidbody>();
@@ -72,6 +74,7 @@ public abstract class AbstractExplosion : MonoBehaviour {
         }
         explosion.transform.parent = null;
         explosion.Play();
+        meshRenderer.enabled = false;
         weaponCollider.enabled = false;
         ParticleSystem.MainModule mainModule = explosion.main;
         StartCoroutine("Deactivate", mainModule.duration); //TODO: Should be part of the pool management framework
@@ -87,6 +90,7 @@ public abstract class AbstractExplosion : MonoBehaviour {
         explosion.transform.position = gameObject.transform.position;
         explosion.transform.parent = gameObject.transform;
         weaponCollider.enabled = true;
+        meshRenderer.enabled = true;
         gameObject.SetActive(false);
     }
 

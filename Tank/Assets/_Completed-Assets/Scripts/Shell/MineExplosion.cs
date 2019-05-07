@@ -27,7 +27,7 @@ public class MineExplosion : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         if (active)
         {

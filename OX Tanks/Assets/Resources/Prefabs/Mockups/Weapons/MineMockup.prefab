@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 23511845923282650}
   - component: {fileID: 136644519799733040}
   - component: {fileID: 54684837387411764}
-  - component: {fileID: 114092827523389056}
+  - component: {fileID: 114287385646595222}
   m_Layer: 0
   m_Name: MineMockup
   m_TagString: Untagged
@@ -194,7 +194,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114092827523389056
+--- !u!114 &114287385646595222
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,19 +202,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1130598098372364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 326c5f4e49b774ad5a559099439028ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 012a66f030b1e4a099ca0c7a1fcb71ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 198180286167265190}
   explosionRadius: 5
-  explosionForce: 250
-  maxDamage: 100
+  explosionForce: 10
+  maxDamage: 25
   playerMask:
     serializedVersion: 2
     m_Bits: 256
   debugRadius: {fileID: 1272696118250838, guid: 0877b525e40d943778b68774cbf4a78a,
     type: 2}
-  showDebugRadius: 1
+  showDebugRadius: 0
 --- !u!136 &136644519799733040
 CapsuleCollider:
   m_ObjectHideFlags: 1

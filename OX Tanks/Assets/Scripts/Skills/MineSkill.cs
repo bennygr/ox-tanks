@@ -36,8 +36,8 @@ public class MineSkill : AbstractSkill {
             return;
         }
         GameObject poolGameObject = poolObject.getGameObject();
-        ShellExplosion shellExplosion = poolGameObject.GetComponent<ShellExplosion>();
-        shellExplosion.setMaxDamage(MAX_DAMAGE);
+        MineExplosion mineExplosion = poolGameObject.GetComponent<MineExplosion>();
+        mineExplosion.setMaxDamage(MAX_DAMAGE);
         poolGameObject.transform.SetPositionAndRotation(skillTransform.position, skillTransform.rotation);
     }
 }
