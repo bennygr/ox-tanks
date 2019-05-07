@@ -8,9 +8,6 @@ using UnityEngine.UI;
 //TODO: Consolidate with PrimaryFire, maybe abstract common logic to a generic class
 public class RocketSkill : AbstractSkill {
 
-    private const float DEFAULT_COOLDOWN = 2;
-    private const int MAX_DAMAGE = 100;
-
     [SerializeField]
     private GameObject rocketPrefab;
 
@@ -84,9 +81,8 @@ public class RocketSkill : AbstractSkill {
             return;
         }
         GameObject poolGameObject = poolObject.getGameObject();
-        // TODO: Create a separate RocketExplosion prefab
-        ShellExplosion shellExplosion = poolGameObject.GetComponent<ShellExplosion>();
-        shellExplosion.setMaxDamage(MAX_DAMAGE);
+        RocketExplosion rocketExplosion = poolGameObject.GetComponent<RocketExplosion>();
+        rocketExplosion.setMaxDamage(MAX_DAMAGE);
         poolGameObject.GetComponent<Rigidbody>().velocity = poolGameObject.transform.up * currentLaunchForce * forceMultiplier;
     }
 }

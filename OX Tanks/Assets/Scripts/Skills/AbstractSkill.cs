@@ -3,6 +3,9 @@ using UnityEngine;
 
 public abstract class AbstractSkill : MonoBehaviour {
 
+    public const float DEFAULT_COOLDOWN = 2;
+    public const int MAX_DAMAGE = 100;
+
     // Identify the different players
     public int playerNumber = 1;
     // Skill cooldown

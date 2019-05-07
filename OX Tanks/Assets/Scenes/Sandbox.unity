@@ -937,7 +937,8 @@ MonoBehaviour:
   managedPrefabs:
   - {fileID: 1461622076008406, guid: fd5e68ae725094060b92072b4e77be96, type: 2}
   - {fileID: 151086, guid: dc691a4101b8b49e2b5f0313738ccb31, type: 2}
-  - {fileID: 1461622076008406, guid: 1f4280dc5c83145fe88d7c2144ce2020, type: 2}
+  - {fileID: 1282580776304544, guid: 4e139523c957c4bda8f851ed83b08aa7, type: 2}
+  - {fileID: 1130598098372364, guid: 2e4457799186f4378b81ed407eb3f0eb, type: 2}
 --- !u!114 &432191808
 MonoBehaviour:
   m_ObjectHideFlags: 0
