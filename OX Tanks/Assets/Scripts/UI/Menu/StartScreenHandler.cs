@@ -8,10 +8,16 @@ public class StartScreenHandler : MonoBehaviour
 
     [SerializeField] GameObject[] weaponsPlayer1;
     [SerializeField] GameObject[] weaponsPlayer2;
+    [SerializeField] TextMeshProUGUI roundStartCountDownText;
+    [SerializeField] GameObject roundStartButton;
+    [SerializeField] int roundStartCountDown = 1;
 
+    private int p1Index = 0;
+    private int p2Index = 1;
+    private float counter = 0;
+    private readonly string countDownText = "New round starts in...{0}s";
+    private readonly string countDownTextNow = "New round starts NOW";
 
-    int p1Index = 0;
-    int p2Index = 1;
 
     void LoadGameScene(){
         UnityEngine.SceneManagement.SceneManager.LoadScene("Sandbox");
@@ -40,7 +46,48 @@ public class StartScreenHandler : MonoBehaviour
     void Awake(){
         SelectMenuItem(weaponsPlayer1, p1Index);
         SelectMenuItem(weaponsPlayer2, p2Index);
+        if(DoCounting()){
+            //Between the rounds we count down
+            roundStartCountDownText.gameObject.SetActive(true);
+            if (roundStartButton != null){
+                roundStartButton.SetActive(false);
+            }
+            counter = roundStartCountDown;
+            SetCountDownText(counter);
+        }
+        else{
+            //Count down functionality dissabled; This is when the game starts (first round).
+            if(roundStartCountDownText != null){
+                roundStartCountDownText.gameObject.SetActive(false);    
+
+            }
+            if(roundStartButton != null){
+                roundStartButton.SetActive(true);    
+            }
+        }                     
 	}
+
+    /// <summary>
+    /// Sets the count down text.
+    /// </summary>
+    /// <param name="seconds">current value in seconds</param>
+    private void SetCountDownText(float seconds) {
+        if(seconds > 1){
+            roundStartCountDownText.text = string.Format(countDownText, (int)seconds);
+        }
+        else{
+            roundStartCountDownText.text = countDownTextNow;
+        }
+
+    }
+
+    /// <summary>
+    /// Whether or not the screen is countingn down and automatically loads the next round
+    /// </summary>
+    /// <returns><c>true</c>, if counting is done, <c>false</c> otherwise.</returns>
+    private bool DoCounting() {
+        return roundStartCountDown > 0 && roundStartCountDownText != null;
+    }
 
     /// <summary>
     /// Called by Unity
@@ -57,7 +104,6 @@ public class StartScreenHandler : MonoBehaviour
             }
         }
 
-
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (p2Index < weaponsPlayer2.Length - 1){
@@ -70,6 +116,17 @@ public class StartScreenHandler : MonoBehaviour
                 SelectMenuItem(weaponsPlayer2, --p2Index);
             }
         }
+
+        if(DoCounting()){
+            //count down the timer
+            if (roundStartCountDown > 0)
+                counter = counter - Time.deltaTime;
+            SetCountDownText(counter);       
+
+            if(counter < 0){
+                LoadGameScene();
+            }
+        }     
 	}
 
 
