@@ -56,11 +56,15 @@ public class PauseScreenHandler : MonoBehaviour {
         SelectMenuItem(menuIndex);
 
         if(Input.GetKeyDown(KeyCode.Return)){
-            if(menuIndex == 0){
-                Pause(false);
-            }
-            else if(menuIndex == 1){
-                QuitRound();
+            if(IsPaused){
+                if (menuIndex == 0)
+                {
+                    Pause(false);
+                }
+                else if (menuIndex == 1)
+                {
+                    QuitRound();
+                }    
             }
         }
 	}

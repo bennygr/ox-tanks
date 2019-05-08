@@ -28,6 +28,7 @@ public abstract class AbstractSkill : MonoBehaviour {
     }
 
     protected bool CanTrigger() {
+        if(PauseScreenHandler.IsPaused) return false;
         if (cooldown == 0) {
             return true;
         }
