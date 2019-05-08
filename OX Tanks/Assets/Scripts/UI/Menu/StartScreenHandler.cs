@@ -33,8 +33,8 @@ public class StartScreenHandler : MonoBehaviour
 
     private void LoadGameScene(){
         UnityEngine.SceneManagement.SceneManager.LoadScene("Sandbox");
-        PlayerSpawner.player1 = new PlayerSpawner.Spawn(p1Index, "Benny");
-        PlayerSpawner.player2 = new PlayerSpawner.Spawn(p2Index, "Klaus");
+        PlayerSpawner.player1 = new PlayerSpawner.Spawn(p1Index, "Benny", 1);
+        PlayerSpawner.player2 = new PlayerSpawner.Spawn(p2Index, "Klaus", 2);
     }
 
     private int GetPointsPlayer1(){
