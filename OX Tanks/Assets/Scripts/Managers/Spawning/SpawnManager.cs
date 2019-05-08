@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,12 @@ public class SpawnManager : MonoBehaviour {
 
     [SerializeField]
     private GameObject playerRigPrefab;
+
+    // TODO: replace spawnPoints with a List
+    [SerializeField]
+    private GameObject spawnPointA;
+    [SerializeField]
+    private GameObject spawnPointB;
 
     private ChaseCamera playerCamera;
     private ChaseCamera2D playerCamera2D;
@@ -28,16 +35,16 @@ public class SpawnManager : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.F1)) {
             Debug.Log("Spawned Rocket tank");
-            initialiseTankPrefab(0, "Rocket Tank");
+            initialiseTankPrefab(0, "Rocket Tank", 1);
         } else if (Input.GetKeyDown(KeyCode.F2)) {
             Debug.Log("Spawed Mine tank");
-            initialiseTankPrefab(1, "Mine Tank");
+            initialiseTankPrefab(1, "Mine Tank", 1);
         } else if (Input.GetKeyDown(KeyCode.F3)) {
             Debug.Log("Spawned Shotgun tank");
-            initialiseTankPrefab(2, "Shotgun Tank");
+            initialiseTankPrefab(2, "Shotgun Tank", 1);
         } else if (Input.GetKeyDown(KeyCode.F4)) {
             Debug.Log("Spawned Grenade tank");
-            initialiseTankPrefab(3, "Grenade Tank");
+            initialiseTankPrefab(3, "Grenade Tank", 1);
         }
     }
 
@@ -46,7 +53,7 @@ public class SpawnManager : MonoBehaviour {
     /// </summary>
     /// <param name="num">Tank prefab's number.</param>
     /// <param name="playerName">Player name.</param>
-    public void initialiseTankPrefab(int num, string playerName) {
+    public void initialiseTankPrefab(int num, string playerName, int playerNumber) {
         if (num > tankPrefabs.Count) {
             return;
         }
@@ -86,6 +93,18 @@ public class SpawnManager : MonoBehaviour {
         playerCamera2D.setTargetToFollow(playerRig.transform);
 
         assignTankClass(playerRig, tankPrefab, num);
+        playerRig.transform.position = getSpawnPosition(playerNumber);
+    }
+
+    private Vector3 getSpawnPosition(int playerNumber) {
+        switch (playerNumber) {
+            case 1:
+                return spawnPointA.transform.position;
+            case 2:
+                return spawnPointB.transform.position;
+            default:
+                throw new Exception("Unable to spawn player with number " + playerNumber + ". Not enough spawn points");
+        }
     }
 
     /// <summary>
@@ -105,7 +124,7 @@ public class SpawnManager : MonoBehaviour {
                 break;
             case 2:
                 playerRig.AddComponent<ShotgunSkill>();
-                for (int i = 1; i <=5; i++) {
+                for (int i = 1; i <= 5; i++) {
                     playerRig.GetComponent<ShotgunSkill>().addSkillTransform(prefab.transform.Find("SpecialFireTransform" + i).transform);
                 }
                 break;
