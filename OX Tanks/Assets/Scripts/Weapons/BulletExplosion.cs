@@ -7,7 +7,7 @@ public class BulletExplosion : AbstractExplosion {
         explosionRadius = 0.01f;
     }
 
-    private new void OnTriggerEnter(Collider other) {
+    protected new void OnTriggerEnter(Collider other) {
         RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.up, 3f, playerMask);
         foreach (RaycastHit hit in hits) {
             Collider c = hit.collider;
@@ -33,8 +33,6 @@ public class BulletExplosion : AbstractExplosion {
     }
 
     protected int CalculateDamage(Vector3 targetPosition, float distance) {
-        float damage = (maxDamage - maxDamage * distance / 3f);
-        Debug.Log("Damage " + damage);
-        return Mathf.RoundToInt(Mathf.Max(0f, damage));
+        return Mathf.RoundToInt(Mathf.Max(0f, (maxDamage - maxDamage * distance / 3f)));
     }
 }
