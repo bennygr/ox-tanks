@@ -2114,6 +2114,16 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89c8fa6d6ee39437ba869a4b8b9f97a0, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &660046997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1837550350349086, guid: 89c8fa6d6ee39437ba869a4b8b9f97a0,
+    type: 2}
+  m_PrefabInternal: {fileID: 660046996}
+--- !u!1 &660046998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1150998191124084, guid: 89c8fa6d6ee39437ba869a4b8b9f97a0,
+    type: 2}
+  m_PrefabInternal: {fileID: 660046996}
 --- !u!1001 &662874704
 Prefab:
   m_ObjectHideFlags: 0
@@ -4031,6 +4041,16 @@ Prefab:
       propertyPath: spawnPointB
       value: 
       objectReference: {fileID: 1758318443}
+    - target: {fileID: 114682012182191798, guid: b0144834ab69c4907862046f83b174fd,
+        type: 2}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 660046998}
+    - target: {fileID: 114682012182191798, guid: b0144834ab69c4907862046f83b174fd,
+        type: 2}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 660046997}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0144834ab69c4907862046f83b174fd, type: 2}
   m_IsPrefabAsset: 0
