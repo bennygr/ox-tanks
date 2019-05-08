@@ -712,14 +712,14 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118772039638508}
-  m_Mesh: {fileID: 4300000, guid: 5c62f07a33e3ec64f8c12b9c20d5f99e, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 8fac7998077e747c994aa154d7b77281, type: 3}
 --- !u!33 &33434625942298522
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000747525740972}
-  m_Mesh: {fileID: 4300004, guid: 5c62f07a33e3ec64f8c12b9c20d5f99e, type: 3}
+  m_Mesh: {fileID: 4300004, guid: 8fac7998077e747c994aa154d7b77281, type: 3}
 --- !u!33 &33569610420094734
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -740,7 +740,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1799463213521546}
-  m_Mesh: {fileID: 4300002, guid: 5c62f07a33e3ec64f8c12b9c20d5f99e, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 8fac7998077e747c994aa154d7b77281, type: 3}
 --- !u!65 &65523564746555150
 BoxCollider:
   m_ObjectHideFlags: 1
