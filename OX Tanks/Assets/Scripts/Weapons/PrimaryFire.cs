@@ -31,7 +31,7 @@ public class PrimaryFire : MonoBehaviour {
     private PoolManager poolManager;
     private TankVitals tankVitals;
 
-    private const string PRIMARY_FIRE_BUTTON = "Primary Fire";
+    private const string PRIMARY_FIRE_BUTTON = "Primary Fire Player {0}";
 
     private void Awake() {
         castSlider.minValue = minLaunchForce;
@@ -49,17 +49,18 @@ public class PrimaryFire : MonoBehaviour {
     /// Update this instance.
     /// </summary>
     private void Update() {
+        string primaryFireButtonName = string.Format(PRIMARY_FIRE_BUTTON, tankVitals.PlayerNumber);
         castSlider.value = minLaunchForce;
         if (currentLaunchForce >= maxLaunchForce && !fired) {
             currentLaunchForce = maxLaunchForce;
             Fire();
-        } else if (Input.GetButtonDown(PRIMARY_FIRE_BUTTON)) {
+        } else if (Input.GetButtonDown(primaryFireButtonName)) {
             fired = false;
             currentLaunchForce = minLaunchForce;
-        } else if (Input.GetButton(PRIMARY_FIRE_BUTTON) && !fired) {
+        } else if (Input.GetButton(primaryFireButtonName) && !fired) {
             currentLaunchForce += chargeSpeed * Time.deltaTime;
             castSlider.value = currentLaunchForce;
-        } else if (Input.GetButtonUp(PRIMARY_FIRE_BUTTON) && !fired) {
+        } else if (Input.GetButtonUp(primaryFireButtonName) && !fired) {
             Fire();
         }
     }

@@ -33,6 +33,8 @@ public class TankVitals : MonoBehaviour {
     private FloatingTextControl floatingTextControl;
     [SerializeField]
     private GameObject tankExplosionPrefab;
+    private int playerNumber;
+    [SerializeField]    
     private string playerName;
     private PoolManager poolManager;
     private TankMovement tankMovement;
@@ -40,6 +42,19 @@ public class TankVitals : MonoBehaviour {
     private GameObject playerInformation;
     private GameObject explosionGameObject;
     private ParticleSystem explosion;
+
+    /// <summary>
+    /// The number of the player
+    /// </summary>
+    /// <value>The player number.</value>
+    public int PlayerNumber {
+        get {
+            return playerNumber;
+        }
+        set {
+            playerNumber = value;
+        }
+    }
 
     /// <summary>
     /// Sets the speed multiplier.

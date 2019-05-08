@@ -96,6 +96,7 @@ public class SpawnManager : MonoBehaviour {
 
         assignTankClass(playerRig, tankPrefab, num);
         playerRig.transform.position = getSpawnPosition(playerNumber);
+        playerRig.GetComponent<TankVitals>().PlayerNumber = playerNumber;
     }
 
     private Vector3 getSpawnPosition(int playerNumber) {

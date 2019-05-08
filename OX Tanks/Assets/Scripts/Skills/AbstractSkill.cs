@@ -18,7 +18,8 @@ public abstract class AbstractSkill : MonoBehaviour {
     private DateTime lastTriggered;
 
     protected void Start() {
-        fireButton = "Skill" + playerNumber;
+        playerNumber = GetComponent<TankVitals>().PlayerNumber;
+        fireButton = "Skill Player " + playerNumber;
         postStart();
     }
 
