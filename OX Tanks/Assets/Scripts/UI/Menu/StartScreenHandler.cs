@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class StartScreenHandler : MonoBehaviour
@@ -9,6 +7,10 @@ public class StartScreenHandler : MonoBehaviour
     [SerializeField] GameObject[] weaponsPlayer1;
     [SerializeField] GameObject[] weaponsPlayer2;
     [SerializeField] TextMeshProUGUI roundStartCountDownText;
+    [SerializeField] TextMeshProUGUI roundHeaderText;
+    [SerializeField] TextMeshProUGUI pointsMiddle;
+    [SerializeField] TextMeshProUGUI pointsPlayer1;
+    [SerializeField] TextMeshProUGUI pointsPlayer2;
     [SerializeField] GameObject roundStartButton;
     [SerializeField] int roundStartCountDown = 1;
 
@@ -17,12 +19,32 @@ public class StartScreenHandler : MonoBehaviour
     private float counter = 0;
     private readonly string countDownText = "New round starts in...{0}s";
     private readonly string countDownTextNow = "New round starts NOW";
+    private readonly string newRoundText = "Round {0} / {1}";
 
+    /// <summary>
+    /// The current round numer
+    /// </summary>
+    public static int CurrentRoundNumber = 1;
 
-    void LoadGameScene(){
+    /// <summary>
+    /// The amount of rounds to play
+    /// </summary>
+    public static int RoundsPerGame = 5;
+
+    private void LoadGameScene(){
         UnityEngine.SceneManagement.SceneManager.LoadScene("Sandbox");
         PlayerSpawner.player1 = new PlayerSpawner.Spawn(p1Index, "Benny");
         PlayerSpawner.player2 = new PlayerSpawner.Spawn(p2Index, "Klaus");
+    }
+
+    private int GetPointsPlayer1(){
+        //TODO: get the actual points (rounds won) for player 1
+        return 0;
+    }
+
+    private int GetPointsPlayer2(){
+        //TODO: get the actual points (rounds won) for player 2
+        return 0;
     }
 
     void SelectMenuItem(GameObject[] items, int index){
@@ -43,28 +65,58 @@ public class StartScreenHandler : MonoBehaviour
     /// <summary>
     /// Called by UNITY
     /// </summary>
-    void Awake(){
+    void Awake()
+    {
+
+        //Header
+        if (roundHeaderText != null)
+        {
+            //Display current round number
+            roundHeaderText.text = string.Format(newRoundText, CurrentRoundNumber, RoundsPerGame);
+        }
+
+
+        //Default weapon/tank selection
         SelectMenuItem(weaponsPlayer1, p1Index);
         SelectMenuItem(weaponsPlayer2, p2Index);
-        if(DoCounting()){
+
+        //Enable dissable counter / start button
+        if (DoCounting())
+        {
             //Between the rounds we count down
             roundStartCountDownText.gameObject.SetActive(true);
-            if (roundStartButton != null){
+            if (roundStartButton != null)
+            {
                 roundStartButton.SetActive(false);
             }
             counter = roundStartCountDown;
             SetCountDownText(counter);
         }
-        else{
+        else
+        {
             //Count down functionality dissabled; This is when the game starts (first round).
-            if(roundStartCountDownText != null){
-                roundStartCountDownText.gameObject.SetActive(false);    
+            if (roundStartCountDownText != null)
+            {
+                roundStartCountDownText.gameObject.SetActive(false);
 
             }
-            if(roundStartButton != null){
-                roundStartButton.SetActive(true);    
+            if (roundStartButton != null)
+            {
+                roundStartButton.SetActive(true);
             }
-        }                     
+        }
+
+        //Display points if the game is running / at least one round was played
+        if (CurrentRoundNumber > 1){
+            pointsPlayer1.text = GetPointsPlayer1().ToString();
+            pointsPlayer2.text = GetPointsPlayer2().ToString();
+        }
+        else {
+            //Hide the points if the game just started
+            pointsPlayer1.gameObject.SetActive(false);
+            pointsPlayer2.gameObject.SetActive(false);
+            pointsMiddle.gameObject.SetActive(false);
+        }
 	}
 
     /// <summary>
@@ -82,11 +134,11 @@ public class StartScreenHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// Whether or not the screen is countingn down and automatically loads the next round
+    /// Whether or not the screen is counting down and automatically loads the next round
     /// </summary>
     /// <returns><c>true</c>, if counting is done, <c>false</c> otherwise.</returns>
     private bool DoCounting() {
-        return roundStartCountDown > 0 && roundStartCountDownText != null;
+        return CurrentRoundNumber > 1 && roundStartCountDown > 0 && roundStartCountDownText != null;
     }
 
     /// <summary>
