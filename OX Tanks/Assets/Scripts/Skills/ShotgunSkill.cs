@@ -6,7 +6,7 @@ public class ShotgunSkill : AbstractSkill {
     private int maxDamage = 30;
 
     [SerializeField]
-    private float maxRange = 3f;
+    private float maxRange = 20f;
 
     [SerializeField]
     private GameObject bulletPrefab;
@@ -82,6 +82,6 @@ public class ShotgunSkill : AbstractSkill {
     }
 
     private int CalculateDamage(Vector3 targetPosition, float distance) {
-        return Mathf.RoundToInt(Mathf.Max(0f, (maxDamage - maxDamage * distance / 3f)));
+        return Mathf.RoundToInt(Mathf.Max(0f, (maxDamage - maxDamage * distance / maxRange)));
     }
 }

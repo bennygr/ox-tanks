@@ -131,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 1282580776304544}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12, y: 0.24, z: 0.12}
+  m_LocalScale: {x: 1.2, y: 2.4, z: 1.2}
   m_Children:
   - {fileID: 4688348987067190}
   m_Father: {fileID: 0}
@@ -206,9 +206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 198073494497193806}
-  explosionRadius: 7
+  explosionRadius: 25
   explosionForce: 500
-  maxDamage: 25
+  maxDamage: 80
   playerMask:
     serializedVersion: 2
     m_Bits: 256

@@ -63,6 +63,7 @@ public abstract class AbstractExplosion : MonoBehaviour {
         float explosionDistance = explosionToTarget.magnitude;
         // Calculate the proportion of the maximum distance (the explosionRadius) the target is away.
         float relativeDistance = (explosionRadius - explosionDistance) / explosionRadius;
+        Debug.Log("Target's distance from explosion " + explosionDistance + ", relative distance : " + relativeDistance);
         // Calculate damage as this proportion of the maximum possible damage.
         float damage = relativeDistance * maxDamage;
         return Mathf.RoundToInt(Mathf.Max(0f, Mathf.Round(damage)));
