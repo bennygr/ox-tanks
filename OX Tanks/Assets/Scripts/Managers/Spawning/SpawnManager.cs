@@ -27,17 +27,17 @@ public class SpawnManager : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown(KeyCode.F1)) {
-            Debug.Log("Spawn MW tank");
-            initialiseTankPrefab(0, "MW Tank");
+            Debug.Log("Spawned Rocket tank");
+            initialiseTankPrefab(0, "Rocket Tank");
         } else if (Input.GetKeyDown(KeyCode.F2)) {
-            Debug.Log("Spawn QA tank");
-            initialiseTankPrefab(1, "QA Tank");
+            Debug.Log("Spawed Mine tank");
+            initialiseTankPrefab(1, "Mine Tank");
         } else if (Input.GetKeyDown(KeyCode.F3)) {
-            Debug.Log("Spawn UI tank");
-            initialiseTankPrefab(2, "UI Tank");
+            Debug.Log("Spawned Shotgun tank");
+            initialiseTankPrefab(2, "Shotgun Tank");
         } else if (Input.GetKeyDown(KeyCode.F4)) {
-            Debug.Log("Spawn Finance tank");
-            initialiseTankPrefab(3, "Finance Tank");
+            Debug.Log("Spawned Grenade tank");
+            initialiseTankPrefab(3, "Grenade Tank");
         }
     }
 
