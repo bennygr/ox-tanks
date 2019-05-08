@@ -17,6 +17,11 @@ public class SpawnManager : MonoBehaviour {
     [SerializeField]
     private GameObject spawnPointB;
 
+    [SerializeField]
+    private GameObject mainCam;
+    [SerializeField]
+    private GameObject playerCam;
+
     private ChaseCamera playerCamera;
     private ChaseCamera2D playerCamera2D;
 
@@ -24,10 +29,7 @@ public class SpawnManager : MonoBehaviour {
     /// Awake this instance.
     /// </summary>
     private void Awake() {
-        GameObject mainCam = GameObject.Find("Main Camera").gameObject;
         playerCamera = mainCam.GetComponent<ChaseCamera>();
-
-        GameObject playerCam = GameObject.Find("CameraRig2D").gameObject;
         playerCamera2D = playerCam.GetComponent<ChaseCamera2D>();
     }
 

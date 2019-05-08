@@ -74,6 +74,8 @@ MonoBehaviour:
     type: 2}
   spawnPointA: {fileID: 0}
   spawnPointB: {fileID: 0}
+  mainCam: {fileID: 0}
+  playerCam: {fileID: 0}
 --- !u!114 &114887441945301504
 MonoBehaviour:
   m_ObjectHideFlags: 1
