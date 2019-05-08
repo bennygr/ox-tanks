@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 
-public class PlayerSpawner : MonoBehaviour
-{
+public class PlayerSpawner : MonoBehaviour {
 
-    public class Spawn
-    {
-        public Spawn(int num, string name){
+    public class Spawn {
+        public Spawn(int num, string name) {
             this.num = num;
             this.name = name;
         }
@@ -21,19 +19,18 @@ public class PlayerSpawner : MonoBehaviour
 
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         if (spawnManager == null) {
             spawnManager = GetComponent<SpawnManager>();
-            if(spawnManager == null) Debug.LogError("Cannot acces SpwanManger");
+            if (spawnManager == null) Debug.LogError("Cannot acces SpwanManger");
         }
 
         if (player1 != null) {
             spawnManager.initialiseTankPrefab(player1.num, player1.name);
         }
-        if (player2 != null){
+        if (player2 != null) {
             spawnManager.initialiseTankPrefab(player2.num, player2.name);
         }
     }
-		
+
 }

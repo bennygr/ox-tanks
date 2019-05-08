@@ -28,6 +28,7 @@ public class ShotgunSkill : AbstractSkill {
         bulletPrefab = PoolInitialiser.instance.getManagedPrefab(4);
         cooldown = DEFAULT_COOLDOWN;
 
+        playerMask = LayerMask.GetMask("Player");
         //TMP
         cooldown = 0f;
     }
