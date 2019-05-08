@@ -9,7 +9,7 @@ public class PoolManager : MonoBehaviour {
     public static PoolManager instance {
         get {
             if (_instance == null) {
-                _instance = GameObject.FindObjectOfType<PoolManager>();
+                _instance = FindObjectOfType<PoolManager>();
             }
             return _instance;
         }

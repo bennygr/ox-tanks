@@ -105,15 +105,15 @@ public class SpawnManager : MonoBehaviour {
                 break;
             case 2:
                 playerRig.AddComponent<ShotgunSkill>();
-                playerRig.GetComponent<ShotgunSkill>().addSkillTransform(prefab.transform.Find("SpecialFireTransform1").transform);
-                playerRig.GetComponent<ShotgunSkill>().addSkillTransform(prefab.transform.Find("SpecialFireTransform2").transform);
-                playerRig.GetComponent<ShotgunSkill>().addSkillTransform(prefab.transform.Find("SpecialFireTransform3").transform);
-                playerRig.GetComponent<ShotgunSkill>().addSkillTransform(prefab.transform.Find("SpecialFireTransform4").transform);
-                playerRig.GetComponent<ShotgunSkill>().addSkillTransform(prefab.transform.Find("SpecialFireTransform5").transform);
+                for (int i = 1; i <=5; i++) {
+                    playerRig.GetComponent<ShotgunSkill>().addSkillTransform(prefab.transform.Find("SpecialFireTransform" + i).transform);
+                }
                 break;
             case 3:
                 playerRig.AddComponent<GrenadeSkill>();
-                playerRig.GetComponent<GrenadeSkill>().setSkillTransform(prefab.transform.Find("SpecialFireTransform").transform);
+                for (int i = 1; i <= 8; i++) {
+                    playerRig.GetComponent<GrenadeSkill>().addSkillTransform(prefab.transform.Find("SpecialFireTransform" + i).transform);
+                }
                 break;
             default:
                 playerRig.AddComponent<RocketSkill>();

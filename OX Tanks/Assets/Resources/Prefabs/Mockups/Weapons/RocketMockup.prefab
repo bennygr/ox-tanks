@@ -208,10 +208,10 @@ MonoBehaviour:
   explosion: {fileID: 198073494497193806}
   explosionRadius: 7
   explosionForce: 500
-  maxDamage: 50
+  maxDamage: 25
   playerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
   debugRadius: {fileID: 1272696118250838, guid: 0877b525e40d943778b68774cbf4a78a,
     type: 2}
   showDebugRadius: 1
