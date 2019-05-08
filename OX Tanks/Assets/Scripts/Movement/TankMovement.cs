@@ -34,8 +34,10 @@ public class TankMovement : MonoBehaviour {
     /// the calculates must happen in fixed update.
     /// </summary>
     void FixedUpdate() {
-        Move();
-        Turn();
+        if(!PauseScreenHandler.IsPaused){
+            Move();
+            Turn();    
+        }
     }
 
 

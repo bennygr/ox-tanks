@@ -10,12 +10,14 @@ public class PauseScreenHandler : MonoBehaviour {
 
     private int menuIndex = 0;
 
+    public static bool IsPaused { get; private set; }
+
 
     /// <summary>
     /// Called by unity
     /// </summary>
     private void Awake() {
-        pauseScreen.SetActive(false);
+        Pause(false);
 	}
 
 	void SelectMenuItem(int index)
@@ -34,13 +36,16 @@ public class PauseScreenHandler : MonoBehaviour {
         SceneManager.LoadScene("StartScene");
     }
 
+    private void Pause(bool pause){                
+        pauseScreen.SetActive(pause);
+        IsPaused = pause;
+    }
+
 	
 	// Update is called once per frame
 	void Update () {
         if(Input.GetKeyDown(KeyCode.Escape)){
-            if(pauseScreen != null){
-                pauseScreen.SetActive(!pauseScreen.active);
-            }
+            Pause(!IsPaused);
         }
         if(Input.GetKeyDown(KeyCode.UpArrow)){
             menuIndex = (int) Mathf.Max(0, menuIndex - 1);
@@ -52,7 +57,7 @@ public class PauseScreenHandler : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.Return)){
             if(menuIndex == 0){
-                pauseScreen.SetActive(false);
+                Pause(false);
             }
             else if(menuIndex == 1){
                 QuitRound();
