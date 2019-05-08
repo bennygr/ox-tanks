@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224614364557655196}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 224858703185789174}
   - component: {fileID: 222914214089075112}
   - component: {fileID: 114747722270621890}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4314934694565690}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Castbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 224974586691111742}
   - component: {fileID: 222940965248997384}
   - component: {fileID: 114060993811466576}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 114711613413441604}
   - component: {fileID: 114356311657885032}
   - component: {fileID: 114253845443653966}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: HealthbarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 222794513068682768}
   - component: {fileID: 114928449210746564}
   - component: {fileID: 114202057527529656}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: DisplayName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 114839492162364066}
   - component: {fileID: 114447672544996834}
   - component: {fileID: 114832361217979406}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: FloatingTextCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224854142024909820}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4828284071687874}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224577190937601460}
   - component: {fileID: 114014120671604202}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 224065752788561142}
   - component: {fileID: 222538690829995802}
   - component: {fileID: 114407682102980000}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224945031191435738}
   - component: {fileID: 114973636305554474}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4206417801487612}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Shieldbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4385536525591134}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: CameraRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4006460403569490}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: CameraMount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4129304761832164}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: PlayerInformation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224662684604086658}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 224831249742001020}
   - component: {fileID: 222980936971983062}
   - component: {fileID: 114992634646561068}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 224607641772735760}
   - component: {fileID: 222027583471952508}
   - component: {fileID: 114553092372096032}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 114685687855451650}
   - component: {fileID: 114664749030867588}
   - component: {fileID: 114817831613922794}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: CastbarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4307168175768244}
   - component: {fileID: 114869299400759690}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: NameTag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 224956784796588200}
   - component: {fileID: 222298575646759422}
   - component: {fileID: 114139687240599280}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4903200749792532}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 114174389574627860}
   - component: {fileID: 65422851681460902}
   - component: {fileID: 114685395071370728}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: PlayerRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4292964841468188}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: CameraLookAtTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 114502752769839344}
   - component: {fileID: 114786302623223662}
   - component: {fileID: 114781186863486282}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: ShieldbarCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 114004595057540094}
   - component: {fileID: 114626612798718978}
   - component: {fileID: 114618966434500876}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: NameTagCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224649412078551994}
   - component: {fileID: 114587956261804516}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

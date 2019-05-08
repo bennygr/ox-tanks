@@ -3,11 +3,19 @@ using UnityEngine;
 
 public class ShotgunSkill : AbstractSkill {
 
+    private int maxDamage = 30;
+
+    [SerializeField]
+    private float maxRange = 3f;
+
     [SerializeField]
     private GameObject bulletPrefab;
 
     [SerializeField]
-    private float bulletSpeed = 20f;
+    protected LayerMask playerMask;
+
+    [SerializeField]
+    private float bulletSpeed = 30f;
 
     private PoolManager poolManager;
 
@@ -43,11 +51,36 @@ public class ShotgunSkill : AbstractSkill {
                 return;
             }
             GameObject poolGameObject = poolObject.getGameObject();
-            BulletExplosion explosion = poolGameObject.GetComponent<BulletExplosion>();
-            explosion.setMaxDamage(30); //TODO: adjust accordingly
             poolGameObject.transform.SetPositionAndRotation(t.position, t.rotation);
             Rigidbody body = poolGameObject.GetComponent<Rigidbody>();
             body.velocity = bulletSpeed * t.up;
+
+            RaycastHit[] hits = Physics.RaycastAll(t.position, t.up, maxRange, playerMask);
+            foreach (RaycastHit hit in hits) {
+                Collider c = hit.collider;
+                Debug.Log(c.name);
+                if (c == null) {
+                    continue;
+                }
+                Debug.Log("Distance for hit: " + hit.distance);
+
+                Rigidbody targetRigidbody = c.GetComponent<Rigidbody>();
+
+                if (!targetRigidbody) {
+                    continue;
+                }
+                TankVitals vitals = targetRigidbody.GetComponent<TankVitals>();
+                if (!vitals) {
+                    continue;
+                }
+                int damageDealt = CalculateDamage(targetRigidbody.position, hit.distance);
+                Debug.LogFormat("Dealt {0} damage to {1}", damageDealt, targetRigidbody.name);
+                vitals.takeDamage(damageDealt);
+            }
         }
+    }
+
+    private int CalculateDamage(Vector3 targetPosition, float distance) {
+        return Mathf.RoundToInt(Mathf.Max(0f, (maxDamage - maxDamage * distance / 3f)));
     }
 }
