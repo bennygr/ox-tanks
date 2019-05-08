@@ -16,6 +16,8 @@ public class StartScreenHandler : MonoBehaviour
     [SerializeField] GameObject roundStartButton;
     [SerializeField] int roundStartCountDown = 1;
 
+    private readonly string mapName = "singleplayer_buro";
+
     private int p1Index = 0;
     private int p2Index = 1;
     private float counter = 0;
@@ -34,7 +36,7 @@ public class StartScreenHandler : MonoBehaviour
     public static int RoundsPerGame = 5;
 
     private void LoadGameScene(){
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Sandbox");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(mapName);
 
         string name1 = player1Name == null ||
                        player1Name.text == null ||
@@ -191,7 +193,7 @@ public class StartScreenHandler : MonoBehaviour
             if(counter < 0){
                 LoadGameScene();
             }
-        }     
+        }    
 	}
 
 
