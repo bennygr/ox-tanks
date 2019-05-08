@@ -6,6 +6,8 @@ public class StartScreenHandler : MonoBehaviour
 
     [SerializeField] GameObject[] weaponsPlayer1;
     [SerializeField] GameObject[] weaponsPlayer2;
+    [SerializeField] TextMeshProUGUI player1Name;
+    [SerializeField] TextMeshProUGUI player2Name;
     [SerializeField] TextMeshProUGUI roundStartCountDownText;
     [SerializeField] TextMeshProUGUI roundHeaderText;
     [SerializeField] TextMeshProUGUI pointsMiddle;
@@ -33,8 +35,19 @@ public class StartScreenHandler : MonoBehaviour
 
     private void LoadGameScene(){
         UnityEngine.SceneManagement.SceneManager.LoadScene("Sandbox");
-        PlayerSpawner.player1 = new PlayerSpawner.Spawn(p1Index, "Benny", 1);
-        PlayerSpawner.player2 = new PlayerSpawner.Spawn(p2Index, "Klaus", 2);
+
+        string name1 = player1Name == null ||
+                       player1Name.text == null ||
+                       player1Name.text.Trim() == string.Empty ?
+                                  "Player 1" :
+                                  player1Name.text;
+        string name2 = player2Name == null ||
+                       player2Name.text == null ||
+                       player2Name.text.Trim() == string.Empty ?
+                                  "Player 2" :
+                                  player2Name.text;        
+        PlayerSpawner.player1 = new PlayerSpawner.Spawn(p1Index, name1, 1);
+        PlayerSpawner.player2 = new PlayerSpawner.Spawn(p2Index, name2, 2);
     }
 
     private int GetPointsPlayer1(){

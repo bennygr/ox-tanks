@@ -4159,13 +4159,15 @@ MonoBehaviour:
   - {fileID: 351477772}
   - {fileID: 985456610}
   - {fileID: 393051294}
+  player1Name: {fileID: 1494367537}
+  player2Name: {fileID: 379736419}
   roundStartCountDownText: {fileID: 1918838271}
   roundHeaderText: {fileID: 1890081839}
   pointsMiddle: {fileID: 1374666718}
   pointsPlayer1: {fileID: 368463966}
   pointsPlayer2: {fileID: 345386533}
   roundStartButton: {fileID: 835486136}
-  roundStartCountDown: 0
+  roundStartCountDown: 10
 --- !u!1 &2138989898
 GameObject:
   m_ObjectHideFlags: 0
