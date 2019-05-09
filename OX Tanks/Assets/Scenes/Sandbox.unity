@@ -1175,6 +1175,30 @@ Prefab:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 350992092}
+    - target: {fileID: 114887441945301504, guid: b0144834ab69c4907862046f83b174fd,
+        type: 2}
+      propertyPath: managedPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 1938592234003472, guid: ac9c8b1e94aa94a2da535c7bff1b3917,
+        type: 2}
+    - target: {fileID: 114887441945301504, guid: b0144834ab69c4907862046f83b174fd,
+        type: 2}
+      propertyPath: managedPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 1938592234003472, guid: 705038676b96b4dbb86f0f6dc7a279fb,
+        type: 2}
+    - target: {fileID: 114887441945301504, guid: b0144834ab69c4907862046f83b174fd,
+        type: 2}
+      propertyPath: managedPrefabs.Array.data[8]
+      value: 
+      objectReference: {fileID: 1938592234003472, guid: 27df21cf0fe09465eac66fd6b3790089,
+        type: 2}
+    - target: {fileID: 114887441945301504, guid: b0144834ab69c4907862046f83b174fd,
+        type: 2}
+      propertyPath: managedPrefabs.Array.data[9]
+      value: 
+      objectReference: {fileID: 1938592234003472, guid: b724ad766fbdb4a8f93fd505155d2b1d,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0144834ab69c4907862046f83b174fd, type: 2}
   m_IsPrefabAsset: 0
