@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class AbstractCollect : MonoBehaviour, PowerUpCollectable {
 
@@ -23,7 +24,9 @@ public abstract class AbstractCollect : MonoBehaviour, PowerUpCollectable {
         }
 
         applyPowerUp(tankVitals);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        // FIXME: Dirty hack. Introduce an event manager to distribute events to registered listeners.
+        gameObject.transform.parent.GetComponent<PowerUpSpawnPoint>().HasPowerUp = false;
     }
 
     public abstract void applyPowerUp(TankVitals tankVitals);
