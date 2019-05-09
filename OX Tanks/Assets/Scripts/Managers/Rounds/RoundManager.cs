@@ -66,8 +66,9 @@ public class RoundManager : MonoBehaviour {
         if(playerPoints.ContainsKey(playerNumber)){
             return playerPoints[playerNumber];
         }
-        return -1;
+        return 0;
     }
+
 
     //---------------------------------------------------------------------------------------------h
 
@@ -95,7 +96,6 @@ public class RoundManager : MonoBehaviour {
             StartRound();
         }
         if(roundRunning && activePlayers != null){
-
             //The round ends, if there is only one player left
             if(activePlayers.Count == 1) {
                 var winner = activePlayers[0];
@@ -150,5 +150,13 @@ public class RoundManager : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public void Reset(){
+        roundRunning = false;
+        newRound = false;
+        round = 1;
+        activePlayers.Clear();
+        playerPoints.Clear();
     }
 }

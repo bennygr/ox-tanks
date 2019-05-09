@@ -18,9 +18,9 @@ public class PauseScreenHandler : MonoBehaviour {
     /// </summary>
     private void Awake() {
         Pause(false);
-	}
+    }
 
-	void SelectMenuItem(int index)
+    void SelectMenuItem(int index)
     {
         if (index == 0){
             resume.color = Color.yellow;
@@ -32,7 +32,8 @@ public class PauseScreenHandler : MonoBehaviour {
         }
     }
 
-    private void QuitRound(){
+    private void Quit(){
+        RoundManager.instance.Reset();
         SceneManager.LoadScene("StartScene");
     }
 
@@ -41,9 +42,8 @@ public class PauseScreenHandler : MonoBehaviour {
         IsPaused = pause;
     }
 
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
         if(Input.GetKeyDown(KeyCode.Escape)){
             Pause(!IsPaused);
         }
@@ -63,9 +63,9 @@ public class PauseScreenHandler : MonoBehaviour {
                 }
                 else if (menuIndex == 1)
                 {
-                    QuitRound();
+                    Quit();
                 }    
             }
         }
-	}
+    }
 }
