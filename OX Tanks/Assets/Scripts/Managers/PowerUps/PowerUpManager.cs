@@ -73,7 +73,7 @@ public class PowerUpManager : MonoBehaviour {
             return;
         }
 
-        Debug.Log("Spawned " + powerUpPrefab.name + " power up");
+        Debug.Log("Spawned " + powerUpPrefab.name + " power up at spawn point " + randomSpawnPointTransform.name + " in location " + randomSpawnPointTransform.position);
     }
 
     /// <summary>
@@ -85,12 +85,11 @@ public class PowerUpManager : MonoBehaviour {
         do {
             GameObject spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count)];
             PowerUpSpawnPoint powerUpSpawnPoint = spawnPoint.GetComponent<PowerUpSpawnPoint>();
-            if (powerUpSpawnPoint.HasPowerUp) {
-                tries++;
-                continue;
+            if (false == powerUpSpawnPoint.HasPowerUp) {
+                powerUpSpawnPoint.HasPowerUp = true;
+                return spawnPoint;
             }
-            powerUpSpawnPoint.HasPowerUp = true;
-            return spawnPoint;
+            tries++;
         } while (tries <= 5);
         return null;
     }
