@@ -781,7 +781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c8eeb6aafc34f14bee742f559fee93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shellPrefab: {fileID: 1461622076008406, guid: fd5e68ae725094060b92072b4e77be96,
+  shellPrefab: {fileID: 1641883297984890, guid: 62b41541cca79394b9530f98d96ac665,
     type: 2}
   forceMultiplier: 1
   castSlider: {fileID: 114973636305554474}
@@ -1069,6 +1069,7 @@ MonoBehaviour:
   armorSlider: {fileID: 114587956261804516}
   floatingTextControl: {fileID: 114832361217979406}
   tankExplosionPrefab: {fileID: 151086, guid: dc691a4101b8b49e2b5f0313738ccb31, type: 2}
+  playerName: 
 --- !u!114 &114685687855451650
 MonoBehaviour:
   m_ObjectHideFlags: 1

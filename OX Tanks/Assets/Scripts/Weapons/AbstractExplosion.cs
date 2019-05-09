@@ -26,12 +26,12 @@ public abstract class AbstractExplosion : MonoBehaviour {
     /// The collider of this object to disable upon impact
     /// in order to avoid multiple collisions after explosion.
     protected Collider weaponCollider;
-    private MeshRenderer meshRenderer;
+    private GameObject geometry;
 
     private void Awake() {
         poolManager = PoolManager.instance;
         weaponCollider = gameObject.GetComponent<Collider>();
-        meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        geometry = gameObject.transform.Find("Model").gameObject;
         postAwake();
     }
 
@@ -87,14 +87,14 @@ public abstract class AbstractExplosion : MonoBehaviour {
     /// 
     /// </summary>
     IEnumerator Deactivate(float delay) {
-        meshRenderer.enabled = false;
+        geometry.SetActive(false);
         yield return new WaitForSeconds(delay);
         explosion.Stop();
         explosion.Clear();
         explosion.transform.position = gameObject.transform.position;
         explosion.transform.parent = gameObject.transform;
         weaponCollider.enabled = true;
-        meshRenderer.enabled = true;
+        geometry.SetActive(true);
         gameObject.SetActive(false);
     }
 
