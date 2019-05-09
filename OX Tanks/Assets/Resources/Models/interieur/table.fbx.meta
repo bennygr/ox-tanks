@@ -1,14 +1,21 @@
 fileFormatVersion: 2
-guid: b644e092080bd0049a4a74646cf95527
+guid: 09cbb11eeae1f6143a16e14f97934509
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: handle
+    100002: table
+    100004: //RootNode
+    400000: handle
+    400002: table
+    400004: //RootNode
     2100000: mat_lowpoly
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Cube.012
+    2300000: handle
+    2300002: table
+    3300000: handle
+    3300002: table
+    4300000: handle
+    4300002: table
   externalObjects: {}
   materials:
     importMaterials: 1
