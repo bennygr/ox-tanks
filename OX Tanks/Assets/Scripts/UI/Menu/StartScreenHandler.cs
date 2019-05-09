@@ -25,10 +25,6 @@ public class StartScreenHandler : MonoBehaviour
     private readonly string countDownTextNow = "New round starts NOW";
     private readonly string newRoundText = "Round {0} / {1}";
 
-    /// <summary>
-    /// The current round numer
-    /// </summary>
-    public static int CurrentRoundNumber = 1;
 
     /// <summary>
     /// The amount of rounds to play
@@ -50,6 +46,7 @@ public class StartScreenHandler : MonoBehaviour
                                   player2Name.text;        
         RoundManager.player1 = new RoundManager.Spawn(p1Index, name1, 1);
         RoundManager.player2 = new RoundManager.Spawn(p2Index, name2, 2);
+        RoundManager.newRound = true;
     }
 
     private int GetPointsPlayer1(){
@@ -77,6 +74,10 @@ public class StartScreenHandler : MonoBehaviour
         }
     }
 
+    private int GetCurrentRound(){
+        return RoundManager.round;
+    }
+
     /// <summary>
     /// Called by UNITY
     /// </summary>
@@ -87,7 +88,7 @@ public class StartScreenHandler : MonoBehaviour
         if (roundHeaderText != null)
         {
             //Display current round number
-            roundHeaderText.text = string.Format(newRoundText, CurrentRoundNumber, RoundsPerGame);
+            roundHeaderText.text = string.Format(newRoundText, GetCurrentRound(), RoundsPerGame);
         }
 
 
@@ -122,7 +123,7 @@ public class StartScreenHandler : MonoBehaviour
         }
 
         //Display points if the game is running / at least one round was played
-        if (CurrentRoundNumber > 1){
+        if (GetCurrentRound() > 1){
             pointsPlayer1.text = GetPointsPlayer1().ToString();
             pointsPlayer2.text = GetPointsPlayer2().ToString();
         }
@@ -132,7 +133,7 @@ public class StartScreenHandler : MonoBehaviour
             pointsPlayer2.gameObject.SetActive(false);
             pointsMiddle.gameObject.SetActive(false);
         }
-	}
+    }
 
     /// <summary>
     /// Sets the count down text.
@@ -153,7 +154,7 @@ public class StartScreenHandler : MonoBehaviour
     /// </summary>
     /// <returns><c>true</c>, if counting is done, <c>false</c> otherwise.</returns>
     private bool DoCounting() {
-        return CurrentRoundNumber > 1 && roundStartCountDown > 0 && roundStartCountDownText != null;
+        return GetCurrentRound() > 1 && roundStartCountDown > 0 && roundStartCountDownText != null;
     }
 
     /// <summary>
@@ -194,13 +195,13 @@ public class StartScreenHandler : MonoBehaviour
                 LoadGameScene();
             }
         }    
-	}
+    }
 
 
-	/// <summary>
-	/// Event Handler if "BtnFight" is clicked
-	/// </summary>
-	public void OnFightButtonClicked(){
+    /// <summary>
+    /// Event Handler if "BtnFight" is clicked
+    /// </summary>
+    public void OnFightButtonClicked(){
         LoadGameScene();
     }
 }

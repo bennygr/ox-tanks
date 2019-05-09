@@ -57,6 +57,19 @@ public class TankVitals : MonoBehaviour {
     }
 
     /// <summary>
+    ///	    The player's name
+    /// </summary>
+    public String PlayerName{
+        get{
+            return playerName;
+        }
+        set{
+            playerName = value;
+        }
+    }
+
+
+    /// <summary>
     /// Sets the speed multiplier.
     /// </summary>
     /// <param name="speedMultiplier">Speed multiplier.</param>
@@ -90,7 +103,6 @@ public class TankVitals : MonoBehaviour {
 
     private void Awake() {
         updateSliders();
-        playerName = gameObject.name;
         poolManager = PoolManager.instance;
         tankMovement = GetComponent<TankMovement>();
         model = transform.Find("Model").gameObject;
@@ -136,8 +148,10 @@ public class TankVitals : MonoBehaviour {
         }
         updateSliders();
 
+        //Dead?
         if (health <= 0) {
             Explode();
+            RoundManager.instance.RemovePlayer(playerNumber);
         }
     }
 
