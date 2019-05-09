@@ -42,6 +42,9 @@ public class RoundManager : MonoBehaviour {
     /// </summary>
     private List<TankVitals> activePlayers = new List<TankVitals>();
 
+    //mapping player-Ids to current points
+    private static Dictionary<int,int> playerPoints = new Dictionary<int, int>();
+
 
     //---------------------------------------------------------------------------------------------h
 
@@ -50,11 +53,21 @@ public class RoundManager : MonoBehaviour {
     public static Spawn player1;
     public static Spawn player2;
 
+    //Set to true to request a new round
     public static bool newRound;
 
     //The current round
     [SerializeField]
     public static int round = 1; 
+    //The amount of rounds to play for whole game
+    public static int roundsPerGame = 1;
+
+    public static int PointsForPlayer(int playerNumber){
+        if(playerPoints.ContainsKey(playerNumber)){
+            return playerPoints[playerNumber];
+        }
+        return -1;
+    }
 
     //---------------------------------------------------------------------------------------------h
 
@@ -82,10 +95,12 @@ public class RoundManager : MonoBehaviour {
             StartRound();
         }
         if(roundRunning && activePlayers != null){
+
             //The round ends, if there is only one player left
             if(activePlayers.Count == 1) {
-
-                Debug.Log("Round finished");
+                var winner = activePlayers[0];
+                Debug.Log("Round finished. " + winner.PlayerName + " won!");
+                playerPoints[winner.PlayerNumber]++;
                 UnityEngine.SceneManagement.SceneManager.LoadScene(startScene);
                 roundRunning = false;
                 round++;
@@ -101,6 +116,10 @@ public class RoundManager : MonoBehaviour {
             var spawnManager = FindSpawnManager();
             var player = spawnManager.initialiseTankPrefab(spawn.num, spawn.name, spawn.playerNumber);
             activePlayers.Add(player.GetComponent<TankVitals>());
+            //init points if not done yet
+            if(!playerPoints.ContainsKey(spawn.playerNumber)){
+                playerPoints[spawn.playerNumber] = 0;
+            }
             Debug.Log(player.name + " entered the battlefield");
         }
         else {

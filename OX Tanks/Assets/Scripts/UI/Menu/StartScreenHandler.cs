@@ -49,14 +49,16 @@ public class StartScreenHandler : MonoBehaviour
         RoundManager.newRound = true;
     }
 
+    private int GetCurrentRound(){
+        return RoundManager.round;
+    }
+
     private int GetPointsPlayer1(){
-        //TODO: get the actual points (rounds won) for player 1
-        return 0;
+        return RoundManager.PointsForPlayer(1);
     }
 
     private int GetPointsPlayer2(){
-        //TODO: get the actual points (rounds won) for player 2
-        return 0;
+        return RoundManager.PointsForPlayer(2);
     }
 
     void SelectMenuItem(GameObject[] items, int index){
@@ -72,10 +74,6 @@ public class StartScreenHandler : MonoBehaviour
                 tmp.color = Color.white;
             }
         }
-    }
-
-    private int GetCurrentRound(){
-        return RoundManager.round;
     }
 
     /// <summary>
