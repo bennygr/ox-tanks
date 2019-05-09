@@ -55,9 +55,10 @@ public class SpawnManager : MonoBehaviour {
     /// </summary>
     /// <param name="num">Tank prefab's number.</param>
     /// <param name="playerName">Player name.</param>
-    public void initialiseTankPrefab(int num, string playerName, int playerNumber) {
+    /// <returns> The spawned GameObject</returns>
+    public GameObject initialiseTankPrefab(int num, string playerName, int playerNumber) {
         if (num > tankPrefabs.Count) {
-            return;
+            return null;
         }
         GameObject exists = GameObject.Find(playerName);
         if (exists) {
@@ -97,6 +98,7 @@ public class SpawnManager : MonoBehaviour {
         assignTankClass(playerRig, tankPrefab, num);
         playerRig.transform.position = getSpawnPosition(playerNumber);
         playerRig.GetComponent<TankVitals>().PlayerNumber = playerNumber;
+        return tankPrefab;
     }
 
     private Vector3 getSpawnPosition(int playerNumber) {

@@ -48,8 +48,8 @@ public class StartScreenHandler : MonoBehaviour
                        player2Name.text.Trim() == string.Empty ?
                                   "Player 2" :
                                   player2Name.text;        
-        PlayerSpawner.player1 = new PlayerSpawner.Spawn(p1Index, name1, 1);
-        PlayerSpawner.player2 = new PlayerSpawner.Spawn(p2Index, name2, 2);
+        RoundManager.player1 = new RoundManager.Spawn(p1Index, name1, 1);
+        RoundManager.player2 = new RoundManager.Spawn(p2Index, name2, 2);
     }
 
     private int GetPointsPlayer1(){
