@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpawnManager : MonoBehaviour {
+public class SpawnManager : MonoBehaviour
+{
 
     [SerializeField]
     private List<GameObject> tankPrefabs = new List<GameObject>(4);
@@ -17,10 +18,23 @@ public class SpawnManager : MonoBehaviour {
     [SerializeField]
     private GameObject spawnPointB;
 
+    [SerializeField]
+    private Camera camera;
+    [HideInInspector]
+    private CameraControl cameraControl;
+
+
     /// <summary>
     /// Awake this instance.
     /// </summary>
     private void Awake() {
+        if(camera == null){
+            Debug.LogError("No Camera attached to the SpanwManger.");
+        }
+        cameraControl = camera.GetComponent<CameraControl>();
+        if(cameraControl == null){
+            Debug.LogError("No CameraControl attached to the camera.");
+        }
     }
 
     // Update is called once per frame
@@ -83,6 +97,9 @@ public class SpawnManager : MonoBehaviour {
         playerRig.transform.position = getSpawnPosition(playerNumber);
         playerRig.GetComponent<TankVitals>().PlayerNumber = playerNumber;
         playerRig.GetComponent<TankVitals>().PlayerName = playerName;
+
+        cameraControl.AddCameraTarget(playerRig.transform);
+
         return playerRig;
     }
 
