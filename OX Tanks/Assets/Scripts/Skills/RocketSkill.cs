@@ -12,7 +12,7 @@ public class RocketSkill : AbstractSkill {
     private GameObject rocketPrefab;
 
     [SerializeField]
-    private float forceMultiplier = 1f;
+    private float forceMultiplier = 5f;
 
     //TODO: Maybe introduce a second slider for the skill?
     //[SerializeField]

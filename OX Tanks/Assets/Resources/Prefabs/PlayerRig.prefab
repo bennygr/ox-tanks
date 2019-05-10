@@ -783,7 +783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shellPrefab: {fileID: 1641883297984890, guid: 62b41541cca79394b9530f98d96ac665,
     type: 2}
-  forceMultiplier: 1
+  forceMultiplier: 5
   castSlider: {fileID: 114973636305554474}
   maxCastTime: 0.75
   minLaunchForce: 8
