@@ -33,7 +33,7 @@ public class GrenadeSkill : AbstractSkill {
         }
     }
 
-    protected override void fire() {
+    private void fire() {
         Triggered();
         foreach (Transform t in skillTransforms) {
             PoolObject poolObject = poolManager.reuseObject(prefab.GetInstanceID(), t.position, t.rotation);
