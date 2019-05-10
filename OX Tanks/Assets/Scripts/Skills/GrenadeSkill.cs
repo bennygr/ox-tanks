@@ -7,8 +7,6 @@ using UnityEngine.UI;
 /// </summary>
 public class GrenadeSkill : AbstractSkill {
 
-    [SerializeField]
-    private GameObject prefab;
     private PoolManager poolManager;
 
     private void Awake() {
@@ -35,7 +33,7 @@ public class GrenadeSkill : AbstractSkill {
         }
     }
 
-    private void fire() {
+    protected override void fire() {
         Triggered();
         foreach (Transform t in skillTransforms) {
             PoolObject poolObject = poolManager.reuseObject(prefab.GetInstanceID(), t.position, t.rotation);

@@ -9,9 +9,6 @@ using UnityEngine.UI;
 public class RocketSkill : AbstractSkill {
 
     [SerializeField]
-    private GameObject rocketPrefab;
-
-    [SerializeField]
     private float forceMultiplier = 5f;
 
     //TODO: Maybe introduce a second slider for the skill?
@@ -45,7 +42,7 @@ public class RocketSkill : AbstractSkill {
         // TODO: Dynamically get the rocket prefab.
         // Current work-around: Get it statically from position 3
         // !!! Ensure that the Rocket prefab is at position 3 of the PoolInitialiser !!!
-        rocketPrefab = PoolInitialiser.instance.getManagedPrefab(2);
+        prefab = PoolInitialiser.instance.getManagedPrefab(2);
         cooldown = DEFAULT_COOLDOWN;
     }
 
@@ -75,7 +72,7 @@ public class RocketSkill : AbstractSkill {
     private void Fire() {
         Triggered();
         fired = true;
-        PoolObject poolObject = poolManager.reuseObject(rocketPrefab.GetInstanceID(), skillTransform.position, skillTransform.rotation);
+        PoolObject poolObject = poolManager.reuseObject(prefab.GetInstanceID(), skillTransform.position, skillTransform.rotation);
         if (poolObject == null) {
             Debug.LogWarning("Cannot fire! Pool manager does not contain any objects");
             return;

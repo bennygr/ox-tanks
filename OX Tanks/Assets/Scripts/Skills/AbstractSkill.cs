@@ -7,6 +7,9 @@ public abstract class AbstractSkill : MonoBehaviour {
     public const float DEFAULT_COOLDOWN = 2;
     public const int MAX_DAMAGE = 100;
 
+    [SerializeField]
+    protected GameObject prefab;
+
     // Identify the different players
     public int playerNumber = 1;
     // Skill cooldown
@@ -15,20 +18,31 @@ public abstract class AbstractSkill : MonoBehaviour {
     public Transform skillTransform;
     public LinkedList<Transform> skillTransforms = new LinkedList<Transform>();
 
+    [SerializeField]
+    private AudioSource audioSource;
+    public AudioClip fireClip;
+
     private DateTime lastTriggered;
 
     protected void Start() {
         playerNumber = GetComponent<TankVitals>().PlayerNumber;
         fireButton = "Skill Player " + playerNumber;
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
+        audioSource.clip = prefab.GetComponent<AbstractExplosion>().FireClip;
+
         postStart();
     }
 
     protected void Triggered() {
+        audioSource.Play();
         lastTriggered = DateTime.Now;
     }
 
     protected bool CanTrigger() {
-        if(PauseScreenHandler.IsPaused) return false;
+        if (PauseScreenHandler.IsPaused) return false;
         if (cooldown == 0) {
             return true;
         }

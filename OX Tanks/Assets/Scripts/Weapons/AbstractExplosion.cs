@@ -28,6 +28,20 @@ public abstract class AbstractExplosion : MonoBehaviour {
     protected Collider weaponCollider;
     private GameObject geometry;
 
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip fireClip;
+
+    public AudioClip FireClip {
+        get {
+            return fireClip;
+        }
+    }
+
+    [SerializeField]
+    private AudioClip explosionClip;
+
     private void Awake() {
         poolManager = PoolManager.instance;
         weaponCollider = gameObject.GetComponent<Collider>();
@@ -78,6 +92,7 @@ public abstract class AbstractExplosion : MonoBehaviour {
         }
         explosion.transform.parent = null;
         explosion.Play();
+        audioSource.Play();
         weaponCollider.enabled = false;
         ParticleSystem.MainModule mainModule = explosion.main;
         StartCoroutine("Deactivate", mainModule.duration); //TODO: Should be part of the pool management framework

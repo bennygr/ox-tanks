@@ -9,9 +9,6 @@ public class ShotgunSkill : AbstractSkill {
     private float maxRange = 20f;
 
     [SerializeField]
-    private GameObject bulletPrefab;
-
-    [SerializeField]
     protected LayerMask playerMask;
 
     [SerializeField]
@@ -25,7 +22,7 @@ public class ShotgunSkill : AbstractSkill {
         // TODO: Dynamically get the mine prefab.
         // Current work-around: Get it statically from position 5
         // !!! Ensure that the Mine prefab is at position 5 of the PoolInitialiser !!!
-        bulletPrefab = PoolInitialiser.instance.getManagedPrefab(4);
+        prefab = PoolInitialiser.instance.getManagedPrefab(4);
         cooldown = DEFAULT_COOLDOWN;
 
         playerMask = LayerMask.GetMask("Player");
@@ -46,7 +43,7 @@ public class ShotgunSkill : AbstractSkill {
 
     private void fire() {
         foreach (Transform t in skillTransforms) {
-            PoolObject poolObject = poolManager.reuseObject(bulletPrefab.GetInstanceID(), t.position, t.rotation);
+            PoolObject poolObject = poolManager.reuseObject(prefab.GetInstanceID(), t.position, t.rotation);
             if (poolObject == null) {
                 Debug.LogWarning("Cannot fire! Pool manager does not contain any objects");
                 return;
