@@ -433,16 +433,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 198162886526988512}
-  explosionRadius: 15
+  explosionRadius: 10
   explosionForce: 250
-  maxDamage: 25
+  maxDamage: 20
   playerMask:
     serializedVersion: 2
     m_Bits: 256
   debugRadius: {fileID: 1272696118250838, guid: 0877b525e40d943778b68774cbf4a78a,
     type: 2}
-  showDebugRadius: 1
+  showDebugRadius: 0
   audioSource: {fileID: 82949370530213598}
+  fireClip: {fileID: 0}
+  explosionClip: {fileID: 0}
 --- !u!136 &136835643265946906
 CapsuleCollider:
   m_ObjectHideFlags: 1

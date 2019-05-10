@@ -441,7 +441,7 @@ MonoBehaviour:
     m_Bits: 256
   debugRadius: {fileID: 1272696118250838, guid: 0877b525e40d943778b68774cbf4a78a,
     type: 2}
-  showDebugRadius: 1
+  showDebugRadius: 0
   audioSource: {fileID: 82599969699051284}
   fireClip: {fileID: 8300000, guid: 741735cd49423425e8e2eb9715980072, type: 3}
   explosionClip: {fileID: 8300000, guid: 741735cd49423425e8e2eb9715980072, type: 3}

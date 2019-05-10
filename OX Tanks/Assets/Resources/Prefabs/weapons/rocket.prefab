@@ -652,15 +652,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 198143486853454654}
-  explosionRadius: 25
+  explosionRadius: 15
   explosionForce: 500
-  maxDamage: 80
+  maxDamage: 50
   playerMask:
     serializedVersion: 2
     m_Bits: 256
   debugRadius: {fileID: 1272696118250838, guid: 0877b525e40d943778b68774cbf4a78a,
     type: 2}
-  showDebugRadius: 1
+  showDebugRadius: 0
   audioSource: {fileID: 82725524095775640}
   fireClip: {fileID: 8300000, guid: 6a10eaaba88b3405fbd36502e18e11d1, type: 3}
   explosionClip: {fileID: 8300000, guid: ab5f3641029fa4e73ba70c5af57d468d, type: 3}
