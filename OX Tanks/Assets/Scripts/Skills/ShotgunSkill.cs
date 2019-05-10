@@ -26,8 +26,6 @@ public class ShotgunSkill : AbstractSkill {
         cooldown = DEFAULT_COOLDOWN;
 
         playerMask = LayerMask.GetMask("Player");
-        //TMP
-        cooldown = 0f;
     }
 
     protected override void postStart() {
