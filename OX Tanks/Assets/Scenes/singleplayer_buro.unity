@@ -3446,6 +3446,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1482140259376178, guid: a13f870c37f29499d80daa8a627f1eec, type: 2}
+      propertyPath: m_Name
+      value: OneScreenCameraRig
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a13f870c37f29499d80daa8a627f1eec, type: 2}
   m_IsPrefabAsset: 0
