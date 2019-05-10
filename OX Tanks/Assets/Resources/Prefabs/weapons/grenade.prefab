@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 135596900980803782}
   - component: {fileID: 114711324786283152}
   - component: {fileID: 54897826457937030}
-  - component: {fileID: 82996264042594084}
+  - component: {fileID: 82541036891556598}
   m_Layer: 0
   m_Name: grenade
   m_TagString: Untagged
@@ -326,7 +326,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &82996264042594084
+--- !u!82 &82541036891556598
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -335,8 +335,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b133091f08b6846349634c0d2102ed4e, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 2deed014ad741470a9db4424cb0a3508, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -442,9 +442,9 @@ MonoBehaviour:
   debugRadius: {fileID: 1272696118250838, guid: 0877b525e40d943778b68774cbf4a78a,
     type: 2}
   showDebugRadius: 0
-  audioSource: {fileID: 82996264042594084}
+  audioSource: {fileID: 82541036891556598}
   fireClip: {fileID: 0}
-  explosionClip: {fileID: 8300000, guid: b133091f08b6846349634c0d2102ed4e, type: 3}
+  explosionClip: {fileID: 8300000, guid: 2deed014ad741470a9db4424cb0a3508, type: 3}
 --- !u!135 &135596900980803782
 SphereCollider:
   m_ObjectHideFlags: 1
