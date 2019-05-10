@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -7,8 +8,7 @@ using UnityEngine.Networking;
 /// A simple tank movement script to controll the tank. It should
 /// be applied to the <code>PlayerRig</code> prefab.
 /// </summary>
-public class TankMovement : MonoBehaviour
-{
+public class TankMovement : MonoBehaviour {
 
     // Initial moving speed
     [SerializeField]
@@ -20,37 +20,56 @@ public class TankMovement : MonoBehaviour
     [SerializeField]
     private float speedMultiplier = 1f;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
+    [SerializeField]
+    private AudioClip idle;
+
+    [SerializeField]
+    private AudioClip drive;
+
     //The tank vitals
     private TankVitals vitals;
 
     // The rigid body of the tank
     private Rigidbody rigidBody;
 
+    private float originalPitch = 1f;
+    private float pitchRange = 0.2f;
+
     private const string verticalAxisName = "Vertical Player {0}";
     private const string horizontalAxisName = "Horizontal Player {0}";
+
+    private float vertical;
+    private float horizontal;
 
     /// <summary>
     /// Awake this instance.
     /// </summary>
-    private void Awake()
-    {
+    private void Awake() {
         rigidBody = GetComponent<Rigidbody>();
         vitals = GetComponent<TankVitals>();
+    }
+
+    void Update() {
+        string axisV = string.Format(verticalAxisName, vitals.PlayerNumber);
+        string axisH = string.Format(horizontalAxisName, vitals.PlayerNumber);
+        vertical = Input.GetAxis(axisV);
+        horizontal = Input.GetAxis(axisH);
+        playMovementAudio();
     }
 
     /// <summary>
     /// Since movement is applied at the rigid body with the physics engine,
     /// the calculates must happen in fixed update.
     /// </summary>
-    void FixedUpdate()
-    {
-        if (!PauseScreenHandler.IsPaused)
-        {
+    void FixedUpdate() {
+        if (!PauseScreenHandler.IsPaused) {
             Move();
             Turn();
         }
     }
-
 
     /// <summary>
     /// Moves the tank to the new position dictated by the
@@ -58,8 +77,6 @@ public class TankMovement : MonoBehaviour
     /// of the controller (e.g. Keyboard: up/down)
     /// </summary>
     private void Move() {
-        string axis = string.Format(verticalAxisName, vitals.PlayerNumber);
-        float vertical = Input.GetAxis(axis);
         Vector3 movement = transform.forward * vertical * movingSpeed * speedMultiplier * Time.deltaTime;
         rigidBody.MovePosition(rigidBody.position + movement);
     }
@@ -70,11 +87,32 @@ public class TankMovement : MonoBehaviour
     /// of the controller. (e.g. Keyboard: left/right)
     /// </summary>
     private void Turn() {
-        string axis = string.Format(horizontalAxisName, vitals.PlayerNumber);
-        float horizontal = Input.GetAxis(axis);
         float turn = horizontal * turningSpeed * speedMultiplier * Time.deltaTime;
         Quaternion turnRotation = Quaternion.Euler(0, turn, 0);
         rigidBody.MoveRotation(rigidBody.rotation * turnRotation);
+    }
+
+    /// <summary>
+    /// Playes the movement audio.
+    /// </summary>
+    private void playMovementAudio() {
+        if (isMoving()) {
+            if (audioSource.clip == idle) {
+                audioSource.clip = drive;
+                audioSource.pitch = UnityEngine.Random.Range((originalPitch - pitchRange), (originalPitch + pitchRange)) * speedMultiplier;
+                audioSource.Play();
+            }
+        } else {
+            if (audioSource.clip == drive) {
+                audioSource.clip = idle;
+                audioSource.pitch = UnityEngine.Random.Range((originalPitch - pitchRange), (originalPitch + pitchRange)) * speedMultiplier;
+                audioSource.Play();
+            }
+        }
+    }
+
+    private bool isMoving() {
+        return Math.Abs(vertical) > 0.1f || Math.Abs(horizontal) > 0.1f;
     }
 
     /// <summary>
