@@ -145,7 +145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -94}
+  m_AnchoredPosition: {x: 0, y: -22.300003}
   m_SizeDelta: {x: 165.45, y: 44.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &28707272
@@ -362,7 +362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -22.300003}
+  m_AnchoredPosition: {x: -2, y: -87}
   m_SizeDelta: {x: 165.45, y: 44.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &214477502
@@ -1184,7 +1184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -94}
+  m_AnchoredPosition: {x: 0, y: -22.300003}
   m_SizeDelta: {x: 165.45, y: 44.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &393051296
@@ -1928,7 +1928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -22.300003}
+  m_AnchoredPosition: {x: -2, y: -93}
   m_SizeDelta: {x: 165.45, y: 44.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &985456612
@@ -4502,13 +4502,13 @@ MonoBehaviour:
   weaponsPlayer1:
   - {fileID: 1491076976}
   - {fileID: 1235926005}
-  - {fileID: 214477500}
   - {fileID: 28707270}
+  - {fileID: 214477500}
   weaponsPlayer2:
   - {fileID: 568102759}
   - {fileID: 351477772}
-  - {fileID: 985456610}
   - {fileID: 393051294}
+  - {fileID: 985456610}
   player1Name: {fileID: 1494367537}
   player2Name: {fileID: 379736419}
   roundStartCountDownText: {fileID: 1918838271}
