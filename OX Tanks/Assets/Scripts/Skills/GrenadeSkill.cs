@@ -2,12 +2,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 /// <summary>
 /// Grenade skill.
 /// </summary>
 public class GrenadeSkill : AbstractSkill {
 
     private PoolManager poolManager;
+
+    [SerializeField]
+    private int grenadeAcceleration = 20;
+
+    [SerializeField]
+    private float gravityMultiplier = 100f;
 
     private void Awake() {
         poolManager = PoolManager.instance;
@@ -44,6 +52,8 @@ public class GrenadeSkill : AbstractSkill {
             GameObject poolGameObject = poolObject.getGameObject();
             GrenadeExplosion explosion = poolGameObject.GetComponent<GrenadeExplosion>();
             explosion.setMaxDamage(10); //TODO: adjust accordingly
+            poolGameObject.GetComponent<Rigidbody>().velocity = poolGameObject.transform.up * grenadeAcceleration;
+            poolGameObject.GetComponent<Rigidbody>().AddForce(Physics.gravity * gravityMultiplier, ForceMode.Acceleration);
         }
     }
 }
