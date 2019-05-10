@@ -28,14 +28,15 @@ public class RoundManager : MonoBehaviour {
         }
     }
 
-    private const string startScene = "StartScene";
-
     /// <summary>
     ///	    true IF the game is actually running and tanks are fighting, false if
     ///	    in the menu
     /// </summary>
     [SerializeField]
-    private bool roundRunning;
+    public bool roundRunning;
+    public bool roundFinished;
+
+    public string playerNameWinnerLastRound = "";
 
     /// <summary>
     ///	    The list of players active and alive in the current round
@@ -88,6 +89,7 @@ public class RoundManager : MonoBehaviour {
 
     // Called by UNITY
     void Start () {
+        
     }
 
     // Called by UNITY
@@ -100,9 +102,10 @@ public class RoundManager : MonoBehaviour {
             if(activePlayers.Count == 1) {
                 var winner = activePlayers[0];
                 Debug.Log("Round finished. " + winner.PlayerName + " won!");
+                playerNameWinnerLastRound = winner.PlayerName;
                 playerPoints[winner.PlayerNumber]++;
-                UnityEngine.SceneManagement.SceneManager.LoadScene(startScene);
                 roundRunning = false;
+                roundFinished = true;
                 round++;
             }
         }
@@ -135,7 +138,8 @@ public class RoundManager : MonoBehaviour {
        SpawnPlayer(player1);
        SpawnPlayer(player2);
        roundRunning = true;
-       newRound = false;
+       newRound = false;       
+       roundFinished = false;
     }
 
     /// <summary>
