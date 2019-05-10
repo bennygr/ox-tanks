@@ -5,7 +5,7 @@ namespace Complete
     public class CameraControlOld : MonoBehaviour
     {
         public float m_DampTime = 0.2f;                 // Approximate time for the camera to refocus.
-        public float m_ScreenEdgeBuffer = 4f;           // Space between the top/bottom most target and the screen edge.
+        public float m_ScreenEdgeBuffer = 20f;           // Space between the top/bottom most target and the screen edge.
         public float m_MinSize = 6.5f;                  // The smallest orthographic size the camera can be.
         [HideInInspector] public Transform[] m_Targets; // All the targets the camera needs to encompass.
 
