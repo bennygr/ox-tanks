@@ -60,7 +60,7 @@ public class RoundManager : MonoBehaviour {
     [SerializeField]
     public static int round = 1; 
     //The amount of rounds to play for whole game
-    public static int roundsPerGame = 1;
+    public static int roundsPerGame = 5;
 
     public static int PointsForPlayer(int playerNumber){
         if(playerPoints.ContainsKey(playerNumber)){

@@ -24,12 +24,9 @@ public class StartScreenHandler : MonoBehaviour
     private readonly string countDownText = "New round starts in...{0}s";
     private readonly string countDownTextNow = "New round starts NOW";
     private readonly string newRoundText = "Round {0} / {1}";
+    private readonly string gameDoneText = "Game finished";
 
 
-    /// <summary>
-    /// The amount of rounds to play
-    /// </summary>
-    public static int RoundsPerGame = 5;
 
     private void LoadGameScene(){
         UnityEngine.SceneManagement.SceneManager.LoadScene(mapName);
@@ -60,6 +57,9 @@ public class StartScreenHandler : MonoBehaviour
     private int GetPointsPlayer2(){
         return RoundManager.PointsForPlayer(2);
     }
+    private bool GameFinished(){
+        return RoundManager.round > RoundManager.roundsPerGame;
+    }
 
     void SelectMenuItem(GameObject[] items, int index){
         if (index > weaponsPlayer1.Length) return;
@@ -85,9 +85,16 @@ public class StartScreenHandler : MonoBehaviour
         //Header
         if (roundHeaderText != null)
         {
-            //Display current round number
-            roundHeaderText.text = string.Format(newRoundText, GetCurrentRound(), RoundsPerGame);
+            if (!GameFinished())
+            {
+                //Display current round number
+                roundHeaderText.text = string.Format(newRoundText, GetCurrentRound(), RoundManager.roundsPerGame);
+            }
+            else{
+                roundHeaderText.text =  gameDoneText;
+            }                
         }
+
 
 
         //Default weapon/tank selection
@@ -152,7 +159,7 @@ public class StartScreenHandler : MonoBehaviour
     /// </summary>
     /// <returns><c>true</c>, if counting is done, <c>false</c> otherwise.</returns>
     private bool DoCounting() {
-        return GetCurrentRound() > 1 && roundStartCountDown > 0 && roundStartCountDownText != null;
+        return !GameFinished() && GetCurrentRound() > 1 && roundStartCountDown > 0 && roundStartCountDownText != null;
     }
 
     /// <summary>
