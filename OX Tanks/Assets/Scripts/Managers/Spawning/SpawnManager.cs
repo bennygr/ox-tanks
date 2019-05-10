@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpawnManager : MonoBehaviour
-{
+public class SpawnManager : MonoBehaviour {
 
     [SerializeField]
     private List<GameObject> tankPrefabs = new List<GameObject>(4);
@@ -28,11 +27,11 @@ public class SpawnManager : MonoBehaviour
     /// Awake this instance.
     /// </summary>
     private void Awake() {
-        if(camera == null){
+        if (camera == null) {
             Debug.LogError("No Camera attached to the SpanwManger.");
         }
-        cameraControl = camera.GetComponent<CameraControl>();
-        if(cameraControl == null){
+        cameraControl = camera.transform.parent.gameObject.GetComponent<CameraControl>();
+        if (cameraControl == null) {
             Debug.LogError("No CameraControl attached to the camera.");
         }
     }
