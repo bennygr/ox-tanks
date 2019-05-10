@@ -1,10 +1,12 @@
 using UnityEngine;
-using UnityEngine.Events;
+using System.Collections;
 
 public abstract class AbstractCollect : MonoBehaviour, PowerUpCollectable {
 
     protected int layer;
     private const float rotationSpeed = 3f;
+    [SerializeField]
+    private AudioSource audioSource;
 
     private void Awake() {
         layer = LayerMask.NameToLayer("Player");
@@ -23,11 +25,18 @@ public abstract class AbstractCollect : MonoBehaviour, PowerUpCollectable {
             return;
         }
 
+        audioSource.Play();
+        gameObject.transform.Find("Model").gameObject.SetActive(false);
+        StartCoroutine("PlayEffect", 2);
         applyPowerUp(tankVitals);
+    }
+
+    public abstract void applyPowerUp(TankVitals tankVitals);
+
+    IEnumerator PlayEffect(float delay) {
+        yield return new WaitForSeconds(delay);
         gameObject.SetActive(false);
         // FIXME: Dirty hack. Introduce an event manager to distribute events to registered listeners.
         gameObject.transform.parent.GetComponent<PowerUpSpawnPoint>().HasPowerUp = false;
     }
-
-    public abstract void applyPowerUp(TankVitals tankVitals);
 }

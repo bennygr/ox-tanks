@@ -31,6 +31,13 @@ public class PrimaryFire : MonoBehaviour {
     private PoolManager poolManager;
     private TankVitals tankVitals;
 
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip charge;
+    [SerializeField]
+    private AudioClip fire;
+
     private const string PRIMARY_FIRE_BUTTON = "Primary Fire Player {0}";
 
     private void Awake() {
@@ -57,6 +64,9 @@ public class PrimaryFire : MonoBehaviour {
         } else if (Input.GetButtonDown(primaryFireButtonName)) {
             fired = false;
             currentLaunchForce = minLaunchForce;
+
+            audioSource.clip = charge;
+            audioSource.Play();
         } else if (Input.GetButton(primaryFireButtonName) && !fired) {
             currentLaunchForce += chargeSpeed * Time.deltaTime;
             castSlider.value = currentLaunchForce;
@@ -72,6 +82,10 @@ public class PrimaryFire : MonoBehaviour {
             Debug.LogWarning("Cannot fire! Pool manager does not contain any objects");
             return;
         }
+
+        audioSource.clip = fire;
+        audioSource.Play();
+
         GameObject poolGameObject = poolObject.getGameObject();
         ShellExplosion shellExplosion = poolGameObject.GetComponent<ShellExplosion>();
         shellExplosion.setMaxDamage(tankVitals.getMaxDamage());

@@ -63,7 +63,7 @@ public class PowerUpManager : MonoBehaviour {
             return;
         }
         // Indexes of the powerups in the PoolInitialiser
-        int randomPowerUp = UnityEngine.Random.Range(6, 9);
+        int randomPowerUp = UnityEngine.Random.Range(6, 10);
         GameObject powerUpPrefab = PoolInitialiser.instance.getManagedPrefab(randomPowerUp);
         Transform randomSpawnPointTransform = randomSpawnPoint.transform;
 
