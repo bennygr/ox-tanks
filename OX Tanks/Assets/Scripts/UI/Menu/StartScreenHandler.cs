@@ -20,6 +20,8 @@ public class StartScreenHandler : MonoBehaviour
 
     private int p1Index = 0;
     private int p2Index = 1;
+    private static string name1 = "Player 1";
+    private static string name2 = "Player 2";
     private float counter = 0;
     private readonly string countDownText = "New round starts in...{0}s";
     private readonly string countDownTextNow = "New round starts NOW";
@@ -31,12 +33,12 @@ public class StartScreenHandler : MonoBehaviour
     private void LoadGameScene(){
         UnityEngine.SceneManagement.SceneManager.LoadScene(mapName);
 
-        string name1 = player1Name == null ||
+        name1 = player1Name == null ||
                        player1Name.text == null ||
                        player1Name.text.Trim() == string.Empty ?
                                   "Player 1" :
                                   player1Name.text;
-        string name2 = player2Name == null ||
+        name2 = player2Name == null ||
                        player2Name.text == null ||
                        player2Name.text.Trim() == string.Empty ?
                                   "Player 2" :
@@ -128,6 +130,8 @@ public class StartScreenHandler : MonoBehaviour
         }
 
         //Display points if the game is running / at least one round was played
+        player1Name.text = name1;
+        player2Name.text = name2;
         if (GetCurrentRound() > 1){
             pointsPlayer1.text = GetPointsPlayer1().ToString();
             pointsPlayer2.text = GetPointsPlayer2().ToString();
