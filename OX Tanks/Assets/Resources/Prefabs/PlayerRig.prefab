@@ -1068,7 +1068,8 @@ MonoBehaviour:
   healthSlider: {fileID: 114014120671604202}
   armorSlider: {fileID: 114587956261804516}
   floatingTextControl: {fileID: 114832361217979406}
-  tankExplosionPrefab: {fileID: 151086, guid: dc691a4101b8b49e2b5f0313738ccb31, type: 2}
+  tankExplosionPrefab: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b,
+    type: 2}
   playerName: 
 --- !u!114 &114685687855451650
 MonoBehaviour:
