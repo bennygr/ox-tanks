@@ -202,4 +202,11 @@ public class StartScreenHandler : MonoBehaviour
     public void OnFightButtonClicked(){
         LoadGameScene();
     }
+
+    /// <summary>
+    /// Ons the exit buttoni clicked.
+    /// </summary>
+    public void OnExitButtoniClicked(){
+        Application.Quit();
+    }
 }
