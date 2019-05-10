@@ -17,20 +17,10 @@ public class SpawnManager : MonoBehaviour {
     [SerializeField]
     private GameObject spawnPointB;
 
-    [SerializeField]
-    private GameObject mainCam;
-    [SerializeField]
-    private GameObject playerCam;
-
-    private ChaseCamera playerCamera;
-    private ChaseCamera2D playerCamera2D;
-
     /// <summary>
     /// Awake this instance.
     /// </summary>
     private void Awake() {
-        playerCamera = mainCam.GetComponent<ChaseCamera>();
-        playerCamera2D = playerCam.GetComponent<ChaseCamera2D>();
     }
 
     // Update is called once per frame
@@ -88,12 +78,6 @@ public class SpawnManager : MonoBehaviour {
         } else {
             Debug.LogWarningFormat("No display name was set for player {0}", playerName);
         }
-
-        GameObject cameraRig = playerRig.transform.Find("CameraRig").gameObject;
-        playerCamera.setMountPoint(cameraRig.transform.Find("CameraMount").gameObject.transform);
-        playerCamera.setLookAtTarget(cameraRig.transform.Find("CameraLookAtTarget").gameObject.transform);
-
-        playerCamera2D.setTargetToFollow(playerRig.transform);
 
         assignTankClass(playerRig, tankPrefab, num);
         playerRig.transform.position = getSpawnPosition(playerNumber);
