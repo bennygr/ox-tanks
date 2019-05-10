@@ -8,6 +8,7 @@ public class BulletExplosion : AbstractExplosion {
     }
 
     protected new void OnTriggerEnter(Collider other) {
+        Debug.Log("Collider hit: " + other.name);
         Explode();
     }
 }

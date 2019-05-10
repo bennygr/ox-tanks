@@ -12,7 +12,7 @@ public class ShotgunSkill : AbstractSkill {
     protected LayerMask playerMask;
 
     [SerializeField]
-    private float bulletSpeed = 30f;
+    private float bulletSpeed = 60f;
 
     private PoolManager poolManager;
 
@@ -60,7 +60,7 @@ public class ShotgunSkill : AbstractSkill {
                 if (c == null) {
                     continue;
                 }
-                Debug.Log("Distance for hit: " + hit.distance);
+                Debug.Log("Distance for hit " + hit.distance + " for collider " + c.name);
 
                 Rigidbody targetRigidbody = c.GetComponent<Rigidbody>();
 

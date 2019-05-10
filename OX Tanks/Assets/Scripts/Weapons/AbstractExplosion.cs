@@ -92,6 +92,7 @@ public abstract class AbstractExplosion : MonoBehaviour {
         }
         explosion.transform.parent = null;
         explosion.Play();
+        audioSource.clip = explosionClip;
         audioSource.Play();
         weaponCollider.enabled = false;
         ParticleSystem.MainModule mainModule = explosion.main;
