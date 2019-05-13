@@ -82,10 +82,6 @@ public class TankVitals : MonoBehaviour {
         get {
             return skillCooldown;
         }
-
-        set {
-            skillCooldown = value;
-        }
     }
 
 

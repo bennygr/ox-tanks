@@ -13,6 +13,7 @@ public abstract class AbstractSkill : MonoBehaviour {
 
     [SerializeField]
     private Image skillCooldown;
+    private SkillCooldownControl skillCooldownControl;
 
     // Identify the different players
     public int playerNumber = 1;
@@ -29,6 +30,9 @@ public abstract class AbstractSkill : MonoBehaviour {
     private DateTime lastTriggered;
 
     protected void Start() {
+        skillCooldownControl = GetComponent<SkillCooldownControl>();
+        skillCooldownControl.Cooldown = cooldown;
+        skillCooldownControl.IsCooldown = false;
         playerNumber = GetComponent<TankVitals>().PlayerNumber;
         fireButton = "Skill Player " + playerNumber;
 
@@ -40,16 +44,10 @@ public abstract class AbstractSkill : MonoBehaviour {
         postStart();
     }
 
-    void LateUpdate() {
-        if (CanTrigger()) {
-            GetComponent<TankVitals>().SkillCooldown.enabled = true;
-        }
-    }
-
     protected void Triggered() {
         audioSource.Play();
-        GetComponent<TankVitals>().SkillCooldown.enabled = false;
-        lastTriggered = DateTime.Now;
+        skillCooldownControl.IsCooldown = true;
+        //lastTriggered = DateTime.Now;
     }
 
     protected bool CanTrigger() {
@@ -57,7 +55,7 @@ public abstract class AbstractSkill : MonoBehaviour {
         if (cooldown == 0) {
             return true;
         }
-        return (DateTime.Now - lastTriggered).Seconds > cooldown;
+        return !skillCooldownControl.IsCooldown;
     }
 
     public void setSkillTransform(Transform skillTransform) {
