@@ -23,6 +23,12 @@ public class TankMovement : MonoBehaviour {
     [SerializeField]
     private AudioSource audioSource;
 
+    public AudioSource AudioSource {
+        get {
+            return audioSource;
+        }
+    }
+
     [SerializeField]
     private AudioClip idle;
 

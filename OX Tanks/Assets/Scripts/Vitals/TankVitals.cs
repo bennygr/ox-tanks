@@ -229,6 +229,8 @@ public class TankVitals : MonoBehaviour {
             Debug.LogWarning("Cannot explode! Pool manager does not contain any objects");
             return;
         }
+        GetComponent<BoxCollider>().enabled = false;
+        tankMovement.AudioSource.clip = null;
         model.SetActive(false);
         playerInformation.SetActive(false);
         tankMovement.enabled = false;
@@ -236,7 +238,7 @@ public class TankVitals : MonoBehaviour {
         explosion = explosionGameObject.GetComponent<ParticleSystem>();
         explosion.Play();
         ParticleSystem.MainModule mainModule = explosion.main;
-        StartCoroutine("Deactivate", mainModule.duration); //TODO: Should be part of the pool management framework
+        StartCoroutine(Deactivate(mainModule.duration)); //TODO: Should be part of the pool management framework
     }
 
     /// <summary>
