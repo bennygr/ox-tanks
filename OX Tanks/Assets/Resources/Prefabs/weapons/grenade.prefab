@@ -443,7 +443,7 @@ MonoBehaviour:
     type: 2}
   showDebugRadius: 0
   audioSource: {fileID: 82541036891556598}
-  fireClip: {fileID: 0}
+  fireClip: {fileID: 8300000, guid: f819faa684fa54c3ca5fec4af15f62db, type: 3}
   explosionClip: {fileID: 8300000, guid: 2deed014ad741470a9db4424cb0a3508, type: 3}
 --- !u!135 &135596900980803782
 SphereCollider:
