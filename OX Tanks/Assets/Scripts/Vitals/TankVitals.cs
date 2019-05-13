@@ -32,6 +32,10 @@ public class TankVitals : MonoBehaviour {
     [SerializeField]
     private FloatingTextControl floatingTextControl;
     [SerializeField]
+    private Image speedBuff;
+    [SerializeField]
+    private Image damageBuff;
+    [SerializeField]
     private GameObject tankExplosionPrefab;
     private int playerNumber;
     [SerializeField]    
@@ -79,6 +83,7 @@ public class TankVitals : MonoBehaviour {
         this.speedChanged = DateTime.Now;
         this.speedMultiplierTime = speedMultiplierTime;
         tankMovement.setSpeedMultiplier(speedMultiplier);
+        speedBuff.enabled = true;
     }
 
     /// <summary>
@@ -91,6 +96,7 @@ public class TankVitals : MonoBehaviour {
         this.damageChanged = DateTime.Now;
         this.damageMultiplierTime = damageMultiplierTime;
         this.damageMultiplier = damageMultiplier;
+        damageBuff.enabled = true;
     }
 
     /// <summary>
@@ -114,11 +120,13 @@ public class TankVitals : MonoBehaviour {
         if ((DateTime.Now - damageChanged).Seconds > damageMultiplierTime && damageChanged != DateTime.MinValue) {
             damageMultiplier = 1;
             damageChanged = DateTime.MinValue;
+            damageBuff.enabled = false;
         }
         // Check if speed multiplier is expired
         if ((DateTime.Now - speedChanged).Seconds > speedMultiplierTime && speedChanged != DateTime.MinValue) {
             tankMovement.setSpeedMultiplier(1);
             speedChanged = DateTime.MinValue;
+            speedBuff.enabled = false;
         }
     }
 
