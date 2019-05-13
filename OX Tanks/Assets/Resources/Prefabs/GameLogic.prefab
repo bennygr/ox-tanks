@@ -67,7 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialSpawnDelay: 5
   initalAmountOfPowerups: 6
-  spawnDelay: 2
+  spawnDelay: 10
   spawnPoints: []
 --- !u!114 &114682012182191798
 MonoBehaviour:
