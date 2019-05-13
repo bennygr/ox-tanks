@@ -6,7 +6,7 @@ public class ShotgunSkill : AbstractSkill {
     private int maxDamage = 30;
 
     [SerializeField]
-    private float maxRange = 20f;
+    private float maxRange = 15f;
 
     [SerializeField]
     protected LayerMask playerMask;
