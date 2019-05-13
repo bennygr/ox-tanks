@@ -3717,6 +3717,11 @@ Prefab:
       propertyPath: camera
       value: 
       objectReference: {fileID: 569976800}
+    - target: {fileID: 114068623693874140, guid: b0144834ab69c4907862046f83b174fd,
+        type: 2}
+      propertyPath: light
+      value: 
+      objectReference: {fileID: 1535724664}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0144834ab69c4907862046f83b174fd, type: 2}
   m_IsPrefabAsset: 0
@@ -4111,7 +4116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1241663982
 Transform:
   m_ObjectHideFlags: 0
