@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114396510936309546}
   - component: {fileID: 114887441945301504}
   - component: {fileID: 114617773460309374}
+  - component: {fileID: 114625406337787492}
   m_Layer: 0
   m_Name: GameLogic
   m_TagString: Untagged
@@ -69,6 +70,20 @@ MonoBehaviour:
   initalAmountOfPowerups: 6
   spawnDelay: 10
   spawnPoints: []
+--- !u!114 &114625406337787492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399345523725962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5455fc71016f40c991f047f60232c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roundRunning: 0
+  roundFinished: 0
+  playerNameWinnerLastRound: 
 --- !u!114 &114682012182191798
 MonoBehaviour:
   m_ObjectHideFlags: 1
