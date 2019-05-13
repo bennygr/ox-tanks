@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RoundManager : MonoBehaviour {
+
+    public UnityEvent triggerDarkMode;
 
     public class Spawn {
 
@@ -17,6 +20,7 @@ public class RoundManager : MonoBehaviour {
         public int playerNumber { get; private set; }
     }
 
+    private static bool darkMode = false;
     private static bool created = false;
     private static RoundManager _instance;
     public static RoundManager instance {
@@ -44,7 +48,7 @@ public class RoundManager : MonoBehaviour {
     private List<TankVitals> activePlayers = new List<TankVitals>();
 
     //mapping player-Ids to current points
-    private static Dictionary<int,int> playerPoints = new Dictionary<int, int>();
+    private static Dictionary<int, int> playerPoints = new Dictionary<int, int>();
 
 
     //---------------------------------------------------------------------------------------------h
@@ -59,12 +63,12 @@ public class RoundManager : MonoBehaviour {
 
     //The current round
     [SerializeField]
-    public static int round = 1; 
+    public static int round = 1;
     //The amount of rounds to play for whole game
     public static int roundsPerGame = 5;
 
-    public static int PointsForPlayer(int playerNumber){
-        if(playerPoints.ContainsKey(playerNumber)){
+    public static int PointsForPlayer(int playerNumber) {
+        if (playerPoints.ContainsKey(playerNumber)) {
             return playerPoints[playerNumber];
         }
         return 0;
@@ -73,33 +77,32 @@ public class RoundManager : MonoBehaviour {
 
     //---------------------------------------------------------------------------------------------h
 
-    void Awake(){
-        if(!created){
+    void Awake() {
+        if (!created) {
             Object.DontDestroyOnLoad(this);
             created = true;
-        }
-        else{
+        } else {
             Destroy(gameObject);
         }
     }
 
-    private SpawnManager FindSpawnManager(){
+    private SpawnManager FindSpawnManager() {
         return FindObjectOfType<SpawnManager>();
     }
 
     // Called by UNITY
-    void Start () {
-        
+    void Start() {
+
     }
 
     // Called by UNITY
-    void Update () {
-        if(newRound){
+    void Update() {
+        if (newRound) {
             StartRound();
         }
-        if(roundRunning && activePlayers != null){
+        if (roundRunning && activePlayers != null) {
             //The round ends, if there is only one player left
-            if(activePlayers.Count == 1) {
+            if (activePlayers.Count == 1) {
                 var winner = activePlayers[0];
                 Debug.Log("Round finished. " + winner.PlayerName + " won!");
                 playerNameWinnerLastRound = winner.PlayerName;
@@ -114,18 +117,21 @@ public class RoundManager : MonoBehaviour {
     /// <summary>
     ///	    Spawns a new player
     /// </summary>
-    private void SpawnPlayer(Spawn spawn){
-        if(spawn != null){
+    private void SpawnPlayer(Spawn spawn) {
+        if (spawn != null) {
             var spawnManager = FindSpawnManager();
             var player = spawnManager.initialiseTankPrefab(spawn.num, spawn.name, spawn.playerNumber);
             activePlayers.Add(player.GetComponent<TankVitals>());
             //init points if not done yet
-            if(!playerPoints.ContainsKey(spawn.playerNumber)){
+            if (!playerPoints.ContainsKey(spawn.playerNumber)) {
                 playerPoints[spawn.playerNumber] = 0;
             }
+            if (string.Compare(spawn.name, "Ioannis", System.StringComparison.OrdinalIgnoreCase) == 1) {
+                Debug.Log("Dark Mode enabled");
+                darkMode = true;
+            }
             Debug.Log(player.name + " entered the battlefield");
-        }
-        else {
+        } else {
             Debug.Log("Cannot spawn player; 'spawn' must not be null");
         }
     }
@@ -133,30 +139,34 @@ public class RoundManager : MonoBehaviour {
     /// <summary>
     ///	    Starts a new round - respawning all players
     /// </summary>
-    private void StartRound(){
-       activePlayers = new List<TankVitals>();
-       SpawnPlayer(player1);
-       SpawnPlayer(player2);
-       roundRunning = true;
-       newRound = false;       
-       roundFinished = false;
+    private void StartRound() {
+        darkMode = false;
+        activePlayers = new List<TankVitals>();
+        SpawnPlayer(player1);
+        SpawnPlayer(player2);
+        roundRunning = true;
+        newRound = false;
+        roundFinished = false;
+        if (darkMode) {
+            triggerDarkMode.Invoke();
+        }
     }
 
     /// <summary>
     ///     Removes a player from the current round, because he was killed
     /// </summary>
-    public void RemovePlayer(int playerNumber){
-        if(activePlayers != null){
+    public void RemovePlayer(int playerNumber) {
+        if (activePlayers != null) {
             var player = activePlayers.Find(p => p.PlayerNumber == playerNumber);
-            if(player != null){
-                if(activePlayers.Remove(player)){
+            if (player != null) {
+                if (activePlayers.Remove(player)) {
                     Debug.Log("OH NOOOOO: " + player.PlayerName + " just died :-(");
                 }
             }
         }
     }
 
-    public void Reset(){
+    public void Reset() {
         roundRunning = false;
         newRound = false;
         round = 1;

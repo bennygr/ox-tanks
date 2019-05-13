@@ -20,51 +20,46 @@ public class PauseScreenHandler : MonoBehaviour {
         Pause(false);
     }
 
-    void SelectMenuItem(int index)
-    {
-        if (index == 0){
+    void SelectMenuItem(int index) {
+        if (index == 0) {
             resume.color = Color.yellow;
             exit.color = Color.white;
-        }
-        else if(index == 1){
+        } else if (index == 1) {
             resume.color = Color.white;
             exit.color = Color.yellow;
         }
     }
 
-    private void Quit(){
+    private void Quit() {
         RoundManager.instance.Reset();
         SceneManager.LoadScene("StartScene");
     }
 
-    private void Pause(bool pause){                
+    private void Pause(bool pause) {
         pauseScreen.SetActive(pause);
         IsPaused = pause;
     }
 
     // Update is called once per frame
-    void Update () {
-        if(Input.GetKeyDown(KeyCode.Escape)){
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
             Pause(!IsPaused);
         }
-        if(Input.GetKeyDown(KeyCode.UpArrow)){
-            menuIndex = (int) Mathf.Max(0, menuIndex - 1);
+        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+            menuIndex = (int)Mathf.Max(0, menuIndex - 1);
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow)){
+        if (Input.GetKeyDown(KeyCode.DownArrow)) {
             menuIndex = (int)Mathf.Min(1, menuIndex + 1);
         }
         SelectMenuItem(menuIndex);
 
-        if(Input.GetKeyDown(KeyCode.Return)){
-            if(IsPaused){
-                if (menuIndex == 0)
-                {
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            if (IsPaused) {
+                if (menuIndex == 0) {
                     Pause(false);
-                }
-                else if (menuIndex == 1)
-                {
+                } else if (menuIndex == 1) {
                     Quit();
-                }    
+                }
             }
         }
     }
