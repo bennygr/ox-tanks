@@ -109,6 +109,7 @@ public class RoundManager : MonoBehaviour {
                 playerPoints[winner.PlayerNumber]++;
                 roundRunning = false;
                 roundFinished = true;
+                FindObjectOfType<PowerUpManager>().enabled = false;
                 round++;
             }
         }
@@ -150,6 +151,7 @@ public class RoundManager : MonoBehaviour {
         if (darkMode) {
             triggerDarkMode.Invoke();
         }
+        FindObjectOfType<PowerUpManager>().enabled = true;
     }
 
     /// <summary>
