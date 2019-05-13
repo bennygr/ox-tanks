@@ -36,9 +36,11 @@ public class TankVitals : MonoBehaviour {
     [SerializeField]
     private Image damageBuff;
     [SerializeField]
+    private Image skillCooldown;
+    [SerializeField]
     private GameObject tankExplosionPrefab;
     private int playerNumber;
-    [SerializeField]    
+    [SerializeField]
     private string playerName;
     private PoolManager poolManager;
     private TankMovement tankMovement;
@@ -63,12 +65,26 @@ public class TankVitals : MonoBehaviour {
     /// <summary>
     ///	    The player's name
     /// </summary>
-    public String PlayerName{
-        get{
+    public String PlayerName {
+        get {
             return playerName;
         }
-        set{
+        set {
             playerName = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets the skill cooldown.
+    /// </summary>
+    /// <value>The skill cooldown.</value>
+    public Image SkillCooldown {
+        get {
+            return skillCooldown;
+        }
+
+        set {
+            skillCooldown = value;
         }
     }
 

@@ -8,6 +8,11 @@ public class SpawnManager : MonoBehaviour {
     [SerializeField]
     private List<GameObject> tankPrefabs = new List<GameObject>(4);
 
+
+    // FIXME: Couple skill prefabs with tank skills
+    [SerializeField]
+    private List<Image> skillImagePrefabs = new List<Image>(4);
+
     [SerializeField]
     private GameObject playerRigPrefab;
 
@@ -92,10 +97,12 @@ public class SpawnManager : MonoBehaviour {
             Debug.LogWarningFormat("No display name was set for player {0}", playerName);
         }
 
-        assignTankClass(playerRig, tankPrefab, num);
+        Image skillImage = skillImagePrefabs[num];
+        assignTankClass(playerRig, tankPrefab, skillImage, num);
         playerRig.transform.position = getSpawnPosition(playerNumber);
         playerRig.GetComponent<TankVitals>().PlayerNumber = playerNumber;
         playerRig.GetComponent<TankVitals>().PlayerName = playerName;
+        playerRig.GetComponent<TankVitals>().SkillCooldown.sprite = skillImage.sprite;
 
         cameraControl.AddCameraTarget(playerRig.transform);
 
@@ -118,31 +125,40 @@ public class SpawnManager : MonoBehaviour {
     /// </summary>
     /// <param name="playerRig">The player rig.</param>
     /// <param name="num">The tank class number</param>
-    private void assignTankClass(GameObject playerRig, GameObject prefab, int num) {
+    private void assignTankClass(GameObject playerRig, GameObject prefab, Image skillImage, int num) {
         switch (num) {
-            case 0:
-                playerRig.AddComponent<RocketSkill>();
-                playerRig.GetComponent<RocketSkill>().setSkillTransform(prefab.transform.Find("SpecialFireTransform").transform);
-                break;
-            case 1:
-                playerRig.AddComponent<MineSkill>();
-                playerRig.GetComponent<MineSkill>().setSkillTransform(prefab.transform.Find("SpecialFireTransform").transform);
-                break;
-            case 2:
-                playerRig.AddComponent<ShotgunSkill>();
-                for (int i = 1; i <= 5; i++) {
-                    playerRig.GetComponent<ShotgunSkill>().addSkillTransform(prefab.transform.Find("SpecialFireTransform" + i).transform);
+            case 0: {
+                    RocketSkill rocketSkill = playerRig.AddComponent<RocketSkill>();
+                    playerRig.GetComponent<RocketSkill>().setSkillTransform(prefab.transform.Find("SpecialFireTransform").transform);
+                    rocketSkill.SkillCooldown = skillImage;
+                    break;
                 }
-                break;
-            case 3:
-                playerRig.AddComponent<GrenadeSkill>();
-                for (int i = 1; i <= 8; i++) {
-                    playerRig.GetComponent<GrenadeSkill>().addSkillTransform(prefab.transform.Find("SpecialFireTransform" + i).transform);
+            case 1: {
+                    MineSkill mineSkill = playerRig.AddComponent<MineSkill>();
+                    playerRig.GetComponent<MineSkill>().setSkillTransform(prefab.transform.Find("SpecialFireTransform").transform);
+                    mineSkill.SkillCooldown = skillImage;
+                    break;
                 }
-                break;
+            case 2: {
+                    ShotgunSkill shotgunSkill = playerRig.AddComponent<ShotgunSkill>();
+                    for (int i = 1; i <= 5; i++) {
+                        playerRig.GetComponent<ShotgunSkill>().addSkillTransform(prefab.transform.Find("SpecialFireTransform" + i).transform);
+                    }
+                    shotgunSkill.SkillCooldown = skillImage;
+                    break;
+                }
+            case 3: {
+                    GrenadeSkill grenadeSkill = playerRig.AddComponent<GrenadeSkill>();
+                    for (int i = 1; i <= 8; i++) {
+                        playerRig.GetComponent<GrenadeSkill>().addSkillTransform(prefab.transform.Find("SpecialFireTransform" + i).transform);
+                    }
+                    grenadeSkill.SkillCooldown = skillImage;
+                    break;
+                }
             default:
-                playerRig.AddComponent<RocketSkill>();
+                RocketSkill skill = playerRig.AddComponent<RocketSkill>();
                 playerRig.GetComponent<RocketSkill>().setSkillTransform(prefab.transform.Find("SpecialFireTransform").transform);
+                skill.SkillCooldown = skillImage;
                 break;
         }
     }

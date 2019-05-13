@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class AbstractSkill : MonoBehaviour {
 
@@ -9,6 +10,9 @@ public abstract class AbstractSkill : MonoBehaviour {
 
     [SerializeField]
     protected GameObject prefab;
+
+    [SerializeField]
+    private Image skillCooldown;
 
     // Identify the different players
     public int playerNumber = 1;
@@ -36,8 +40,15 @@ public abstract class AbstractSkill : MonoBehaviour {
         postStart();
     }
 
+    void LateUpdate() {
+        if (CanTrigger()) {
+            GetComponent<TankVitals>().SkillCooldown.enabled = true;
+        }
+    }
+
     protected void Triggered() {
         audioSource.Play();
+        GetComponent<TankVitals>().SkillCooldown.enabled = false;
         lastTriggered = DateTime.Now;
     }
 
@@ -55,6 +66,16 @@ public abstract class AbstractSkill : MonoBehaviour {
 
     public void addSkillTransform(Transform skillTransform) {
         this.skillTransforms.AddFirst(skillTransform);
+    }
+
+    public Image SkillCooldown {
+        get {
+            return skillCooldown;
+        }
+
+        set {
+            skillCooldown = value;
+        }
     }
 
     /// <summary>
