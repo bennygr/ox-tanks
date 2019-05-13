@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class ShotgunSkill : AbstractSkill {
@@ -50,6 +51,7 @@ public class ShotgunSkill : AbstractSkill {
             poolGameObject.transform.SetPositionAndRotation(t.position, t.rotation);
             Rigidbody body = poolGameObject.GetComponent<Rigidbody>();
             body.velocity = bulletSpeed * t.up;
+            StartCoroutine(hideBullet(0.3f, poolGameObject));
 
             RaycastHit[] hits = Physics.RaycastAll(t.position, t.up, maxRange, playerMask);
             foreach (RaycastHit hit in hits) {
@@ -78,5 +80,16 @@ public class ShotgunSkill : AbstractSkill {
 
     private int CalculateDamage(Vector3 targetPosition, float distance) {
         return Mathf.RoundToInt(Mathf.Max(0f, (maxDamage - maxDamage * distance / maxRange)));
+    }
+
+    /// <summary>
+    /// Hides and explodes the bullet after the specified time delay.
+    /// </summary>
+    /// <returns>The bullet.</returns>
+    /// <param name="delay">Delay.</param>
+    /// <param name="obj">Object.</param>
+    IEnumerator hideBullet(float delay, GameObject obj) {
+        yield return new WaitForSeconds(delay);
+        obj.GetComponent<BulletExplosion>().Explode();
     }
 }

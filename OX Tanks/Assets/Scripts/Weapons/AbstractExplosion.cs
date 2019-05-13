@@ -83,7 +83,7 @@ public abstract class AbstractExplosion : MonoBehaviour {
         return Mathf.RoundToInt(Mathf.Max(0f, Mathf.Round(damage)));
     }
 
-    protected void Explode() {
+    public void Explode() {
         if (showDebugRadius) {
             GameObject d = Instantiate(debugRadius);
             d.transform.position = new Vector3(transform.position.x, 0.01f, transform.position.z);
