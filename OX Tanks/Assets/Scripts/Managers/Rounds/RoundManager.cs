@@ -81,8 +81,6 @@ public class RoundManager : MonoBehaviour {
         if (!created) {
             Object.DontDestroyOnLoad(this);
             created = true;
-        } else {
-            Destroy(gameObject);
         }
     }
 
